@@ -1,0 +1,765 @@
+<!DOCTYPE html><html dir="ltr"><head><title>Apache Superset</title><style>/* Base RTL/LTR variables */
+:root {
+--direction: ltr;
+--text-align: left;
+--padding-start: left;
+--padding-end: right;
+--font-family: 'Open Sans', arial;
+}
+
+/* Base styles */
+body {
+font-family: var(--font-family);
+direction: var(--direction);
+text-align: var(--text-align);
+}
+
+.course-main {
+font-size: 14px;
+line-height: 1.5em;
+margin: 25px;
+direction: var(--direction);
+text-align: var(--text-align);
+}
+
+/* Typography */
+.course-title {
+font-weight: bold;
+font-size: 28px;
+line-height: 1.2em;
+direction: var(--direction);
+text-align: var(--text-align);
+}
+
+.course-section {
+padding-top: 10px;
+direction: var(--direction);
+text-align: var(--text-align);
+}
+
+.course-highlight {
+color: #b44de9;
+}
+
+.course-skills-list {
+font-size: 12px;
+}
+
+.course-support {
+padding: 6px 0;
+}
+
+/* Page breaks */
+.course-new-page {
+page-break-before: always;
+}
+
+.course-lesson {
+page-break-before: always;
+}
+
+/* Lists */
+ul {
+list-style-type: disc;
+padding-var(--padding-start): 20px;
+padding-var(--padding-end): 0;
+}
+
+ul li {
+display: list-item;
+direction: var(--direction);
+text-align: var(--text-align);
+}
+
+.course-toc ol {
+list-style-type: none;
+direction: var(--direction);
+text-align: var(--text-align);
+padding-var(--padding-start): 20px;
+padding-var(--padding-end): 0;
+}
+
+/* Tables */
+.course-content table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+direction: var(--direction);
+text-align: var(--text-align);
+}
+
+/* Question styles */
+.course-question-label {
+font-weight: bold;
+}
+
+.course-question-hint {
+font-style: italic;
+font-size: 12px;
+}
+
+/* Images */
+.content-image {
+max-width: 100%;
+height: auto;
+}
+
+/* Shared interactive content styles */
+.cb-accordion { margin: 10px 0; }
+.cb-accordion-card { border: 1px solid #d3d3d3; border-radius: 10px; overflow: hidden; margin-bottom: 10px; background-color: white; }
+.cb-accordion-header { background-color: #666; color: white; padding: 12px 20px; font-weight: bold; font-size: 13px; border-radius: 10px 10px 0 0; }
+.cb-accordion-title { display: block; }
+.cb-accordion-body { padding: 16px 20px; font-size: 13px; line-height: 1.5; color: #333; }
+.cb-accordion-body-inner { display: flex; align-items: flex-start; gap: 16px; }
+.cb-accordion-icon { width: 100px; height: 100px; object-fit: contain; flex-shrink: 0; }
+.cb-accordion-content { flex: 1; min-width: 0; }
+.cb-accordion-body p { margin: 0 0 4px 0; }
+.cb-accordion-body p:last-child { margin-bottom: 0; }
+
+.cb-quote { display: flex; align-items: stretch; margin: 30px 0; }
+.cb-quote-accent-bar { width: 5px; flex-shrink: 0; }
+.cb-quote-body { flex: 1; padding-left: 20px; padding-top: 10px; }
+.cb-quote-mark { margin-bottom: 4px; }
+.cb-quote-mark svg { width: 60px; height: 50px; }
+.cb-quote-text { font-size: 13px; font-style: italic; font-family: Georgia, 'Times New Roman', serif; color: #333; line-height: 1.9; }
+.cb-quote-author { font-size: 13px; font-weight: 600; font-family: Georgia, 'Times New Roman', serif; letter-spacing: 2px; margin-top: 10px; }
+
+.cb-summary-cards { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin: 30px 0; }
+.cb-summary-card { border: 1px solid #e0e0e0; border-radius: 10px; padding: 24px 18px; text-align: center; display: flex; flex-direction: column; align-items: center; background-color: white; overflow: hidden; width: 200px; position: relative; }
+.cb-summary-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background-color: #555; }
+.cb-summary-card-icon { width: 100px; height: 100px; object-fit: contain; margin-bottom: 10px; margin-top: 6px; }
+.cb-summary-card-title { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 8px; line-height: 1.3; }
+.cb-summary-card-content { font-size: 13px; color: #666; line-height: 1.5; text-align: center; }
+.cb-summary-card-content p { margin: 0 0 6px 0; text-align: center; }
+
+.cb-infotabs { border: 1px solid #e0e0e0; border-radius: 10px; margin: 30px 0; overflow: hidden; background-color: white; }
+.cb-infotab-panel { padding: 16px 20px; border-bottom: 1px solid #f0f0f0; }
+.cb-infotab-panel:last-child { border-bottom: none; }
+.cb-infotab-title { font-weight: bold; font-size: 13px; color: #333; margin-bottom: 10px; }
+.cb-infotab-body { display: flex; align-items: flex-start; gap: 16px; }
+.cb-infotab-icon { width: 100px; height: 100px; object-fit: contain; flex-shrink: 0; }
+.cb-infotab-content { flex: 1; font-size: 13px; color: #333; line-height: 1.5; min-width: 0; }
+.cb-infotab-content p { margin: 0 0 4px 0; }
+
+.cb-listing-cards { display: flex; flex-direction: column; gap: 12px; margin: 30px 0; }
+.cb-listing-card { display: flex; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; position: relative; }
+.cb-listing-card-left-bar { width: 8px; background-color: #555; flex-shrink: 0; }
+.cb-listing-card-body { display: flex; align-items: flex-start; gap: 16px; padding: 16px 20px; flex: 1; min-width: 0; }
+.cb-listing-card-icon { width: 100px; height: 100px; object-fit: contain; flex-shrink: 0; }
+.cb-listing-card-content { flex: 1; min-width: 0; }
+.cb-listing-card-title { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 6px; line-height: 1.3; }
+.cb-listing-card-text { font-size: 13px; color: #555; line-height: 1.5; }
+
+.cb-carousel { display: flex; flex-direction: column; gap: 12px; margin: 30px 0; }
+.cb-carousel-slide { border-radius: 10px; padding: 24px 20px; }
+.cb-carousel-title { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 8px; line-height: 1.3; text-align: center; }
+.cb-carousel-content { font-size: 13px; color: #333; line-height: 1.5; }
+.cb-carousel-content p { margin: 0 0 4px 0; }
+
+.cb-flipcards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 30px 0; }
+.cb-flipcard { border: 2px solid #999; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+.cb-flipcard-front { background-color: #ffffff; padding: 20px 16px; text-align: center; min-height: 80px; display: flex; align-items: center; justify-content: center; }
+.cb-flipcard-title { font-size: 13px; font-weight: bold; color: #333; line-height: 1.4; }
+.cb-flipcard-title img { display: block; width: 100px; height: 100px; object-fit: contain; margin: 0 auto 8px; }
+.cb-flipcard-back { background-color: #777; padding: 20px 16px; text-align: center; min-height: 80px; display: flex; align-items: center; justify-content: center; flex: 1; }
+.cb-flipcard-content { font-size: 13px; color: #ffffff; line-height: 1.5; }
+.cb-flipcard-content p { margin: 0 0 4px 0; }
+
+.cb-promo-cards { display: flex; flex-direction: column; gap: 16px; margin: 30px 0; }
+.cb-promo-card { display: flex; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; background-color: white; }
+.cb-promo-image-section { width: 200px; flex-shrink: 0; }
+.cb-promo-image { width: 100%; height: 100%; object-fit: cover; }
+.cb-promo-content-section { flex: 1; padding: 20px; }
+.cb-promo-heading { font-size: 15px; font-weight: bold; color: #333; margin-bottom: 8px; }
+.cb-promo-content { font-size: 13px; color: #555; line-height: 1.5; }
+
+.cb-numberlist { display: flex; flex-direction: column; gap: 16px; margin: 30px 0; }
+.cb-numberlist-item { display: flex; align-items: flex-start; gap: 16px; }
+.cb-numberlist-circle { width: 36px; height: 36px; border-radius: 50%; background-color: #555; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0; }
+.cb-numberlist-content { flex: 1; font-size: 13px; line-height: 1.5; color: #333; }
+
+.cb-hero { position: relative; border-radius: 10px; overflow: hidden; margin: 20px 0; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+.cb-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; min-height: 200px; background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%); z-index: 1; pointer-events: none; }
+.cb-hero-content { position: relative; z-index: 1; padding: 40px 30px; text-align: center; color: white; }
+.cb-hero-title { font-size: 22px; font-weight: bold; margin-bottom: 12px; }
+.cb-hero-text { font-size: 14px; line-height: 1.6; }
+
+.cb-generic-section { margin: 10px 0; }
+.cb-generic-item { margin-bottom: 10px; padding: 12px 16px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: white; }
+.cb-generic-item-title { font-weight: bold; font-size: 13px; margin-bottom: 6px; }
+.cb-generic-item-content { font-size: 13px; line-height: 1.5; color: #333; }
+
+/* RTL override for user content - only for elements without inline styles */
+.course-content h1, .course-content h2, .course-content h5, 
+.course-content h6, .course-content p {
+direction: var(--direction) !important;
+text-align: var(--text-align) !important;
+}
+</style></head><body class="course-main"><h1 class="course-title">Apache Superset</h1><p>by: <span class="course-highlight">Faten El Outa</span><br><span class="course-highlight">Published at: </span><a href="https://my.coursebox.ai/courses/019e4053-1a81-743a-b9ce-a716d4e7accf" target="_blank">https://my.coursebox.ai/courses/019e4053-1a81-743a-b9ce-a716d4e7accf</a></p><div class="course-section">Apprenez à connecter vos données, explorer un jeu de données, créer des visualisations et construire un dashboard efficace avec Apache Superset. Ce cours en français relie la pratique de Superset aux fondamentaux du data storytelling pour transformer des données en messages clairs et convaincants.</div><div class="course-section"><h3>Course Objectives:</h3><p>
+
+<p class="MsoNormal" style="margin-top:4.0pt;margin-right:0cm;margin-bottom:6.0pt;margin-left:0cm"><span style="color:#222222">À l'issue de ce cours, vous serez
+capable de :</span></p><p class="MsoListParagraph" style="margin-top:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:36.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo1"><span style="mso-list:Ignore">•<span style="font:7.0pt "Times New Roman"">       
+</span></span><span style="color:#222222"><b>Cadrer un besoin métier </b>et
+<b>formuler une question d'analyse en message visuel clair, en appliquant les
+principes du data storytelling.</b></span></p>
+
+<p class="MsoListParagraph" style="margin-top:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:36.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo1"><b><span style="mso-list:Ignore">•<span style="font-style:normal;font-variant:normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:"Times New Roman";font-optical-sizing:auto;font-variation-settings:normal;font-size-adjust:none;font-kerning:auto;font-language-override:normal;font-feature-settings:normal">       
+</span></span><span style="color:#222222">Connecter Apache Superset à
+une base de données, enregistrer un dataset et configurer les colonnes,
+métriques et calculs nécessaires à l'exploration.</span></b></p>
+
+<p class="MsoListParagraph" style="margin-top:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:36.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo1"><b><span style="mso-list:Ignore">•<span style="font-style:normal;font-variant:normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:"Times New Roman";font-optical-sizing:auto;font-variation-settings:normal;font-size-adjust:none;font-kerning:auto;font-language-override:normal;font-feature-settings:normal">       
+</span></span><span style="color:#222222">Créer des visualisations
+pertinentes dans Explore, puis assembler, publier et partager un dashboard
+lisible et utile.</span></b></p>
+
+<p class="MsoListParagraph" style="margin-top:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:36.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo1"><b><span style="mso-list:Ignore">•<span style="font-style:normal;font-variant:normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:"Times New Roman";font-optical-sizing:auto;font-variation-settings:normal;font-size-adjust:none;font-kerning:auto;font-language-override:normal;font-feature-settings:normal">       
+</span></span><span style="color:#222222">Appliquer les bonnes
+pratiques de hiérarchie visuelle, de lisibilité et d'équilibre entre
+exploration et explication dans un dashboard Superset.</span></b></p><p class="MsoListParagraph" style="margin-top:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:36.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo1"><b><span style="color:#222222"><br /></span></b></p><p class="MsoListParagraph" style="margin-top:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:36.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo1"><b><span style="color:#222222"><br /></span></b></p><h3><u>Public Visé</u>: <span style="font-size:11.0pt;font-family:"Arial",sans-serif;mso-fareast-font-family:Arial;color:#222222;mso-ansi-language:FR;mso-fareast-language:FR;mso-bidi-language:AR-SA">Ce cours s'adresse aux profils débutants à
+intermédiaires qui souhaitent créer des dashboards efficaces avec Apache
+Superset. Aucune connaissance préalable de l'outil n'est requise — une base en
+SQL est un plus, mais pas obligatoire.</span></h3>
+
+<p class="MsoNormal"><b> </b></p></p></div><div class="course-section"><h3>Skills and Knowledge:</h3><p class="course-highlight course-skills-list"><span class="course-skill-badge">Apache Superset</span><span class="course-skill-badge">data storytelling</span><span class="course-skill-badge">business intelligence</span><span class="course-skill-badge">visualisation de données</span><span class="course-skill-badge">dashboarding</span><span class="course-skill-badge">exploration de données</span><span class="course-skill-badge">analytics</span></p></div><div class="course-support course-section"></div><div class="course-toc course-new-page course-section"><h2>Table of Contents</h2><div><ol style=""><li style="">1. Introduction <ol style=""><li style="">1.1. Bienvenue</li></ol></li><li style="">2. Recit de donnees <ol style=""><li style="">2.1. L'art de communication des donnees</li><li style="">2.2. Comprendre le tableau de bord</li><li style="">2.3. Raconter les données</li><li style="">2.4. Mise en pratique</li></ol></li><li style="">3. Superset <ol style=""><li style="">3.1. Composent appache superset</li><li style="">3.2. Creation un jeu de donnee</li><li style="">3.3. Exemple partique</li><li style="">3.4. Choisir la bonne visualisation dans Apache Superset</li><li style="">3.5. Quiz - Cadrage du besoin et connexion aux données</li></ol></li><li style="">4. Informations complementaires <ol style=""><li style="">4.1. Types des graphiques</li><li style="">4.2. Bonnes pratiques du récit des données</li><li style="">4.3. Meilleures pratiques pour élaborer un récit de données</li><li style="">4.4. Pourquoi une belle visualisation peut échouer</li><li style="">4.5. Résumé</li></ol></li></ol></div></div><div class="course-content course-section"><h3 class="course-lesson" style="font-size: 20px; font-weight: 800; ; " id="lesson_1">1. Introduction</h3>
+<h4 class="course-topic" style="; " id="topic_1.1">1.1. Bienvenue</h4>
+<div class="course-activity-content" style="">
+<div class="cb-hero" style="background-image: url('https://storage.googleapis.com/cb-assets-public/public/coursebox/learning/3494451b-748c-4397-a76d-92a7c2f84e08.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=storage%40dark-automata-243312.iam.gserviceaccount.com%2F20260728%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260728T100121Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=7c1f4f5b0b2a137b778757256d501bb3393f6552bcf4beca7b7c9e9e13b8aa0e251360fb194b0aec07aa3b84fc62cb248840b9c5cc80ae6de187b80e5e2a45e960c70d097fee53c00d3603334c159752f9312db58cd67d124157fab487a3a0532a41219ea082516c0a72413c13bb25833ada70f3a81683ef9c81e742141ed5f68e509e8c8f112b8d48a8cd08b49316ae0f37e0da2d4a0e75be8667c4c157f0dc0504a35214f6cb683d1ee5480c37b7fc586cbd213d8b1ddd985dc884f3a2b24754ceed4ac03e18977160838b1fa6b7a4a7d6a6e3aec33918f8c3a02a5a413d7f74340907e688138950d74d37dfb4687a59b7d25b8a1aa3982e75083744f692e6'); background-size: cover; background-position: center;"><div class="cb-hero-overlay"></div><div class="cb-hero-content"><div class="cb-hero-title">Raconter des données avec Apache Superset</div><div class="cb-hero-text"><h3><br /></h3><p>Et si vous appreniez a créer des tableau des bords  avec apache Superset,</p><p>un outil gratuit léger et accessible en français ?</p><p><br /></p></div></div></div><div class="pdf-text-block"><br /><p><strong></strong><span style="color:#222222"><b>Apache Superset </b>est un outil de
+Business Intelligence open source gratuit qui permet de connecter des bases de
+données, de créer et gérer des datasets, d'explorer les données, de concevoir
+des visualisations, puis de regrouper ces graphiques dans des dashboards
+enrichis par une narration claire.</span></p>
+
+
+
+
+
+<p>Dans un contexte où les supports et formations francophones sur cet outil gratuit restent encore limités, ce cours propose une introduction pratique à ses principales fonctionnalités. </p>
+<p>Tout au long du parcours, vous découvrirez progressivement l’environnement Superset, depuis la connexion aux données jusqu’à la construction d’un dashboard publiable. Vous apprendrez également à appliquer les bonnes pratiques de visualisation et les principes du data storytelling afin de transformer des données brutes en messages compréhensibles, structurés et actionnables.</p></div><div class="pdf-text-block"><span class="welcomeLearningTitle">Ce que vous apprendrez</span></div><div class="cb-listing-cards"><div class="cb-listing-card"><div class="cb-listing-card-left-bar"></div><div class="cb-listing-card-body"><div class="cb-listing-card-content"><div class="cb-listing-card-title">Maîtrise de Superset</div><div class="cb-listing-card-text"><p>Apprenez à naviguer avec aisance dans Apache Superset pour créer des visualisations époustouflantes et des dashboards percutants.</p>
+</div></div></div></div><div class="cb-listing-card"><div class="cb-listing-card-left-bar"></div><div class="cb-listing-card-body"><div class="cb-listing-card-content"><div class="cb-listing-card-title">Data Storytelling</div><div class="cb-listing-card-text"><p>Transformez vos analyses en récits captivants qui connectent vos données à votre audience de manière claire et engageante.</p>
+</div></div></div></div><div class="cb-listing-card"><div class="cb-listing-card-left-bar"></div><div class="cb-listing-card-body"><div class="cb-listing-card-content"><div class="cb-listing-card-title">Tableaux interactifs</div><div class="cb-listing-card-text"><p>Créez des dashboards dynamiques qui non seulement informent, mais aussi intriguent et motivent vos collègues à explorer les données.</p>
+</div></div></div></div></div><div class="cb-quote"><div class="cb-quote-accent-bar" style="background-color: #0d3b66;"></div><div class="cb-quote-body"><div class="cb-quote-mark" style="color: #0d3b66;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 705 591" width="80" height="68"><g><path fill="currentColor" d="M 187.242188 257.511719 C 154.839844 257.511719 125.019531 268.308594 100.921875 286.289062 C 103.289062 211.230469 161.3125 136.140625 275.800781 61.039062 L 258.8125 34.679688 C 92.925781 137.746094 9.972656 250.859375 9.972656 374.003906 C 9.972656 430.554688 25.359375 474.871094 56.160156 506.882812 C 86.9375 538.957031 125.910156 554.953125 173.035156 554.953125 C 220.1875 554.953125 258.179688 542.089844 287.097656 516.316406 C 315.992188 490.578125 330.460938 459.445312 330.460938 423.019531 C 330.460938 422.609375 330.386719 422.308594 330.386719 421.871094 C 331.269531 415.410156 331.890625 408.878906 331.890625 402.132812 C 331.890625 322.285156 267.105469 257.511719 187.242188 257.511719 Z"/></g><g><path fill="currentColor" d="M 654.921875 501.992188 C 656.792969 499.828125 659.058594 497.765625 660.777344 495.503906 C 682.082031 470.300781 695.023438 437.769531 695.023438 402.140625 C 695.023438 322.289062 630.253906 257.5 550.390625 257.5 C 513.808594 257.5 480.507812 271.183594 455.023438 293.601562 C 455.023438 292.710938 454.878906 291.957031 454.878906 291.039062 C 454.878906 214.386719 513.308594 137.695312 630.210938 61.027344 L 613.234375 34.679688 C 447.328125 137.746094 364.378906 250.859375 364.378906 374.03125 C 364.378906 430.582031 379.761719 474.890625 410.578125 506.90625 C 441.347656 538.980469 480.316406 554.996094 527.441406 554.996094 C 574.5625 554.996094 612.605469 542.109375 641.5 516.324219 C 645.589844 512.726562 648.761719 508.6875 652.261719 504.828125 C 653.1875 503.910156 654.015625 502.953125 654.921875 501.992188 Z"/></g></svg></div><div class="cb-quote-text">Ce cours est conçu pour les étudiants de niveau débutant à intermédiaire, qu’ils aient ou non des connaissances préalables en SQL.</div><div class="cb-quote-author" style="color: #0d3b66;">~ Profil Etudian</div></div></div><div class="pdf-rubric-standalone"><div class="pdf-assignment-header"><span class="pdf-assignment-icon"></span><span class="pdf-assignment-label">Assessment Criteria</span></div><div class="pdf-assignment-rubric"><span class="welcomeLearningTitle">Ce que vous apprendrez</span></div></div></div>
+<h3 class="course-lesson" style="font-size: 20px; font-weight: 800; page-break-before: always; " id="lesson_2">2. Recit de donnees</h3>
+<h4 class="course-topic" style="; " id="topic_2.1">2.1. L'art de communication des donnees</h4>
+<div class="course-activity-content" style="">
+<div class="pdf-text-block"><br /><h2>
+Comprendre la différence entre data visualisation et récit de données
+
+</h2><p><br /></p><hr /><p>
+</p><p>Avant de créer un dashboard dans Apache Superset, il est important de comprendre une différence essentielle : <strong>visualiser des données</strong> et <strong>raconter une histoire avec les données</strong> ne sont pas la même chose.</p>
+<p>Une <strong>data visualisation</strong> transforme des données en formes visuelles : graphiques, cartes, tableaux, courbes, diagrammes ou indicateurs. Son objectif est de rendre les tendances, les comparaisons, les valeurs atypiques et les relations plus faciles à voir. IBM et Tableau définissent la data visualisation comme une représentation graphique de données permettant de mieux comprendre des informations complexes. <span></span></p>
+<p>Un <strong>récit de données</strong>, ou <strong>data storytelling</strong>, va plus loin. Il utilise les données, les visualisations, le contexte et une narration pour guider un public vers un message clair. Autrement dit, il ne montre pas seulement un graphique : il explique <strong>ce qu’il faut comprendre</strong>, <strong>pourquoi c’est important</strong> et <strong>quelle décision peut être prise</strong>. Microsoft décrit le data storytelling comme une narration construite à partir de données et d’analyses pour informer ou influencer un public précis. <span></span> Les travaux de Segel et Heer sur la visualisation narrative montrent aussi que raconter les données consiste à organiser les graphiques, les annotations, le texte et l’interaction pour guider le lecteur dans la compréhension. <span></span></p>
+
+<p><br /></p></div><div class="cb-carousel"><div class="cb-carousel-slide" style="background-color: #33eeff;"><div class="cb-carousel-title">Pourquoi les ventes augmentent-elles ?</div></div><div class="cb-carousel-slide" style="background-color: #faf0ca;"><div class="cb-carousel-title">Depuis quand ?</div></div><div class="cb-carousel-slide" style="background-color: #faf0ca;"><div class="cb-carousel-title">Quelle action faut-il prendre ?</div></div></div><div class="pdf-text-block"><p></p><h2>1. Data visualisation ou récit de données ?</h2><br />
+<strong>Message simple :</strong><p></p><p><strong><br /></strong><br />
+La data visualisation répond surtout à la question :<strong>“Que voit-on dans les données ?”</strong>
+
+</p><hr /><p></p></div><div class="pdf-videocomponent"><div class="pdf-video-card"><div class="pdf-video-thumbnail pdf-video-no-thumb"><div class="pdf-video-play">▶</div></div><div class="pdf-video-info"><div class="pdf-media-label">data_story_vs_dataviz_0_3m21.mp4</div><div class="pdf-docs-online-note">To watch this video, please visit the course.</div></div></div></div><div class="pdf-text-block"><h2>
+2. Récit de données : donner du sens
+
+</h2></div><div class="pdf-videocomponent"><a href="https://www.youtube.com/watch?v=xacPHFq9AOc" class="pdf-video-card-link"><div class="pdf-video-card"><div class="pdf-video-thumbnail"><img src="https://img.youtube.com/vi/xacPHFq9AOc/hqdefault.jpg" /><div class="pdf-video-play">▶</div></div><div class="pdf-video-info"><div class="pdf-media-label">Video</div><div class="pdf-video-link">https://www.youtube.com/watch?v=xacPHFq9AOc</div></div></div></a></div><div class="pdf-rubric-standalone"><div class="pdf-assignment-header"><span class="pdf-assignment-icon"></span><span class="pdf-assignment-label">Assessment Criteria</span></div><div class="pdf-assignment-rubric"><p></p><h2>1. Data visualisation ou récit de données ?</h2><br />
+<strong>Message simple :</strong><p></p><p><strong><br /></strong><br />
+La data visualisation répond surtout à la question :<strong>“Que voit-on dans les données ?”</strong>
+
+</p><hr /><p></p></div></div></div>
+<div class="pdf-quiz">
+<div class="pdf-quiz-card">
+<div class="pdf-quiz-number">Question 1</div>
+<div class="pdf-quiz-question"><p><b>Quel est l'objectif principal d'un dashboard efficace  ?</b></p></div>
+<div class="pdf-quiz-answers">
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Rendre les graphiques esthétiques</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Ajouter des animations aux données</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Afficher des informations importantes pour atteindre des objectifs</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Remplacer les rapports écrits</span></div>
+</div>
+</div>
+<div class="pdf-quiz-card">
+<div class="pdf-quiz-number">Question 2</div>
+<div class="pdf-quiz-question"><p> La data visualisation sert uniquement à rendre les graphiques beaux.</p></div>
+<div class="pdf-quiz-hint">Elle sert surtout à rendre les données compréhensibles.</div>
+<div class="pdf-quiz-answers">
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Vrai</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Faux</span></div>
+</div>
+</div>
+<div class="pdf-quiz-card">
+<div class="pdf-quiz-number">Question 3</div>
+<div class="pdf-quiz-question"><p> Une data story doit aider à passer de l’observation à l’action.</p></div>
+<div class="pdf-quiz-hint">C’est ce qui la distingue d’une simple visualisation.</div>
+<div class="pdf-quiz-answers">
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Vrai</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Faux</span></div>
+</div>
+</div>
+</div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_2.2">2.2. Comprendre le tableau de bord</h4>
+<div class="course-activity-content" style="">
+<div class="pdf-rubric-standalone"><div class="pdf-assignment-header"><span class="pdf-assignment-icon"></span><span class="pdf-assignment-label">Assessment Criteria</span></div><div class="pdf-assignment-rubric"><p>
+</p><br /><p><span><b>Avant de regarder la vidéo, </b>il faut comprendre qu’un tableau de bord n’est pas seulement une page avec des graphiques. C’est un outil de pilotage qui aide un responsable à suivre une situation, comparer les résultats avec les objectifs, repérer les écarts et prendre une décision.</span></p><p><span>On peut partir d’une question simple :</span></p><p><strong><span>Quand une personne doit gérer une activité, comment peut-elle savoir rapidement si tout fonctionne bien ou s’il y a un problème ?</span></strong></p><p><span>Par exemple, dans une entreprise, un responsable peut vouloir suivre :</span></p><ul><li><span>le chiffre d’affaires ;</span></li><li><span>le nombre de clients ;</span></li><li><span>les retards de livraison ;</span></li><li><span>les réclamations ;</span></li><li><span>les coûts ;</span></li><li><span>les objectifs atteints ou non atteints.</span></li></ul><p><span>Ces informations deviennent utiles lorsqu’elles sont organisées sous forme d’indicateurs dans un tableau de bord.</span></p><p><span>Pendant la vidéo, essayez d’identifier trois éléments :</span></p><ol><li><span>la définition du tableau de bord ;</span></li><li><span>les principes de conception ;</span></li><li><span>les éléments visuels ou indicateurs utilisés.</span></li></ol>
+
+<p><br /></p></div></div><div class="pdf-text-block"><h2>Un tableau de bord est aussi un recit debdonnes sil reuis a rere claire et efficae Comprendre le tableau de bord : définition, objectifs et exemples
+
+</h2></div><div class="pdf-text-block"><p>
+</p><br /><p><span><b>Avant de regarder la vidéo, </b>il faut comprendre qu’un tableau de bord n’est pas seulement une page avec des graphiques. C’est un outil de pilotage qui aide un responsable à suivre une situation, comparer les résultats avec les objectifs, repérer les écarts et prendre une décision.</span></p><p><span>On peut partir d’une question simple :</span></p><p><strong><span>Quand une personne doit gérer une activité, comment peut-elle savoir rapidement si tout fonctionne bien ou s’il y a un problème ?</span></strong></p><p><span>Par exemple, dans une entreprise, un responsable peut vouloir suivre :</span></p><ul><li><span>le chiffre d’affaires ;</span></li><li><span>le nombre de clients ;</span></li><li><span>les retards de livraison ;</span></li><li><span>les réclamations ;</span></li><li><span>les coûts ;</span></li><li><span>les objectifs atteints ou non atteints.</span></li></ul><p><span>Ces informations deviennent utiles lorsqu’elles sont organisées sous forme d’indicateurs dans un tableau de bord.</span></p><p><span>Pendant la vidéo, essayez d’identifier trois éléments :</span></p><ol><li><span>la définition du tableau de bord ;</span></li><li><span>les principes de conception ;</span></li><li><span>les éléments visuels ou indicateurs utilisés.</span></li></ol>
+
+<p><br /></p></div><div class="pdf-videocomponent"><a href="https://www.youtube.com/watch?v=F6sC7rgRuf0" class="pdf-video-card-link"><div class="pdf-video-card"><div class="pdf-video-thumbnail"><img src="https://img.youtube.com/vi/F6sC7rgRuf0/hqdefault.jpg" /><div class="pdf-video-play">▶</div></div><div class="pdf-video-info"><div class="pdf-media-label">Video</div><div class="pdf-video-link">https://www.youtube.com/watch?v=F6sC7rgRuf0</div></div></div></a></div><div class="cb-summary-cards"><div class="cb-summary-card"><div class="cb-summary-card-title">Voir</div><div class="cb-summary-card-content"><p>Comprendre l'état actuel d'une situation en un coup d'œil.</p></div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Décider</div><div class="cb-summary-card-content"><p>Identifier les priorités et prendre rapidement une décision informée.</p></div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Alerter</div><div class="cb-summary-card-content"><p>Signaler automatiquement les anomalies et dépassements de seuil.</p></div></div></div></div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_2.3">2.3. Raconter les données</h4>
+<div class="course-activity-content" style="">
+<div class="pdf-text-block"><h3>
+Du dashboard au récit de données</h3><hr /><br /><p><span>Un <b>dashboard</b>, ou tableau de bord, est un support visuel qui rassemble plusieurs indicateurs, graphiques et informations clés dans une même interface. Son objectif est d’aider un utilisateur à comprendre rapidement une situation, à suivre une évolution ou à prendre une décision.</span></p><p><span>Cependant, un dashboard efficace ne se limite pas à juxtaposer des chiffres ou des graphiques. Pour être vraiment utile, il doit organiser l’information de manière claire, logique et adaptée à son public. C’est à ce niveau que <b>le récit de données intervient</b>.</span></p><p><span>Le<b> récit de données </b>consiste à transformer les données affichées dans un dashboard en une histoire compréhensible. Il ne s’agit pas seulement de montrer des chiffres, mais de les relier à un contexte, à une idée principale et à un message clair.</span></p><p><span>Ainsi, un dashboard peut devenir un véritable récit de données lorsqu’il guide progressivement l’utilisateur : il présente d’abord les indicateurs essentiels, explique ensuite les tendances ou les écarts observés, puis aide à identifier les points importants pour agir.</span></p><p><span><b>Selon l’objectif, ce récit peut informer rapidement, expliquer un phénomène, comparer des situations ou mettre en valeur des tendances à travers des visualisations adaptées.</b></span></p>
+
+</div><div class="pdf-videocomponent"><a href="https://www.youtube.com/watch?v=xacPHFq9AOc" class="pdf-video-card-link"><div class="pdf-video-card"><div class="pdf-video-thumbnail"><img src="https://img.youtube.com/vi/xacPHFq9AOc/hqdefault.jpg" /><div class="pdf-video-play">▶</div></div><div class="pdf-video-info"><div class="pdf-media-label">Video</div><div class="pdf-video-link">https://www.youtube.com/watch?v=xacPHFq9AOc</div></div></div></a></div><div class="cb-generic-section"><div class="cb-generic-item"><div class="cb-generic-item-content"><p><b>Un exemple de récit de données peut être une carte publiée par le BRGM</b> pour<b> informer</b> le <b>grand public</b> sur la situation des nappes d’eau souterraine en France. Cette visualisation ne se limite pas à représenter des données géographiques : elle raconte l’état des nappes à un moment donné, ici au 15 mai 2026, en combinant plusieurs informations dans un même support visuel.</p>
+<p>La carte utilise un<b> code couleur</b> pour indiquer le niveau des nappes, allant d’un niveau très haut à un niveau très bas. Elle ajoute également des symboles pour montrer l’évolution des niveaux : en hausse, stable ou en baisse. Ainsi, le lecteur peut rapidement comprendre quelles régions présentent une situation favorable, moyenne ou préoccupante.</p>
+<p>Ce type de récit de données est particulièrement utile pour la communication scientifique auprès du grand public, car il transforme des mesures techniques issues de points de suivi hydrogéologique en une information claire, synthétique et facilement interprétable. Il permet non seulement de visualiser la répartition spatiale des niveaux d’eau souterraine, mais aussi de suivre leur dynamique d’évolution et d’identifier les zones nécessitant une attention particulière.</p><p></p></div></div></div><div class="cb-generic-section"><div class="cb-generic-item"><div class="cb-generic-item-content"><p><b>Un récit de données ne se limite pas nécessairement à un seul graphique. Il peut également prendre la forme d’un ensemble de visualisations organisées de manière cohérente, qui racontent collectivement une information pertinente et structurée.</b></p>
+<p>Par exemple, ce <b>tableau de bord</b> présente plusieurs indicateurs liés au suivi de l’empreinte carbone et à la durabilité environnementale. Il combine différents types de graphiques — cartes, jauges, courbes d’évolution, diagrammes circulaires et tableaux comparatifs — afin de donner une vision globale de la consommation de carburant, de l’usage de l’électricité, des émissions de CO₂ et de leur évolution dans le temps.</p>
+<p>Ce type de récit de données permet non seulement de présenter des chiffres, mais aussi de guider la compréhension de l’utilisateur. En regroupant plusieurs indicateurs dans une même interface, le tableau de bord aide à identifier les tendances, comparer les départements, repérer les variations significatives et soutenir la prise de décision en matière de performance environnementale.</p><p></p></div></div></div><div class="pdf-text-block"><p></p><p>
+</p><p><b>Un récit de données peut aussi prendre une forme plus complexe qu’une simple visualisation statique ou qu’un tableau de bord.</b>
+Il peut s’appuyer sur une mise en scène dynamique, interactive ou 
+animée afin de rendre compréhensibles des informations nombreuses, 
+complexes ou étalées sur une longue période.</p><p>Un exemple célèbre est celui de<b> Hans Rosling</b>, statisticien suédois, dans le documentaire de la BBC <em>The Joy of Stats</em> diffusé en 2010. Dans un extrait devenu emblématique, il raconte <b>200 ans d’évolution du monde en seulement quatre minutes</b>, à partir d’un <b>graphique animé en réalité augmentée</b>. Ce graphique représente l’évolution de l’espérance de vie et du revenu par habitant de nombreux pays depuis 1810.</p>
+
+<p>
+</p><p></p><p></p><p>
+</p><p>Ce récit de données montre comment des événements historiques, 
+économiques, sanitaires ou politiques ont influencé les trajectoires des
+pays au fil du temps. L’intérêt ne réside donc pas seulement dans le 
+graphique lui-même, mais dans la manière dont Hans Rosling l’utilise 
+pour construire une narration claire, progressive et accessible au grand
+public.</p>
+<p>Ainsi, cet exemple illustre parfaitement le rôle du data storytelling
+: transformer des données statistiques complexes en une histoire 
+visuelle compréhensible, engageante et éducative. Comme le souligne Hans
+Rosling, disposer des données ne suffit pas ; il faut aussi savoir les 
+présenter d’une manière à la fois intéressante, vivante et facile à 
+comprendre</p>
+
+<p></p><p><br /></p><p></p></div><div class="cb-quote"><div class="cb-quote-accent-bar" style="background-color: #2e1b41;"></div><div class="cb-quote-body"><div class="cb-quote-mark" style="color: #2e1b41;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 705 591" width="80" height="68"><g><path fill="currentColor" d="M 187.242188 257.511719 C 154.839844 257.511719 125.019531 268.308594 100.921875 286.289062 C 103.289062 211.230469 161.3125 136.140625 275.800781 61.039062 L 258.8125 34.679688 C 92.925781 137.746094 9.972656 250.859375 9.972656 374.003906 C 9.972656 430.554688 25.359375 474.871094 56.160156 506.882812 C 86.9375 538.957031 125.910156 554.953125 173.035156 554.953125 C 220.1875 554.953125 258.179688 542.089844 287.097656 516.316406 C 315.992188 490.578125 330.460938 459.445312 330.460938 423.019531 C 330.460938 422.609375 330.386719 422.308594 330.386719 421.871094 C 331.269531 415.410156 331.890625 408.878906 331.890625 402.132812 C 331.890625 322.285156 267.105469 257.511719 187.242188 257.511719 Z"/></g><g><path fill="currentColor" d="M 654.921875 501.992188 C 656.792969 499.828125 659.058594 497.765625 660.777344 495.503906 C 682.082031 470.300781 695.023438 437.769531 695.023438 402.140625 C 695.023438 322.289062 630.253906 257.5 550.390625 257.5 C 513.808594 257.5 480.507812 271.183594 455.023438 293.601562 C 455.023438 292.710938 454.878906 291.957031 454.878906 291.039062 C 454.878906 214.386719 513.308594 137.695312 630.210938 61.027344 L 613.234375 34.679688 C 447.328125 137.746094 364.378906 250.859375 364.378906 374.03125 C 364.378906 430.582031 379.761719 474.890625 410.578125 506.90625 C 441.347656 538.980469 480.316406 554.996094 527.441406 554.996094 C 574.5625 554.996094 612.605469 542.109375 641.5 516.324219 C 645.589844 512.726562 648.761719 508.6875 652.261719 504.828125 C 653.1875 503.910156 654.015625 502.953125 654.921875 501.992188 Z"/></g></svg></div><div class="cb-quote-text">Un récit de données est un ensemble structuré de messages appuyés par des données et présentés visuellement sous une forme claire et organisée. Il est destiné à une audience précise et a pour objectif d’informer, d’expliquer, de mettre en évidence des tendances, de faciliter la compréhension ou encore d’aider à la prise de décision.</div><div class="cb-quote-author" style="color: #2e1b41;">~ EL OUTA Faten</div></div></div><div class="pdf-rubric-standalone"><div class="pdf-assignment-header"><span class="pdf-assignment-icon"></span><span class="pdf-assignment-label">Assessment Criteria</span></div><div class="pdf-assignment-rubric"><p></p><p>
+</p><p><b>Un récit de données peut aussi prendre une forme plus complexe qu’une simple visualisation statique ou qu’un tableau de bord.</b>
+Il peut s’appuyer sur une mise en scène dynamique, interactive ou 
+animée afin de rendre compréhensibles des informations nombreuses, 
+complexes ou étalées sur une longue période.</p><p>Un exemple célèbre est celui de<b> Hans Rosling</b>, statisticien suédois, dans le documentaire de la BBC <em>The Joy of Stats</em> diffusé en 2010. Dans un extrait devenu emblématique, il raconte <b>200 ans d’évolution du monde en seulement quatre minutes</b>, à partir d’un <b>graphique animé en réalité augmentée</b>. Ce graphique représente l’évolution de l’espérance de vie et du revenu par habitant de nombreux pays depuis 1810.</p>
+
+<p>
+</p><p></p><p></p><p>
+</p><p>Ce récit de données montre comment des événements historiques, 
+économiques, sanitaires ou politiques ont influencé les trajectoires des
+pays au fil du temps. L’intérêt ne réside donc pas seulement dans le 
+graphique lui-même, mais dans la manière dont Hans Rosling l’utilise 
+pour construire une narration claire, progressive et accessible au grand
+public.</p>
+<p>Ainsi, cet exemple illustre parfaitement le rôle du data storytelling
+: transformer des données statistiques complexes en une histoire 
+visuelle compréhensible, engageante et éducative. Comme le souligne Hans
+Rosling, disposer des données ne suffit pas ; il faut aussi savoir les 
+présenter d’une manière à la fois intéressante, vivante et facile à 
+comprendre</p>
+
+<p></p><p><br /></p><p></p></div></div></div>
+<div class="pdf-quiz">
+<div class="pdf-quiz-card">
+<div class="pdf-quiz-number">Question 1</div>
+<div class="pdf-quiz-question"><p><b>Quel est l'objectif principal d'une visualisation de données ?</b></p></div>
+<div class="pdf-quiz-answers">
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Créer des graphiques esthétiques sans se soucier des données.</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Simplifier la compréhension des données complexes.</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Ignorer les tendances et se concentrer uniquement sur les chiffres.</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Utiliser uniquement des couleurs vives pour attirer l'attention.</span></div>
+</div>
+</div>
+</div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_2.4">2.4. Mise en pratique</h4>
+<div class="course-activity-content" style="">
+<div class="pdf-text-block">Transition entre data story et superset elements</div></div>
+<h3 class="course-lesson" style="font-size: 20px; font-weight: 800; page-break-before: always; " id="lesson_3">3. Superset</h3>
+<h4 class="course-topic" style="; " id="topic_3.1">3.1. Composent appache superset</h4>
+<div class="course-activity-content" style="">
+<div class="pdf-text-block"><h3>Apache Superset : du branchement à la publication</h3>
+
+<p>Apache Superset suit un parcours simple et lisible. On commence par connecter une base de données, on expose une table sous forme de <strong>dataset</strong>, puis on construit des <strong>charts</strong> avant d’assembler le tout dans un <strong>dashboard</strong>. Chaque étape prépare la suivante, sans détour inutile.</p><blockquote><strong>Repère visuel :</strong> imaginez une frise en 6 blocs : base de données → dataset → chart → dashboard → publication → administration. C’est un excellent fil conducteur pour une illustration, une animation ou une mini-page de cours.</blockquote><br /></div><img class="content-image" src="https://storage.googleapis.com/cb-assets-private/private/prod/aiImages/019e3af5-4756-7785-8a35-fdf7d24b0619/912f7f84-3586-4128-aeaa-6f582d692478.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=storage%40dark-automata-243312.iam.gserviceaccount.com%2F20260728%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260728T100121Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=5e09cf94c18fc1f6617771a2abca1189b37ceabba198d11a491591f8469c7429574809ddecda1dcfe664bca732bee84c19197f96f4505eb859293a6df456afa6c336f9e3e537c3959740afbdd3c995e2146ecdcdeb74a9494fde9777893103394c500da1f1b4b51df5ff25009685e9d8d5dc5498f24beea5556af92f22d4a6589109ec96450f04c2efaafa9936658c4cf754f0f7e16d5d1e5042d58086bc97d5f65f936e25db6ed17b6f48e775185cedcc1280427fa07a9a97bd71dcc5a28258546a0f6b8432d52621fde03e75f28b30bcaf6a045bb5aac9ba24e21ce7484cd423a9ceda8e919f05be3e6477b8af2f8a3f4643b6ee98a4b92c0461a9ebbd506b" /><div class="cb-accordion"><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">Base de données</span></div><div class="cb-accordion-body">
+<span>La base de données représente la source initiale des données utilisées dans Superset. Elle peut correspondre à une base SQL classique, comme PostgreSQL ou SQLite, ou à une source externe comme Google Sheets.</span><br /><span>Dans Superset, il faut d’abord créer une connexion vers cette source de données afin de pouvoir interroger les tables, fichiers ou feuilles disponibles. Cette étape permet à Superset d’accéder aux données sans les stocker directement dans son propre système.</span>
+
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">Dataset</span></div><div class="cb-accordion-body"><span>Le dataset est la couche intermédiaire entre la base de données et les visualisations. Il correspond à une table, une feuille Google Sheets ou une requête SQL exposée dans Superset.</span><br /><span>Une fois la connexion à la base de données créée, l’utilisateur sélectionne une table ou une source spécifique pour créer un dataset. Ce dataset peut ensuite être configuré : choix des colonnes temporelles, définition des métriques, ajout de colonnes calculées, filtres, dimensions, etc.</span><br /><span>Le dataset sert donc de base structurée pour construire les graphiques.</span>
+
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">Chart</span></div><div class="cb-accordion-body">
+<span>Le chart correspond à une visualisation créée à partir d’un dataset. Dans Superset, l’utilisateur choisit un dataset, puis sélectionne un type de graphique : courbe, barre, carte, tableau, indicateur, diagramme circulaire, etc.</span><br /><span>À travers l’interface Explore, il est possible de configurer les axes, les métriques, les dimensions, les filtres, la période temporelle et l’apparence du graphique.</span><br /><span>Le chart permet de transformer les données brutes en information visuelle lisible et interprétable.</span>
+
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">Dashboards</span></div><div class="cb-accordion-body">
+<span>Le dashboard regroupe plusieurs charts dans une même interface. Il permet de construire une vue d’ensemble cohérente autour d’un sujet, d’un indicateur ou d’un cas d’usage métier.</span><br /><span>Dans Superset, les graphiques peuvent être ajoutés à un dashboard existant ou à un nouveau dashboard. L’utilisateur peut ensuite organiser la mise en page, redimensionner les graphiques, ajouter des filtres et structurer la lecture des données.</span><br /><span>Le dashboard facilite l’analyse globale et la communication des résultats.</span>
+
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">Administration</span></div><div class="cb-accordion-body">
+<span>L’administration concerne la gestion de l’environnement Superset. Elle inclut la gestion des connexions aux bases de données, des utilisateurs, des rôles, des permissions, de la sécurité et des paramètres d’accès aux dashboards et datasets.</span><br /><span>Cette étape est importante pour contrôler qui peut consulter, modifier ou publier les données et les visualisations.</span><br /><span>L’administration garantit une utilisation sécurisée, organisée et collaborative de Superset.</span>
+
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">Publication</span></div><div class="cb-accordion-body">
+<span>La publication correspond à la mise à disposition du dashboard auprès des utilisateurs concernés. Une fois les graphiques créés et organisés, le dashboard peut être publié afin d’être consulté par d’autres utilisateurs.</span><br /><span>La publication permet de partager les résultats d’analyse, de communiquer des indicateurs clés et de rendre les visualisations accessibles à un public cible.</span><br /><span>Selon les droits configurés, certains utilisateurs peuvent uniquement consulter le dashboard, tandis que d’autres peuvent le modifier ou l’administrer.</span>
+
+</div></div></div><div class="cb-summary-cards"><div class="cb-summary-card"><div class="cb-summary-card-title">Relier la source SQL</div><div class="cb-summary-card-content">Tout commence par la connexion à une base de données déjà existante. Superset a besoin d’accéder à une source fiable pour explorer les tables et préparer les analyses.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Créer un dataset</div><div class="cb-summary-card-content">Une table ou une vue est ensuite exposée comme dataset dans Superset. C’est cette couche qui sert de base commune pour construire les visualisations sans repartir de zéro.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Construire les charts</div><div class="cb-summary-card-content">À partir du dataset, vous choisissez un type de graphique adapté à la question posée. Chaque chart transforme les lignes de données en lecture visuelle plus rapide et plus claire.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Composer et publier</div><div class="cb-summary-card-content">Les charts sont assemblés dans un dashboard pour raconter une histoire cohérente. Une fois le résultat vérifié, le tableau de bord peut être partagé avec les bonnes personnes.</div></div></div></div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_3.2">3.2. Creation un jeu de donnee</h4>
+<div class="course-activity-content" style="">
+<div class="cb-hero" style="background-color: #333;"><div class="cb-hero-content"><div class="cb-hero-title">Banner title</div><div class="cb-hero-text">Welcome to this section. Add your banner content here.</div></div></div><div class="pdf-text-block">
+<h2><span>Créer un jeu de données dans Apache Superset</span></h2><p>
+</p><p>ne fois la source de données configurée dans Apache Superset, il faut sélectionner les tables que l’on souhaite rendre disponibles pour l’analyse. Dans Superset, ces tables sont appelées <strong>Datasets</strong>.</p>
+<p>Pour créer un dataset, on va dans <strong>Data > Datasets</strong>, puis on clique sur <strong>+ Dataset</strong>. Il faut ensuite choisir la <strong>base de données</strong>, le <strong>schéma</strong> et la <strong>table</strong> à utiliser. Le dataset pourra ensuite servir à interroger les données, créer des graphiques et construire des tableaux de bord.</p>
+
+</div><div class="cb-generic-section"><div class="cb-generic-item"><div class="cb-generic-item-title">Datasets</div><div class="cb-generic-item-content"><p><span>Depuis la page d’accueil, cliquer sur </span><strong><span>Datasets</span></strong><span> dans le menu supérieur.</span></p></div></div></div><div class="cb-generic-section"><div class="cb-generic-item"><div class="cb-generic-item-title">Ajouter Dataset</div><div class="cb-generic-item-content"><p><span>Dans la page </span><strong><span>Datasets</span></strong><span>, cliquer sur </span><strong><span>+ Dataset</span></strong><span>.</span></p></div></div></div><div class="cb-generic-section"><div class="cb-generic-item"><div class="cb-generic-item-title">Selectionner une base de données</div><div class="cb-generic-item-content"><p><span>Sélectionner la base de données déjà connectée, par exemple </span><strong><span>Google Sheets</span></strong><span>.</span></p></div></div><div class="cb-generic-item"><div class="cb-generic-item-title">Schéma</div><div class="cb-generic-item-content"><p><span>Choisir le </span><strong><span>schéma</span></strong><span>, par exemple </span><strong><span>main</span></strong><span>.</span></p><p><span>Un schéma est un espace d’organisation à l’intérieur d’une base de données. Il regroupe les tables disponibles et permet à Superset de savoir où chercher les données.</span></p><p><span>Dans cet exemple, le schéma </span><strong><span>main</span></strong><span> contient les tables accessibles depuis la base connectée. Après avoir choisi ce schéma, Superset peut afficher les tables disponibles, comme la table </span><strong><span>Climat</span></strong><span>.</span></p><p><br /></p></div></div><div class="cb-generic-item"><div class="cb-generic-item-title">Table</div><div class="cb-generic-item-content"><p><span>Sélectionner la table à utiliser, par exemple </span><strong><span>Climat</span></strong><span>.</span></p></div></div><div class="cb-generic-item"><div class="cb-generic-item-title">Vérification</div><div class="cb-generic-item-content"><p>Vérifier les colonnes détectées par Superset : nom des champs, types de données, dates, textes et valeurs numériques.</p></div></div><div class="cb-generic-item"><div class="cb-generic-item-title">création d'un  jeu de données</div><div class="cb-generic-item-content"><p><span>Cliquer sur </span><strong><span>Create and explore dataset</span></strong><span> pour créer le jeu de données et commencer l’exploration.</span></p></div></div></div><div class="pdf-text-block"><p>
+Une fois le dataset créé, il peut être exploité pour construire des graphiques et les intégrer dans un dashboard.</p><p> Avant cette étape, il est important d’<b>explorer le jeu de données</b> afin de vérifier sa structure, ses valeurs et ses types de données. Superset propose pour cela l’interface SQL Lab, qui permet d’écrire des requêtes SQL pour analyser le dataset, filtrer les données, contrôler leur qualité ou créer un nouveau dataset à partir du jeu de données existant. Cette étape permet de mieux comprendre les données disponibles et de préparer les visualisations qui seront ensuite utilisées dans le dashboard.
+
+</p></div><div class="cb-generic-section"><div class="cb-generic-item"><div class="cb-generic-item-title">Accéder à SQL Lab</div><div class="cb-generic-item-content"><p>Depuis la liste des datasets, l’utilisateur peut accéder à <strong>SQL Lab</strong> à partir du menu <strong>SQL</strong>. SQL Lab constitue le point d’entrée pour interroger les données en SQL, explorer le contenu du dataset et préparer les analyses avant la création des visualisations.</p></div></div></div><div class="cb-generic-section"><div class="cb-generic-item"><div class="cb-generic-item-title">Sélectionner le jeu de données</div><div class="cb-generic-item-content">Dans <strong>SQL Lab</strong>, choisissez la base de données utilisée, ici <strong>Google Sheets</strong>. Sélectionnez ensuite le schéma correspondant, ici <strong>main</strong>, puis choisissez le dataset à explorer, par exemple <strong>Climat</strong>.</div></div><div class="cb-generic-item"><div class="cb-generic-item-title">Titre de requête</div><div class="cb-generic-item-content"><p><b>Nommez</b> votre requête afin de pouvoir l’identifier facilement par la suite</p></div></div><div class="cb-generic-item"><div class="cb-generic-item-title">Requête</div><div class="cb-generic-item-content"><p>Dans SQL Lab, une requête simple comme <code>SELECT * FROM Climat</code> permet d’afficher les premières lignes du dataset. </p><p>Ici, <code>SELECT *</code> signifie que l’on sélectionne <strong>toutes les colonnes</strong> de la table, tandis que <code>FROM Climat</code> indique que les données sont récupérées depuis le dataset nommé <strong>Climat</strong>.</p><p><br /></p></div></div><div class="cb-generic-item"><div class="cb-generic-item-title">Executer</div><div class="cb-generic-item-content"><p>Dès que la <strong>requête est prête</strong>, cliquez sur <strong>Run</strong> pour l’exécuter.</p>
+<p>Vous pouvez également choisir le <strong>nombre de lignes à afficher</strong> dans le résultat en utilisant l’option <strong>Limit</strong>. Par exemple, avec <strong>Limit: 1000</strong>, la requête retournera au maximum <strong>1 000 lignes</strong> dans le tableau de résultats.</p><p><br /></p><p><br /></p><p><br /></p></div></div><div class="cb-generic-item"><div class="cb-generic-item-title">Résultats de la requête</div><div class="cb-generic-item-content"><p>Les <strong>résultats de la requête</strong> s’affichent ici sous forme de <strong>tableau</strong>.</p>
+<p>Ce
+tableau permet de visualiser les données retournées par la requête SQL,
+de vérifier le contenu des colonnes, d’observer les premières lignes du
+dataset et de s’assurer que la requête fonctionne correctement avant de
+passer à la création des visualisations.</p><p>À partir de cette étape, vous pouvez cliquer sur <strong>Create chart</strong> pour commencer à créer des graphiques à partir du jeu de données sélectionné.</p><p><br /></p><p><br /></p></div></div><div class="cb-generic-item"><div class="cb-generic-item-title">Enregistrer un jeu de données</div><div class="cb-generic-item-content"><p>On peut également enregistrer une partie des données, ou des données modifiées par la requête, comme un <strong>nouveau jeu de données</strong>.</p>
+<p>Pour cela, cliquez sur <strong>Save</strong>, puis sélectionnez <strong>Save dataset</strong>. Cela permet de créer un nouveau dataset à partir du résultat de la requête SQL, afin de le réutiliser ensuite pour l’exploration ou la création de visualisations.</p></div></div></div><div class="cb-carousel"><div class="cb-carousel-slide" style="background-color: #f5f5f5;"><div class="cb-carousel-title">Afficher toutes les colonnes du dataset</div><div class="cb-carousel-content"><p><b>SELECT  *<br />FROM Climat;</b></p><p><br /></p><p>
+Cette requête permet d’afficher toutes les colonnes du dataset <strong>Climat</strong>.<br />
+Ici, SELECT * signifie que l’on sélectionne <strong>toutes les colonnes</strong>, tandis que FROM Climat indique que les données sont récupérées depuis le dataset nommé <strong>Climat</strong>.
+
+</p></div></div><div class="cb-carousel-slide" style="background-color: #f5f5f5;"><div class="cb-carousel-title">Afficher seulement certaines colonnes</div><div class="cb-carousel-content"><p>
+<b><span>SELECT</span><u><span> </span></u><span>date</span><span>, temperature, humidite</span><br /><span>FROM</span><span> Climat;</span></b></p><p><b><span><br /></span></b></p><p>
+Cette requête permet d’afficher uniquement les colonnes <strong>date</strong>, <strong>temperature</strong> et <strong>humidite</strong>.<br />
+Elle est utile lorsque l’on souhaite se concentrer sur quelques variables spécifiques du dataset.
+
+</p></div></div><div class="cb-carousel-slide" style="background-color: #f5f5f5;"><div class="cb-carousel-title">Limiter le nombre de lignes affichées</div><div class="cb-carousel-content"><p><b>SELECT *<br />FROM Climat<br />LIMIT 1000;</b></p><p>
+Cette requête permet d’afficher au maximum <strong>1 000 lignes</strong> du dataset <strong>Climat</strong>.<br />
+L’option LIMIT est utile pour explorer rapidement les données sans charger tout le dataset.
+
+</p></div></div><div class="cb-carousel-slide" style="background-color: #f5f5f5;"><div class="cb-carousel-title">Trier les données</div><div class="cb-carousel-content"><p><b>SELECT *<br />FROM Climat<br />ORDER BY date DESC;</b></p><p><br /></p><p>
+Cette requête permet de trier les données par <strong>date</strong>, de la plus récente à la plus ancienne.<br />
+Ici, ORDER BY date DESC indique que les résultats sont classés par ordre décroissant.
+
+</p></div></div><div class="cb-carousel-slide" style="background-color: #f5f5f5;"><div class="cb-carousel-title">Filtrer les données selon une condition</div><div class="cb-carousel-content"><p><b>SELECT *<br />FROM Climat<br />WHERE temperature > 30;</b></p><p><br /></p><p>
+Cette requête permet d’afficher uniquement les lignes où la <strong>température est supérieure à 30</strong>.<br />
+La clause WHERE sert à filtrer les données selon une condition précise.
+
+</p></div></div><div class="cb-carousel-slide" style="background-color: #f5f5f5;"><div class="cb-carousel-title">Calculer une moyenne</div><div class="cb-carousel-content"><p><b>SELECT AVG(temperature) AS temperature_moyenne<br />FROM Climat;</b></p><p><b><br /></b></p><p>
+Cette requête permet de calculer la <strong>température moyenne</strong> dans le dataset <strong>Climat</strong>.<br />
+Ici, AVG(temperature) calcule la moyenne de la colonne <strong>temperature</strong>, et AS temperature_moyenne donne un nom plus clair au résultat.
+
+</p></div></div></div><div class="pdf-rubric-standalone"><div class="pdf-assignment-header"><span class="pdf-assignment-icon"></span><span class="pdf-assignment-label">Assessment Criteria</span></div><div class="pdf-assignment-rubric"><p>
+Une fois le dataset créé, il peut être exploité pour construire des graphiques et les intégrer dans un dashboard.</p><p> Avant cette étape, il est important d’<b>explorer le jeu de données</b> afin de vérifier sa structure, ses valeurs et ses types de données. Superset propose pour cela l’interface SQL Lab, qui permet d’écrire des requêtes SQL pour analyser le dataset, filtrer les données, contrôler leur qualité ou créer un nouveau dataset à partir du jeu de données existant. Cette étape permet de mieux comprendre les données disponibles et de préparer les visualisations qui seront ensuite utilisées dans le dashboard.
+
+</p></div></div></div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_3.3">3.3. Exemple partique</h4>
+<div class="course-activity-content" style="">
+<div class="pdf-text-block">Ceci est un bloc de texte par défaut. Vous pouvez commencer à faire des modifications ou demander à notre <a href="#ask-coursebox">chatbot</a> d'ajouter d'autres composants comme des citations, des carrousels et des blocs d'images</div><div class="pdf-videocomponent"><div class="pdf-video-card"><div class="pdf-video-thumbnail pdf-video-no-thumb"><div class="pdf-video-play">▶</div></div><div class="pdf-video-info"><div class="pdf-media-label">ElevenLabs_Connexions_base_de_donnee(1).mp4</div><div class="pdf-docs-online-note">To watch this video, please visit the course.</div></div></div></div></div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_3.4">3.4. Choisir la bonne visualisation dans Apache Superset</h4>
+<div class="course-activity-content" style="">
+<div class="cb-hero" style="background-color: #333;"><div class="cb-hero-content"><div class="cb-hero-title">Choisir la bonne visualisation dans Apache Superset</div><div class="cb-hero-text"><p>Apprenez à sélectionner le graphique le plus adapté selon votre objectif d'analyse.</p><br /></div></div></div><div class="cb-quote"><div class="cb-quote-accent-bar" style="background-color: #2e1b41;"></div><div class="cb-quote-body"><div class="cb-quote-mark" style="color: #2e1b41;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 705 591" width="80" height="68"><g><path fill="currentColor" d="M 187.242188 257.511719 C 154.839844 257.511719 125.019531 268.308594 100.921875 286.289062 C 103.289062 211.230469 161.3125 136.140625 275.800781 61.039062 L 258.8125 34.679688 C 92.925781 137.746094 9.972656 250.859375 9.972656 374.003906 C 9.972656 430.554688 25.359375 474.871094 56.160156 506.882812 C 86.9375 538.957031 125.910156 554.953125 173.035156 554.953125 C 220.1875 554.953125 258.179688 542.089844 287.097656 516.316406 C 315.992188 490.578125 330.460938 459.445312 330.460938 423.019531 C 330.460938 422.609375 330.386719 422.308594 330.386719 421.871094 C 331.269531 415.410156 331.890625 408.878906 331.890625 402.132812 C 331.890625 322.285156 267.105469 257.511719 187.242188 257.511719 Z"/></g><g><path fill="currentColor" d="M 654.921875 501.992188 C 656.792969 499.828125 659.058594 497.765625 660.777344 495.503906 C 682.082031 470.300781 695.023438 437.769531 695.023438 402.140625 C 695.023438 322.289062 630.253906 257.5 550.390625 257.5 C 513.808594 257.5 480.507812 271.183594 455.023438 293.601562 C 455.023438 292.710938 454.878906 291.957031 454.878906 291.039062 C 454.878906 214.386719 513.308594 137.695312 630.210938 61.027344 L 613.234375 34.679688 C 447.328125 137.746094 364.378906 250.859375 364.378906 374.03125 C 364.378906 430.582031 379.761719 474.890625 410.578125 506.90625 C 441.347656 538.980469 480.316406 554.996094 527.441406 554.996094 C 574.5625 554.996094 612.605469 542.109375 641.5 516.324219 C 645.589844 512.726562 648.761719 508.6875 652.261719 504.828125 C 653.1875 503.910156 654.015625 502.953125 654.921875 501.992188 Z"/></g></svg></div><div class="cb-quote-text">Le meilleur graphique n'est pas le plus beau, mais celui qui répond le plus rapidement à une question</div></div></div><div class="cb-summary-cards"><div class="cb-summary-card"><div class="cb-summary-card-title">Correlation</div><div class="cb-summary-card-content">Découvrir les relations entre variables.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Distribution</div><div class="cb-summary-card-content">Comprendre la répartition des données.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Evolution</div><div class="cb-summary-card-content">Analyser les changements dans le temps.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Flow</div><div class="cb-summary-card-content">Visualiser les flux et transferts.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">KPI</div><div class="cb-summary-card-content">Suivre les indicateurs de performance.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Map</div><div class="cb-summary-card-content">Analyser les données géographiques.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Part of Whole</div><div class="cb-summary-card-content">Montrer la composition d'un ensemble.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Ranking</div><div class="cb-summary-card-content">Comparer et classer.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Table</div><div class="cb-summary-card-content">Explorer les données détaillées.</div></div></div></div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_3.5">3.5. Quiz - Cadrage du besoin et connexion aux données</h4>
+<div class="course-activity-content" style="">
+</div>
+<div class="pdf-quiz">
+<div class="pdf-quiz-card">
+<div class="pdf-quiz-number">Question 1</div>
+<div class="pdf-quiz-question"><p><b>Quel est l'objectif principal d'un cadrage initial dans un projet d'analyse ?</b></p></div>
+<div class="pdf-quiz-answers">
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Créez un tableau de bord sans aucune préparation.</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Choisir le type de visualisation à utiliser.</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Analyse des données historiques uniquement.</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Définir les contraintes techniques et les livrables attendus.</span></div>
+</div>
+</div>
+<div class="pdf-quiz-card">
+<div class="pdf-quiz-number">Question 2</div>
+<div class="pdf-quiz-question"><p><b>Quelles sont les étapes essentielles pour connecter une base de données dans Superset ?</b></p></div>
+<div class="pdf-quiz-textarea"></div>
+</div>
+<div class="pdf-quiz-card">
+<div class="pdf-quiz-number">Question 3</div>
+<div class="pdf-quiz-question"><p><b>Quelle structure narrative est recommandée pour construire un récit basé sur des analyses de données ?</b></p></div>
+<div class="pdf-quiz-answers">
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Données - Graphiques - Conclusion.</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Situation - Complication - Résolution.</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Observation - Réflexion - Action.</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Analyse - Synthèse - Conclusion.</span></div>
+</div>
+</div>
+</div>
+<h3 class="course-lesson" style="font-size: 20px; font-weight: 800; page-break-before: always; " id="lesson_4">4. Informations complementaires</h3>
+<h4 class="course-topic" style="; " id="topic_4.1">4.1. Types des graphiques</h4>
+<div class="course-activity-content" style="">
+<div class="cb-hero" style="background-color: #333;"><div class="cb-hero-content"><div class="cb-hero-title">Créer des graphiques efficaces avec Apache Superset</div><div class="cb-hero-text"><p>Dans ce module, vous allez apprendre à créer un graphique dans <strong>Apache Superset</strong> avec l’interface <strong>Explore</strong>, puis à choisir le type de visualisation le plus adapté selon les données, le message à transmettre et le public visé.</p>
+<p>Superset propose deux interfaces principales : <strong>Explore</strong>, un constructeur de visualisations sans code, et <strong>SQL Lab</strong>, un environnement SQL pour préparer, nettoyer ou joindre les données avant leur visualisation. </p></div></div></div><div class="pdf-text-block">
+<h3>Objectifs pédagogiques</h3>
+<p>À la fin de cette partie, l’apprenant sera capable de :</p>
+<ol><li>
+<b>Comprendre</b> le rôle de la visualisation de données.
+</li><li>
+Identifier les principaux types de données : catégorielles, ordinales, numériques, temporelles et géographiques.
+</li><li>
+Choisir un graphique adapté à une question analytique.
+</li><li>
+Créer un graphique dans Superset depuis l’onglet <strong>Datasets</strong>.
+</li><li>
+Sauvegarder un graphique et l’ajouter à un dashboard.
+</li><li>
+Éviter les erreurs courantes : mauvais choix de graphique, couleurs excessives, axes trompeurs, surcharge visuelle.
+</li></ol>
+<p><i>La <b>datavisualisation </b>sert à rendre les données plus lisibles, à synthétiser des informations complexes et à guider l’utilisateur dans la compréhension des résultats. L’Insee rappelle aussi que la simplicité, les métadonnées, la rigueur statistique et la lisibilité sont essentielles pour une bonne communication des données.</i></p>
+
+</div><div class="cb-summary-cards"><div class="cb-summary-card"><div class="cb-summary-card-title">Comprendre rapidement</div><div class="cb-summary-card-content">Un graphique permet de repérer plus vite une tendance, une rupture ou une valeur inhabituelle qu’un tableau brut.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Explorer</div><div class="cb-summary-card-content">Dans Superset, l’utilisateur peut tester plusieurs vues, modifier les métriques, les dimensions et les filtres, puis cliquer sur <strong>Run</strong> pour observer le résultat.</div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Communiquer</div><div class="cb-summary-card-content">Une bonne dataviz ne montre pas seulement des chiffres : elle transmet un message clair, adapté à son public.</div></div></div><div class="cb-quote"><div class="cb-quote-accent-bar" style="background-color: #2e1b41;"></div><div class="cb-quote-body"><div class="cb-quote-mark" style="color: #2e1b41;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 705 591" width="80" height="68"><g><path fill="currentColor" d="M 187.242188 257.511719 C 154.839844 257.511719 125.019531 268.308594 100.921875 286.289062 C 103.289062 211.230469 161.3125 136.140625 275.800781 61.039062 L 258.8125 34.679688 C 92.925781 137.746094 9.972656 250.859375 9.972656 374.003906 C 9.972656 430.554688 25.359375 474.871094 56.160156 506.882812 C 86.9375 538.957031 125.910156 554.953125 173.035156 554.953125 C 220.1875 554.953125 258.179688 542.089844 287.097656 516.316406 C 315.992188 490.578125 330.460938 459.445312 330.460938 423.019531 C 330.460938 422.609375 330.386719 422.308594 330.386719 421.871094 C 331.269531 415.410156 331.890625 408.878906 331.890625 402.132812 C 331.890625 322.285156 267.105469 257.511719 187.242188 257.511719 Z"/></g><g><path fill="currentColor" d="M 654.921875 501.992188 C 656.792969 499.828125 659.058594 497.765625 660.777344 495.503906 C 682.082031 470.300781 695.023438 437.769531 695.023438 402.140625 C 695.023438 322.289062 630.253906 257.5 550.390625 257.5 C 513.808594 257.5 480.507812 271.183594 455.023438 293.601562 C 455.023438 292.710938 454.878906 291.957031 454.878906 291.039062 C 454.878906 214.386719 513.308594 137.695312 630.210938 61.027344 L 613.234375 34.679688 C 447.328125 137.746094 364.378906 250.859375 364.378906 374.03125 C 364.378906 430.582031 379.761719 474.890625 410.578125 506.90625 C 441.347656 538.980469 480.316406 554.996094 527.441406 554.996094 C 574.5625 554.996094 612.605469 542.109375 641.5 516.324219 C 645.589844 512.726562 648.761719 508.6875 652.261719 504.828125 C 653.1875 503.910156 654.015625 502.953125 654.921875 501.992188 Z"/></g></svg></div><div class="cb-quote-text">Une bonne visualisation ne consiste pas à “faire joli”, mais à rendre une information compréhensible, fiable et utile pour la décision.</div><div class="cb-quote-author" style="color: #2e1b41;">~ Author's name</div></div></div><div class="cb-infotabs"><div class="cb-infotab-panel"><div class="cb-infotab-title">Données catégorielles</div><div class="cb-infotab-content">
+<p>Ce sont des valeurs regroupées en catégories, sans ordre naturel.</p>
+<p><strong>Exemples :</strong> pays, genre, type de produit, couleur, secteur d’activité.<br />
+<strong>Graphiques adaptés :</strong> bar chart, pie chart avec prudence, treemap, tableau croisé.</p>
+
+</div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Données ordinales</div><div class="cb-infotab-content">
+<p>Ce sont des catégories avec un ordre.</p>
+<p><strong>Exemples :</strong> faible / moyen / fort, niveau de satisfaction, rang, priorité.<br />
+<strong>Graphiques adaptés :</strong> bar chart ordonné, bar chart empilé, heatmap.</p>
+
+</div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Données numériques</div><div class="cb-infotab-content">
+<p>Elles représentent des quantités mesurables.</p>
+<p><strong>Exemples :</strong> ventes, température, prix, revenu, temps de réaction.<br />
+<strong>Graphiques adaptés :</strong> histogramme, boxplot, scatter plot, line chart.</p>
+
+</div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Données temporelles</div><div class="cb-infotab-content">
+<p>Elles décrivent une évolution dans le temps.</p>
+<p><strong>Exemples :</strong> ventes par mois, température par jour, trafic horaire.<br />
+<strong>Graphiques adaptés :</strong> line chart, time-series bar chart, area chart.</p>
+
+</div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Données géographiques</div><div class="cb-infotab-content">
+<p>Elles sont liées à des lieux ou territoires.</p>
+<p><strong>Exemples :</strong> pays, régions, villes, coordonnées GPS.<br />
+<strong>Graphiques adaptés :</strong> carte choroplèthe, point map, heatmap géographique.</p>
+
+</div></div></div><div class="cb-infotabs"><div class="cb-infotab-panel"><div class="cb-infotab-title">Correlation</div><div class="cb-infotab-content"><br /><p><img src="https://assets.coursebox.ai/public/coursebox/learning/f37c585d-fd10-4823-bcc0-9b00de04c3ec.png" alt="ChatGPT Image 12 juin 2026, 11_27_02.png" /><br /></p>
+<p>Exemples :</p><ul><li>
+<strong>Scatter Plot</strong> : relation entre température et consommation d’eau.
+
+</li><li><strong>Bubble Chart</strong> : comme Scatter Plot, mais avec une 3ᵉ variable représentée par la taille de la bulle</li><li>
+<strong>Heatmap</strong> : voir rapidement les relations fortes ou fa</li></ul></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Distribution</div><div class="cb-infotab-content"><p><img src="https://assets.coursebox.ai/public/coursebox/learning/63709e5e-3911-4894-a16b-9051d68a1c48.png" alt="Distribution.png" /><br /></p><p><br /></p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Évolution</div><div class="cb-infotab-content"><p><img src="https://assets.coursebox.ai/public/coursebox/learning/c5c3f545-275b-49ef-9678-3b84de5657f4.png" alt="Evolution.png" /><br /></p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Flow</div><div class="cb-infotab-content"><p><img src="https://assets.coursebox.ai/public/coursebox/learning/f2d4342b-b2f5-4c0d-99a4-89779f99b0d9.png" alt="Flow.png" /><br /></p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">KPI</div><div class="cb-infotab-content"><p><img src="https://assets.coursebox.ai/public/coursebox/learning/fbeaa5d5-d3de-4d02-9b33-4dc6fcd6323d.png" alt="KPI.png" /><br /></p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Map</div><div class="cb-infotab-content"><p><img src="https://assets.coursebox.ai/public/coursebox/learning/8c70b4de-7c24-4564-a2c7-3956a12dc8e1.png" alt="Map.png" /></p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Part of whole</div><div class="cb-infotab-content"><p><img src="https://assets.coursebox.ai/public/coursebox/learning/3de14586-1fb2-4c7b-98be-4237f855219e.png" alt="Part of whole.png" /><br /></p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Ranking</div><div class="cb-infotab-content"><p><img src="https://assets.coursebox.ai/public/coursebox/learning/4153672f-23bb-414f-8ff0-9dc54a8c763a.png" alt="Ranking.png" /><br /></p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Table</div><div class="cb-infotab-content"><p><img src="https://assets.coursebox.ai/public/coursebox/learning/2bed75fe-427b-4b94-91c5-890296572134.png" alt="Table.png" /><br /></p></div></div></div><div class="cb-flipcards"><div class="cb-flipcard"><div class="cb-flipcard-front"><div class="cb-flipcard-title"><p><strong> Utiliser une courbe ou un time-series chart</strong></p><p><strong><br /></strong><br /></p><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"><img src="https://assets.coursebox.ai/public/coursebox/learning/7e10439f-ca84-440d-9660-e0e7d059c023.png" style="width:50%" /></div><p><br /></p></div></div><div class="cb-flipcard-back"><div class="cb-flipcard-content">Je veux voir une évolution dans le temps</div></div></div><div class="cb-flipcard"><div class="cb-flipcard-front"><div class="cb-flipcard-title"><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"><br /></div><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"><img src="https://assets.coursebox.ai/public/coursebox/learning/00e46d43-5028-4288-b080-936763a75b67.png" /></div></div></div><div class="cb-flipcard-back"><div class="cb-flipcard-content"><p>Je veux représenter une part dans un total</p><p><br /></p><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"></div><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"></div></div></div></div><div class="cb-flipcard"><div class="cb-flipcard-front"><div class="cb-flipcard-title">Je veux montrer une donnée par territoire</div></div><div class="cb-flipcard-back"><div class="cb-flipcard-content">Je veux montrer une donnée par territoire<div class="spinner-container"><div class="spinner-loader"></div></div></div></div></div><div class="cb-flipcard"><div class="cb-flipcard-front"><div class="cb-flipcard-title"><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"></div><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"></div><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"></div><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"></div></div></div><div class="cb-flipcard-back"><div class="cb-flipcard-content"><b>Je veux comparer des catégories</b><div class="image-container"><br /></div><div class="spinner-container"><div class="spinner-loader"></div></div><div class="image-container"></div></div></div></div></div></div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_4.2">4.2. Bonnes pratiques du récit des données</h4>
+<div class="course-activity-content" style="">
+<div class="cb-hero" style="background-color: #333;"><div class="cb-hero-content"><div class="cb-hero-title">Raconter les données : passer du graphique au message</div><div class="cb-hero-text">Dans Apache Superset, un graphique ne suffit pas. Pour qu’il ait de l’impact, il doit être accompagné d’un message clair : informer, comparer, expliquer, alerter ou aider à décider.</div></div></div><div class="cb-summary-cards"><div class="cb-summary-card"><div class="cb-summary-card-title">Informer</div><div class="cb-summary-card-content"><p>Partager un état des lieux factuel pour faire comprendre une situation.</p><p>Ex : montrer que les ventes ont augmenté de 18 % en mars.</p></div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Comparer</div><div class="cb-summary-card-content"><p>Mettre deux données en regard pour faire ressortir leurs différences.</p><p>Ex : la région Nord dépasse la région Sud de 32 %.</p></div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Expliquer</div><div class="cb-summary-card-content"><p>Montrer pourquoi un résultat apparaît et comment il s’enchaîne.</p><p>Ex : la baisse vient d’une rupture de stock sur deux produits.</p></div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Alerter</div><div class="cb-summary-card-content"><p>Signaler un risque ou une anomalie qui demande une réaction rapide.</p><p>Ex : le taux d’erreur dépasse 5 %.</p></div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Décider</div><div class="cb-summary-card-content"><p>Apporter les données nécessaires pour choisir une action.</p><p>Ex : renforcer les stocks dans la région Nord.</p></div></div><div class="cb-summary-card"><div class="cb-summary-card-title">Prédire</div><div class="cb-summary-card-content"><p>Projeter une tendance future pour anticiper et agir plus tôt.</p><p>Ex : les ventes pourraient dépasser l’objectif trimestriel.</p></div></div></div><div class="cb-accordion"><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">Formuler une question analytique précise</span></div><div class="cb-accordion-body">
+<p><span>Une bonne question analytique est précise, utile pour l’action et directement ancrée dans les données disponibles.</span></p><p><span>Elle ne demande pas simplement :</span><br /><strong><span>« Comment va le cours d’eau ? »</span></strong></p><p><span>Elle cherche plutôt à comprendre une situation mesurable, par exemple :</span><br /><strong><span>« Pourquoi le niveau du cours d’eau a-t-il augmenté de 35 cm entre lundi et mardi à la station de Blois, alors que les précipitations locales sont restées faibles ? »</span></strong></p><p><strong><span>Structure type :</span></strong><br /><span>— Pourquoi </span><strong><span><span>[phénomène observé]</span></span></strong><span> s’est-il produit pendant </span><strong><span><span>[période]</span></span></strong><span> ?</span><br /><span>— Comment évolue </span><strong><span><span>[indicateur hydrologique]</span></span></strong><span> selon </span><strong><span><span>[station / bassin versant / période / condition météo]</span></span></strong><span> ?</span><br /><span>— Quelle est la différence entre </span><strong><span><span>[station A]</span></span></strong><span> et </span><strong><span><span>[station B]</span></span></strong><span> en termes de </span><strong><span><span>[niveau d’eau / débit / vitesse de montée / seuil atteint]</span></span></strong><span> ?</span><br /><span>— Quel facteur explique le mieux </span><strong><span><span>[résultat inattendu]</span></span></strong><span> ?</span></p><p><strong><span>Exemples de transformation :</span></strong></p><ul><li><span>Vague → </span><strong><span>« Comment va le cours d’eau ? »</span></strong><br /><span>Précise → </span><strong><span>« Comment le niveau du cours d’eau a-t-il évolué sur les 7 derniers jours à la station de Blois, et a-t-il franchi un seuil de vigilance ? »</span></strong></li><li><span>Vague → </span><strong><span>« Le niveau monte. »</span></strong><br /><span>Précise → </span><strong><span>« À quelle vitesse le niveau du cours d’eau a-t-il augmenté au cours des dernières 24 heures, et cette hausse est-elle liée aux précipitations observées en amont ? »</span></strong></li><li><span>Vague → </span><strong><span>« Il y a un risque de crue ? »</span></strong><br /><span>Précise → </span><strong><span>« Quelles stations présentent un niveau supérieur au seuil de vigilance crue aujourd’hui, et quelle tendance est prévue pour les prochaines 48 heures ? »</span></strong></li></ul><p><br /></p>
+
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">Identifier le message clé</span></div><div class="cb-accordion-body">
+<p>Pour répondre à une question analytique, l’analyse des données doit permettre de formuler un <strong>message clé clair, précis et directement lié aux résultats observés</strong>. Ce message ne se limite pas à décrire les données : il doit aider l’audience à comprendre ce qui se passe, pourquoi cela compte et, si nécessaire, quelle action envisager.</p><p><br /></p>
+<p>Plusieurs <strong>patterns narratifs</strong> peuvent vous aider à construire ce message, par exemple : comparer deux situations, rendre une donnée plus concrète, révéler progressivement l’information, poser une question pour attirer l’attention, ou orienter vers une action.</p><p><br /></p>
+
+<table class="table table-bordered"><tbody><tr><td>
+Pattern narratif
+
+</td><td>
+Utilisation pour le message clé
+
+</td><td>
+Exemple
+
+</td></tr><tr><td>
+<table><tbody><tr><td><strong>Compare</strong></td></tr></tbody></table><table><tbody><tr><td><br /></td></tr></tbody></table><table><tbody><tr><td><br /></td></tr></tbody></table>
+
+</td><td>
+Montrer une différence entre deux stations, périodes ou seuils.
+
+</td><td>
+Le niveau à Blois est 30 cm plus élevé que la semaine dernière ; cette hausse indique une évolution à surveiller
+
+</td></tr><tr><td><b>
+Concretize
+
+</b></td><td>
+Rendre une donnée technique plus compréhensible.
+
+</td><td>
+e cours d’eau a monté de 40 cm en 24 h ; la montée est rapide et réduit le délai de réaction.
+
+</td></tr><tr><td>
+<b>Gradual Reveal
+
+</b></td><td>
+Présenter le message étape par étape.
+
+</td><td>
+Le niveau monte depuis hier, la hausse s’accélère en aval, certaines stations approchent du seuil de vigilance.
+
+</td></tr><tr><td><b>
+Rhetorical Question
+
+</b></td><td>
+Attirer l’attention avec une question.
+
+</td><td>
+Le cours d’eau entre-t-il en phase de crue ? Le niveau augmente depuis 18 h et les pluies continuent en amont.
+
+</td></tr><tr><td><b>
+Call-to-Action
+
+</b></td><td>
+Orienter vers une action concrète.
+
+</td><td>
+Le seuil de vigilance se rapproche ; les gestionnaires doivent renforcer la surveillance.
+
+</td></tr><tr><td><b>
+Familiarization
+
+</b></td><td>
+Relier la donnée à un lieu connu.
+
+</td><td>
+Près du centre-ville, le niveau dépasse la moyenne récente ; les acteurs locaux doivent suivre les mises à jour.
+
+</td></tr><tr><td><b>
+Repetition
+
+</b></td><td>
+Renforcer le message avec plusieurs signaux.
+
+</td><td>
+Le niveau monte, le débit augmente et les pluies persistent ; tous les signaux indiquent une situation à surveiller.
+
+</td></tr><tr><td><br /></td><td><br /></td><td><br /></td></tr><tr><td><br /></td><td><br /></td><td><br /></td></tr></tbody></table></div></div></div><div class="cb-carousel"><div class="cb-carousel-slide" style="background-color: #f5f5f5;"><div class="cb-carousel-title">Pyramide inversée : message d'abord, preuves ensuite</div><div class="cb-carousel-content"><p>La pyramide inversée place la conclusion ou le signal principal en haut,
+puis déroule les preuves et le contexte en descendante. Convient quand 
+le public veut une réponse rapide : direction, comité, tableau de bord 
+opérationnel où une action doit être prise rapidement.
+<img src="https://dixxit.fr/media/1671/pyramide-inversee-2844small.jpg" alt="La pyramide inversée : écrire pour être compris | DIXXIT, agence éditoriale  digitale" />
+
+</p><p> En pratique pour 
+un dashboard, commence par un ou deux KPI clés visibles en haut, puis 
+propose des graphiques de soutien et enfin une table ou un export pour 
+vérification. La pyramide inversée limite la charge 
+cognitive : la lecture première donne la décision, les détails restent 
+accessibles.
+
+</p></div></div><div class="cb-carousel-slide" style="background-color: #f5f5f5;"><div class="cb-carousel-title">Structure en trois actes (début, milieu, fin)</div><div class="cb-carousel-content"><p>Le modèle en trois actes organise la narration comme une histoire 
+courte.
+<img src="https://auteurs.jupiterphaeton.com/wp-content/uploads/2022/05/Structure-en-trois-actes-768x607.jpg" alt="Structure narrative : laquelle utiliser ? - Autoédition Jupiter Phaeton" />
+
+<img src="https://assets.coursebox.ai/public/coursebox/learning/c67bc411-9342-4c44-9f27-297ef4ad42bb.png" alt="image.png" /></p><p> Acte 1 : poser la question et le contexte (contexte métier, 
+période, souci). Acte 2 : présenter l'analyse et les découvertes 
+intermédiaires. Acte 3 : conclure avec recommandations et prochaines 
+étapes. Idéal pour une note d'analyse ou une présentation au format 
+slide où le récit doit évoluer logiquement. Sur un dashboard interactif,
+réserve un premier onglet au contexte et aux définitions, un onglet 
+d'exploration pour analyses détaillées, et un onglet final pour 
+recommandations et actions. Superset permet d'organiser les visuels en 
+onglets partageables, utile pour séquencer le récit et diriger 
+l'orientation de lecture.
+
+</p></div></div><div class="cb-carousel-slide" style="background-color: #f2edf7;"><div class="cb-carousel-title">Martini glass : teaser, exploration libre, conclusion forte</div><div class="cb-carousel-content"><p>Le Martini glass commence par un aperçu frappant, ouvre un espace 
+d'exploration libre au milieu, puis revient à une conclusion nette à la 
+fin. C'est parfait pour raconter une histoire de données lorsque l'on 
+veut que le lecteur explore mais revienne avec la même interprétation.
+<img src="https://assets.coursebox.ai/public/coursebox/learning/8e1d0131-d727-4351-8d0a-8a6974aee722.png" alt="image.png" />Pour un dashboard, place un sommaire visuel ou un insight central en 
+haut, propose des filtres et visualisations interactives au centre pour 
+laisser explorer, puis ajoute une carte finale ou un encadré de synthèse
+en bas. Utilise le panneau de filtres de Superset et les Display 
+Controls pour laisser l'exploration, tout en conservant un bloc de 
+synthèse visible ou accessible pour ramener le message final.
+
+</p></div></div><div class="cb-carousel-slide" style="background-color: #ffffff;"><div class="cb-carousel-title">Kabob  : ancrage, corps d'argument, rappel du point central</div><div class="cb-carousel-content"><p>Le Kabob commence par un ancrage qui capte l'attention, déroule des 
+preuves ciblées, puis conclut en rappelant l'ancrage initial. C'est 
+utile quand un point central doit rester présent pendant l'analyse, par 
+exemple pour défendre une hypothèse métier ou évaluer une campagne.
+<img src="https://assets.coursebox.ai/public/coursebox/learning/7b482a14-847d-484d-a349-04f9e70d1f17.png" alt="image.png" /></p><p> Dans
+un dashboard, garde un KPI ancré en en-tête ou dans la barre de 
+navigation, aligne trois à cinq graphiques qui lui apportent du 
+contexte, puis termine par un call-to-action ou une recommandation. Les 
+options de placement et la personnalisation des titres dans Superset 
+aident à maintenir l'ancrage visible pendant la navigation.
+
+</p></div></div></div><div class="cb-infotabs"><div class="cb-infotab-panel"><div class="cb-infotab-title">Données</div><div class="cb-infotab-content"><p>Collecter, explorer, relever.</p><p>La première phase consiste à rassembler toutes vos sources et à les explorer pour repérer ce qui est digne d'intérêt. Vous cherchez des tendances, des anomalies, des corrélations inattendues.</p><p><strong>Ce qu'on fait concrètement :</strong></p><ul><li>Rassembler les fichiers de données (exports CRM, fichiers Excel, bases SQL, rapports PDF)</li><li>Croiser les sources : ventes + retours clients + calendrier des promotions</li><li>Repérer les chiffres qui sortent de l'ordinaire</li><li>Noter les "trouvailles" : ex. "le taux de retour est 3× plus élevé le vendredi"</li></ul><p>À cette étape, vous ne racontez pas encore, vous explorez.</p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Intention</div><div class="cb-infotab-content"><p>Définir l'objectif et les questions.</p><p>Avant d'organiser votre récit, vous devez savoir où vous allez. Cette phase vous oblige à choisir un seul objectif principal et à formuler les questions auxquelles vos données vont répondre.</p><p><strong>Ce qu'on fait concrètement :</strong></p><ul><li>Choisir un objectif (informer / comparer / expliquer / alerter / décider / prédire)</li><li>Formuler 1 à 2 questions analytiques précises (ex. : "Pourquoi les ventes ont-elles baissé en février ?")</li><li>Définir le message clé à transmettre en une phrase</li><li>Identifier ce que votre audience doit retenir ou faire après avoir lu votre récit</li></ul><p>À cette étape, vous clarifiez le but avant de construire l'histoire.</p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Structuration</div><div class="cb-infotab-content"><p>Organiser l'histoire.</p><p>C'est ici que vous décidez de l'ordre de présentation de vos données. Vous choisissez une structure narrative et organisez vos éléments pour créer un fil logique du début à la fin.</p><p><strong>Ce qu'on fait concrètement :</strong></p><ul><li>Choisir une structure (pyramide inversée / pile de blocs / Water Tower)</li><li>Définir l'accroche : quel fait frappant ouvre votre récit ?</li><li>Organiser les preuves dans un ordre logique (cause → effet → solution)</li><li>Prévoir les transitions entre chaque partie</li><li>Décider ce qui entre dans le récit et ce qui reste en annexe</li></ul><p>À cette étape, vous organisez les preuves pour rendre le message fluide.</p></div></div><div class="cb-infotab-panel"><div class="cb-infotab-title">Présentation</div><div class="cb-infotab-content"><p>Produire la forme visuelle et textuelle.</p><p>La dernière phase consiste à mettre en forme votre récit pour le rendre lisible, mémorable et adapté à votre public et à votre medium (dashboard, slide, article, rapport).</p><p><strong>Ce qu'on fait concrètement :</strong></p><ul><li>Choisir les visualisations adaptées à chaque message (courbe pour une tendance, camembert pour une proportion, barre pour une comparaison)</li><li>Rédiger des titres qui expriment un message, pas juste un sujet</li><li>Ajouter des annotations sur les graphiques pour guider la lecture</li><li>Vérifier que le message clé ressort en 10 secondes de lecture</li><li>Adapter le niveau de détail à l'audience (direction ≠ équipe technique)</li></ul><p>À cette étape, vous finalisez la forme pour diffuser votre message efficacement.</p></div></div></div><div class="pdf-text-block"><br /><br /></div></div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_4.3">4.3. Meilleures pratiques pour élaborer un récit de données</h4>
+<div class="course-activity-content" style="">
+<div class="cb-hero" style="background-color: #333;"><div class="cb-hero-content"><div class="cb-hero-title">Meilleures méthodes pour créer un récit basé sur les données</div></div></div><div class="pdf-text-block"><h3>Bonne pratique pour construire un récit de données</h3>
+
+<h4>1. Définir le récit de données</h4>
+<p>Un <strong>récit de données</strong> consiste à transformer des chiffres en une histoire claire. Il permet de montrer ce que révèlent les données, d’expliquer pourquoi cela compte et d’aider le public à retenir l’essentiel.</p>
+<p>Par exemple, une équipe peut présenter l’évolution des ventes d’un produit sur plusieurs mois afin de comprendre une baisse et de proposer une action à mener. Le message devient alors bien plus facile à suivre qu’une succession de tableaux ou de chiffres isolés.</p>
+
+<h4>2. Comprendre la figure</h4><p>
+<img alt="Image générée : Le processus du récit de données" src="https://chatgpt.com/backend-api/estuary/content?id=file_000000001d887230b80125c661a68e3b&ts=494870&p=fs&cid=1&sig=60c4cd5a9883060af5b54fceb617d767abf13cc2ac79dbd53c500decf7c42e20&v=0" />
+
+<img src="https://assets.coursebox.ai/public/coursebox/learning/a3e4e067-6a37-48f4-9bd6-01e46118df6c.png" /></p>
+<p>La figure ci-dessous montre comment construire ce récit, étape par étape. Elle illustre le passage des données brutes vers une présentation finale plus claire et plus parlante.</p>
+<p><img alt="Schéma des quatre phases du récit de données : données, intention, structuration et présentation finale" width="100%" /></p>
+
+<h4>3. Les 4 phases du récit de données</h4>
+<p>Pour créer un bon récit, on progresse en quatre phases simples. Chacune aide à transformer les données en un message compréhensible pour l’audience.</p>
+
+<ol>
+<li><strong>Données</strong> : identifier les jeux de données, relier les sources, explorer les informations disponibles et relever les éléments importants.<br /><em>Exemple :</em> regrouper les ventes mensuelles, les retours clients et les dates de promotion pour repérer ce qui a changé.</li>
+<li><strong>Intention</strong> : définir l’objectif du récit, formuler les questions à analyser et choisir les messages à transmettre.<br /><em>Exemple :</em> chercher à comprendre pourquoi les ventes baissent et décider de montrer d’abord cette évolution.</li>
+<li><strong>Structuration</strong> : organiser l’histoire selon une suite logique, avec une introduction, des étapes et des liens clairs entre les idées.<br /><em>Exemple :</em> commencer par le contexte, présenter ensuite le problème, puis expliquer la cause possible et la solution envisagée.</li>
+<li><strong>Présentation finale</strong> : produire une forme visuelle et textuelle simple, lisible et adaptée au public.<br /><em>Exemple :</em> utiliser un graphique clair, un titre explicite et quelques phrases courtes pour guider la lecture.</li>
+</ol>
+
+<p>Cette méthode permet de passer d’une simple exploration des données à une communication structurée, utile et facile à comprendre.</p></div></div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_4.4">4.4. Pourquoi une belle visualisation peut échouer</h4>
+<div class="course-activity-content" style="">
+<div class="pdf-text-block">
+Dans cette  partie, nous allons voir pourquoi une visualisation de données ne doit pas seulement être esthétique. Une bonne visualisation doit surtout aider l’utilisateur à comprendre rapidement une information, comparer des éléments, repérer une tendance ou prendre une décision.
+
+</div><div class="pdf-online-placeholder"><div class="pdf-online-icon-scorm"></div><div class="pdf-online-label">Interactive Module</div><div class="pdf-online-desc">Complete this interactive module online in the course.</div></div></div>
+<div class="pdf-quiz">
+<div class="pdf-quiz-card">
+<div class="pdf-quiz-number">Question 1</div>
+<div class="pdf-quiz-question"><p><b>Selon vous, quel élément est essentiel pour qu'une visualisation soit considérée comme efficace ?</b></p></div>
+<div class="pdf-quiz-answers">
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Une palette de couleurs variée</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Une clarté et une simplicité dans la présentation des données</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">L'utilisation de graphiques complexes</span></div>
+<div class="pdf-quiz-answer"><input type="checkbox" class="pdf-quiz-checkbox" disabled /><span class="pdf-quiz-answer-text">Un grand nombre de données affichées</span></div>
+</div>
+</div>
+</div>
+<h4 class="course-topic" style="page-break-before: always; " id="topic_4.5">4.5. Résumé</h4>
+<div class="course-activity-content" style="">
+<div class="pdf-text-block"><p>Félicitations pour avoir terminé le cours sur Apache Superset ! Vous avez acquis les compétences nécessaires pour connecter vos données, explorer des ensembles de données, créer des visualisations et construire des dashboards efficaces tout en appliquant les principes du data storytelling. Ce cours vous a permis de transformer vos données en messages clairs et percutants, ce qui est essentiel pour toute analyste de données ou professionnel BI.</p>
+<h3>Aperçu du cours : Apache Superset</h3>
+<p>Le cours a été structuré autour des principaux objectifs suivants :</p>
+<ul>
+<li><p><strong>Cadrage des besoins métiers :</strong></p>
+<ul>
+<li>Transformer une question d’analyse en message visuel clair grâce aux principes du data storytelling.</li>
+</ul>
+</li>
+<li><p><strong>Connexion à une base de données :</strong></p>
+<ul>
+<li>Apprendre à connecter Apache Superset à une base de données, enregistrer des datasets et préparer les colonnes, métriques et calculs pour l’exploration.</li>
+</ul>
+</li>
+<li><p><strong>Création de visualisations :</strong></p>
+<ul>
+<li>Créer des visualisations pertinentes dans l'interface Explore et bâtir, publier et partager un dashboard lisible et utile.</li>
+</ul>
+</li>
+<li><p><strong>Bonnes pratiques de dashboarding :</strong></p>
+<ul>
+<li>Appliquer les bonnes pratiques de hiérarchie visuelle, de lisibilité et d’équilibre entre exploration et explication dans un dashboard Superset,</li>
+<li>Assurer ainsi que votre public comprenne facilement les insights que vous présentez.</li>
+</ul>
+</li>
+</ul>
+<p>En somme, vous êtes désormais capable de concevoir et d'exploiter des dashboards qui non seulement affichent des données, mais communiquent également des histoires significatives derrière ces données. Vous avez certainement acquis une expertise précieuse qui pourra contribuer à améliorer la prise de décision au sein de votre organisation.</p>
+</div><div class="pdf-rubric-standalone"><div class="pdf-assignment-header"><span class="pdf-assignment-icon"></span><span class="pdf-assignment-label">Assessment Criteria</span></div><div class="pdf-assignment-rubric">
+<h1>Lectures complémentaires</h1>
+<p>"Si vous souhaitez obtenir plus d'informations sur ce cours, suivez les liens ci-dessous :"</p>
+        
+<ul><li><a href="https://superset.apache.org/" target="_blank">Welcome | Superset - Apache Software Foundation</a></li><li><a href="https://medium.com/@devcharlie2698619/step-by-step-guide-to-data-visualization-with-apache-superset-9cdeb25b001b" target="_blank">Step-by-Step Guide to Data Visualization with Apache Superset</a></li><li><a href="https://preset.io/apache-superset/" target="_blank">Apache Superset Open Source Data Visualization Platform - Preset</a></li><li><a href="https://www.next-decision.fr/solutions/data-ai/restitution-dataviz/apache-superset" target="_blank">Apache Superset - Next Decision</a></li><li><a href="https://github.com/apache/superset" target="_blank">Apache Superset is a Data Visualization and Data ... - GitHub</a></li></ul>
+</div></div><div class="cb-accordion"><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">1: Introduction</span></div><div class="cb-accordion-body"><ul>
+<li>Présentation des objectifs du cours.</li>
+<li>Importance des compétences abordées.</li>
+</ul>
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">2: Techniques fondamentales</span></div><div class="cb-accordion-body"><ul>
+<li>Exploration des bases essentielles.</li>
+<li>Mise en pratique des techniques.</li>
+</ul>
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">3: Outils et ressources</span></div><div class="cb-accordion-body"><ul>
+<li>Identification des outils nécessaires.</li>
+<li>Comment utiliser les ressources disponibles.</li>
+</ul>
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">4: Cas pratiques</span></div><div class="cb-accordion-body"><ul>
+<li>Étude de cas réels pour appliquer les connaissances.</li>
+<li>Analyse des résultats obtenus.</li>
+</ul>
+</div></div><div class="cb-accordion-card"><div class="cb-accordion-header"><span class="cb-accordion-title">5: Résumé</span></div><div class="cb-accordion-body"><ul>
+<li>Récapitulation des points clés du cours.</li>
+<li>Conseils pour continuer à pratiquer.</li>
+</ul>
+</div></div></div><div class="pdf-text-block">
+<h1>Lectures complémentaires</h1>
+<p>"Si vous souhaitez obtenir plus d'informations sur ce cours, suivez les liens ci-dessous :"</p>
+        
+<ul><li><a href="https://superset.apache.org/" target="_blank">Welcome | Superset - Apache Software Foundation</a></li><li><a href="https://medium.com/@devcharlie2698619/step-by-step-guide-to-data-visualization-with-apache-superset-9cdeb25b001b" target="_blank">Step-by-Step Guide to Data Visualization with Apache Superset</a></li><li><a href="https://preset.io/apache-superset/" target="_blank">Apache Superset Open Source Data Visualization Platform - Preset</a></li><li><a href="https://www.next-decision.fr/solutions/data-ai/restitution-dataviz/apache-superset" target="_blank">Apache Superset - Next Decision</a></li><li><a href="https://github.com/apache/superset" target="_blank">Apache Superset is a Data Visualization and Data ... - GitHub</a></li></ul>
+</div></div></div></body></html>
