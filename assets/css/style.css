@@ -25,14 +25,14 @@
   --warning-soft: #fdf1dc;
 
   /* Couleurs des quatre phases de la méthode */
-  --ph-donnees: #0a7f8f;
-  --ph-donnees-soft: #def3f5;
-  --ph-intention: #b25c00;
-  --ph-intention-soft: #fcefdc;
-  --ph-structuration: #6b3fd1;
-  --ph-structuration-soft: #eee8fc;
-  --ph-presentation: #c02d6b;
-  --ph-presentation-soft: #fbe5ee;
+  --ph-donnees: #c02d6b;
+  --ph-donnees-soft: #fbe5ee;
+  --ph-intention: #6b3fd1;
+  --ph-intention-soft: #eee8fc;
+  --ph-structuration: #9a5b00;
+  --ph-structuration-soft: #fdf2d4;
+  --ph-presentation: #1d5fc4;
+  --ph-presentation-soft: #e3edfc;
 
   --sidebar-bg: #1d1736;
   --sidebar-text: #ece9f8;
@@ -73,14 +73,14 @@
     --error-soft: #3a1b1a;
     --warning: #f5b553;
     --warning-soft: #36280f;
-    --ph-donnees: #4cc9d6;
-    --ph-donnees-soft: #10303a;
-    --ph-intention: #f5a94a;
-    --ph-intention-soft: #3a2a12;
-    --ph-structuration: #a98bff;
-    --ph-structuration-soft: #2a2152;
-    --ph-presentation: #ff7fb0;
-    --ph-presentation-soft: #3d1a2b;
+    --ph-donnees: #ff7fb0;
+    --ph-donnees-soft: #3d1a2b;
+    --ph-intention: #a98bff;
+    --ph-intention-soft: #2a2152;
+    --ph-structuration: #f5b94a;
+    --ph-structuration-soft: #3a2c10;
+    --ph-presentation: #6fa8ff;
+    --ph-presentation-soft: #142a4a;
     --sidebar-bg: #0d0b16;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
     --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.45);
@@ -108,14 +108,14 @@
   --error-soft: #3a1b1a;
   --warning: #f5b553;
   --warning-soft: #36280f;
-  --ph-donnees: #4cc9d6;
-  --ph-donnees-soft: #10303a;
-  --ph-intention: #f5a94a;
-  --ph-intention-soft: #3a2a12;
-  --ph-structuration: #a98bff;
-  --ph-structuration-soft: #2a2152;
-  --ph-presentation: #ff7fb0;
-  --ph-presentation-soft: #3d1a2b;
+  --ph-donnees: #ff7fb0;
+  --ph-donnees-soft: #3d1a2b;
+  --ph-intention: #a98bff;
+  --ph-intention-soft: #2a2152;
+  --ph-structuration: #f5b94a;
+  --ph-structuration-soft: #3a2c10;
+  --ph-presentation: #6fa8ff;
+  --ph-presentation-soft: #142a4a;
   --sidebar-bg: #0d0b16;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.45);
@@ -287,7 +287,9 @@ button { font: inherit; color: inherit; }
 .content th { background: var(--surface-2); font-weight: 700; }
 .content td, .content th { border-bottom: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top; }
 .content tr:last-child td { border-bottom: none; }
-.table-scroll { overflow-x: auto; }
+.table-scroll { overflow-x: auto; margin: 18px 0; border-radius: var(--radius); }
+.table-scroll > table { margin: 0; min-width: 520px; }
+.sqlb-result .table-scroll > table { min-width: 0; }
 
 .content blockquote {
   margin: 20px 0; padding: 14px 18px; border-left: 4px solid var(--accent);

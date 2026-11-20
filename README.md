@@ -6,12 +6,12 @@ Le fil rouge pratique est le projet **PREVIZO** : des données climatiques (feui
 
 ## Logique du cours
 
-Tout le parcours s'appuie sur une méthode en **quatre phases** : **Données → Intention → Structuration → Présentation**. Chaque page affiche la ou les phases qu'elle travaille.
+Tout le parcours s'appuie sur le cadre de la thèse de F. El Outa, *A framework for crafting data narratives* (Université de Tours, 2023, [HAL tel-04505799](https://hal.science/tel-04505799)) : un **modèle en quatre couches** (factuelle, intentionnelle, structurelle, présentationnelle) et un **processus en quatre phases** : **Explorer → Répondre aux questions → Structurer les réponses → Présenter**. Chaque page affiche la ou les phases qu'elle travaille.
 
 | Leçon | Étapes |
 |---|---|
-| 1 — Introduction | Bienvenue (objectifs, méthode, fil rouge PREVIZO) |
-| 2 — Récit de données : la méthode | Dataviz ou récit ? · Le tableau de bord · Trois exemples · La méthode en 4 phases · Question et message clé · Structures narratives · Fiche récit |
+| 1 — Introduction | Bienvenue (objectifs, cadre de référence, fil rouge PREVIZO) |
+| 2 — Récit de données : le cadre | Qu'est-ce qu'un récit de données ? · Le modèle en quatre couches · Le tableau de bord, forme de récit · Analyser des récits existants · Le processus en quatre phases · Répondre aux questions · Structurer les réponses · Fiche récit |
 | 3 — Superset : de la donnée au dashboard | Composants · Connexion et dataset · SQL Lab · Choisir la visualisation · Du message au dashboard · Pourquoi une visualisation échoue |
 | 4 — Évaluation et synthèse | Quiz final · Résumé |
 

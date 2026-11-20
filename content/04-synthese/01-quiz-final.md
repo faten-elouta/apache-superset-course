@@ -12,24 +12,32 @@ components:
   - type: quiz
     title: "Évaluation finale"
     items:
-      - question: "Dans quel ordre se déroulent les quatre phases du récit de données ?"
+      - question: "Quelles sont les quatre phases du processus d'élaboration d'un récit de données ?"
         choices:
-          - "Présentation → Données → Intention → Structuration"
-          - "Données → Intention → Structuration → Présentation"
-          - "Intention → Présentation → Données → Structuration"
+          - "Présenter → Explorer → Structurer → Répondre aux questions, dans cet ordre strict"
+          - "Explorer, Répondre aux questions, Structurer les réponses, Présenter — avec des allers-retours possibles"
+          - "Collecter, Nettoyer, Modéliser, Déployer"
         correct: [1]
-        explanation: "On explore d'abord les données, on fixe l'intention, on structure, puis on met en forme. *À revoir : « La méthode en quatre phases ».*"
+        explanation: "Le processus n'est pas linéaire et peut démarrer par un jeu de données ou par une question. *À revoir : « Le processus en quatre phases ».*"
+      - question: "Dans le modèle en quatre couches, quel concept est la **clé de voûte** ?"
+        choices: ["Le collecteur", "Le message", "Le dashboard", "L'acte"]
+        correct: [1]
+        explanation: "Le message s'appuie sur des constats, répond à une question, est raconté par un épisode et rendu par un composant. *À revoir : « Le modèle en quatre couches ».*"
+      - question: "« Tours passe de 16,8 °C à 23,4 °C entre avril et mai » est…"
+        choices: ["un constat", "un message", "un épisode", "un personnage"]
+        correct: [0]
+        explanation: "C'est un résultat de l'analyse. Le message en serait l'interprétation pour un public : *Tours connaît la plus forte hausse du réseau, son suivi doit être renforcé.* *À revoir : « Répondre aux questions ».*"
       - question: "Laquelle de ces questions est une **question analytique précise** ?"
         choices:
           - "« Comment va le climat ? »"
           - "« Quelles stations ont dépassé 30 °C de maximale plus de trois jours en mai 2026 ? »"
           - "« Les données sont-elles intéressantes ? »"
         correct: [1]
-        explanation: "Indicateur, seuil, période et périmètre sont définis. *À revoir : « Formuler la question et le message clé ».*"
-      - question: "Quelle structure narrative place la conclusion en premier, puis les preuves, puis le détail ?"
+        explanation: "Mesure, seuil, période et personnages sont définis. *À revoir : « Répondre aux questions ».*"
+      - question: "Quelle structure narrative place l'essentiel en premier, puis les détails par ordre d'importance ?"
         choices: ["Trois actes", "Kabob", "Pyramide inversée", "Verre à martini"]
         correct: [2]
-        explanation: "*À revoir : « Structurer le récit ».*"
+        explanation: "*À revoir : « Structurer les réponses ».*"
       - question: "Quel est l'ordre correct dans Superset ?"
         choices:
           - "Chart → Dataset → Base de données → Dashboard"

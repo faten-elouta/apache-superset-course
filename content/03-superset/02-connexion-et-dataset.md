@@ -48,7 +48,7 @@ components:
     content: |
       Regardez les types détectés : `tmin_c`, `tmax_c`, `precip_mm`, `latitude` et `longitude` sont en **TEXT**. Pour Superset, ce sont des chaînes de caractères : impossible d'en calculer une **moyenne**, de les **trier** numériquement ou de les placer sur une **carte** sans les convertir.
 
-      C'est typique de la phase *Données* : **on vérifie avant de visualiser**, sinon les graphiques seront faux ou impossibles à construire.
+      C'est typique de la phase *Explorer* : **on vérifie avant de visualiser** (prétraitement des données), sinon les constats — et donc les messages — seront faux.
 
   - type: numberlist
     checkable: true
@@ -84,4 +84,4 @@ components:
 
 La connexion à une source se configure **une seule fois** : les feuilles ou tables ajoutées à cette étape deviennent ensuite disponibles pour créer autant de datasets que nécessaire.
 
-Cette étape relève entièrement de la phase **Données** de la méthode : on rend les données accessibles, puis on **vérifie** qu'elles sont exploitables. Cochez chaque étape au fur et à mesure dans Superset : votre progression est enregistrée.
+Cette étape relève de la phase **Explorer** du processus, et plus précisément de sa première activité : la **collecte des jeux de données** (choix des sources, extraction, intégration, prétraitement). On rend les données accessibles, puis on **vérifie** qu'elles sont exploitables. Cochez chaque étape au fur et à mesure dans Superset : votre progression est enregistrée.

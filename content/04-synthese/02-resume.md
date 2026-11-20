@@ -1,7 +1,7 @@
 ---
 title: "Résumé et pour aller plus loin"
 order: 2
-lead: "Félicitations, vous avez terminé le parcours ! Voici l'essentiel à retenir, organisé selon les quatre phases de la méthode."
+lead: "Félicitations, vous avez terminé le parcours ! Voici l'essentiel à retenir, organisé selon les quatre phases du processus."
 objectives:
   - "Revoir l'essentiel du cours en une page."
   - "Repartir avec des ressources pour continuer."
@@ -11,20 +11,20 @@ takeaways:
   - "Avant de publier : **checklist** et **règle des 10 secondes**."
 components:
   - type: method
-    title: "La méthode, en une frise"
+    title: "Le processus, en une frise"
     details:
-      donnees: "Connexion, dataset, vérification des types, exploration dans SQL Lab."
-      intention: "Objectif, question analytique précise, message clé en une phrase."
-      structuration: "Pyramide inversée, trois actes, verre à martini ou kabob : l'ordre de lecture."
-      presentation: "Graphique adapté, titre-message, mise en évidence, filtres, publication."
+      donnees: "Collecteurs et constats : connexion, dataset, vérification des types, SQL Lab."
+      intention: "Objectif, questions précises, messages (personnages, mesures), validation."
+      structuration: "Audience, structure narrative, intrigue en actes et épisodes."
+      presentation: "Un dashboard par acte, un chart par épisode, titres-messages, filtres, publication."
 
   - type: summary_cards
     title: "Ce que vous savez faire"
     items:
-      - title: "Distinguer visualiser et raconter"
-        content: "Un récit répond à « Quoi ? », « Et alors ? » et « Que faire ? »."
-      - title: "Cadrer un récit"
-        content: "Choisir un objectif, formuler une question précise et un message clé."
+      - title: "Définir et analyser un récit"
+        content: "Une composition structurée de messages ; ses quatre couches : factuelle, intentionnelle, structurelle, présentationnelle."
+      - title: "Répondre aux questions"
+        content: "Décliner un objectif en questions, tirer des messages des constats, les valider."
       - title: "Préparer les données"
         content: "Connecter Google Sheets, créer un dataset, corriger les types, explorer en SQL."
       - title: "Choisir les visualisations"
@@ -46,6 +46,9 @@ components:
   - type: heading
     text: "Lectures complémentaires"
     intro: |
+      - F. El Outa, [*A framework for crafting data narratives*](https://hal.science/tel-04505799), thèse de doctorat, Université de Tours, 2023 — le cadre de référence de la leçon 2.
+      - E. Segel et J. Heer, *Narrative Visualization: Telling Stories with Data*, IEEE TVCG, 2010.
+      - S. Chatman, *Story and Discourse: Narrative Structure in Fiction and Film*, Cornell University Press, 1978.
       - [Documentation officielle d'Apache Superset](https://superset.apache.org/)
       - [Le code source d'Apache Superset sur GitHub](https://github.com/apache/superset)
       - [Step-by-Step Guide to Data Visualization with Apache Superset](https://medium.com/@devcharlie2698619/step-by-step-guide-to-data-visualization-with-apache-superset-9cdeb25b001b)

@@ -2,7 +2,7 @@
 title: "Du message au dashboard : l'exemple PREVIZO"
 order: 5
 phase: [donnees, intention, structuration, presentation]
-lead: "On assemble tout : à partir de la fiche récit, on construit dans Superset un dashboard complet qui répond à une question précise. Les quatre phases de la méthode, de bout en bout."
+lead: "On assemble tout : à partir de la fiche récit, on construit dans Superset un dashboard complet qui répond à une question précise. Les quatre phases du processus, de bout en bout."
 objectives:
   - "Construire trois charts dans **Explore** : un indicateur, une courbe et des barres."
   - "Les assembler dans un **dashboard** organisé selon une structure narrative."
@@ -16,40 +16,42 @@ components:
     id: fiche-recit
     mode: recall
     title: "Votre fiche récit"
-    intro: "Voici ce que vous avez préparé à l'étape « Mise en pratique ». Vous pouvez suivre l'exemple ci-dessous ou l'adapter à votre propre fiche."
+    intro: "Voici ce que vous avez préparé à l'étape « Mise en pratique : votre fiche récit » (leçon 2). Vous pouvez suivre l'exemple ci-dessous ou l'adapter à votre propre fiche."
     fields:
+      - { key: objectif_analyse, label: "Objectif d'analyse", phase: intention }
       - { key: question, label: "Question analytique", phase: intention }
       - { key: message, label: "Message clé", phase: intention }
+      - { key: audience, label: "Audience", phase: structuration }
       - { key: structure, label: "Structure narrative", phase: structuration }
-      - { key: graphiques, label: "Graphiques envisagés", phase: structuration }
+      - { key: graphiques, label: "Actes et épisodes", phase: structuration }
 
   - type: heading
-    text: "Phase 1 · Données — le point de départ"
+    text: "Phase 1 · Explorer — collecteurs et constats"
     intro: |
-      On part du dataset **Climat** préparé à l'étape « Connecter les données » : `date_mesure` est la colonne temporelle et les colonnes calculées `tmax`, `tmin` et `precip` sont numériques. Si ce n'est pas le cas, revenez à cette étape : **aucun graphique fiable sans données vérifiées**.
+      On part du dataset **Climat** préparé à l'étape « Connecter les données » : `date_mesure` est la colonne temporelle et les colonnes calculées `tmax`, `tmin` et `precip` sont numériques. Dans **SQL Lab**, une requête par station et par mois (un **collecteur**) donne le **constat** : *Tours passe de 16,8 °C en avril à 23,4 °C en mai, les autres stations gagnent environ 4 °C.* Le constat est **validé** en le recoupant avec une source externe.
 
   - type: heading
-    text: "Phase 2 · Intention — la question et le message"
+    text: "Phase 2 · Répondre aux questions — objectif, question, message"
     intro: |
+      - **Objectif :** rendre compte de la chaleur du printemps 2026 sur le réseau.
       - **Question :** *Comment la température maximale a-t-elle évolué de janvier à mai 2026, et quelles stations sont les plus chaudes ?*
-      - **Message clé :** *Les maximales ont bondi en mai, surtout à Tours (+6,6 °C en un mois) : le suivi de cette station doit être renforcé.*
-      - **Public :** les gestionnaires du réseau, qui doivent **prioriser** leurs actions.
+      - **Message :** *Tours connaît la plus forte hausse du réseau en mai (+6,6 °C) : son suivi doit être renforcé.* — personnages : *Tours*, *réseau* ; mesures : *température maximale moyenne*, *+6,6 °C*.
 
   - type: heading
-    text: "Phase 3 · Structuration — une pyramide inversée"
+    text: "Phase 3 · Structurer les réponses — audience, structure, actes"
     intro: |
-      Le public est pressé et doit décider : on place la conclusion en haut, les preuves ensuite, le détail en bas.
+      **Audience :** les gestionnaires du réseau, pressés et chargés de prioriser. **Structure :** pyramide inversée. Chaque acte devient une zone du dashboard, chaque épisode un chart.
 
-      | Zone du dashboard | Contenu | Rôle dans le récit |
-      |---|---|---|
-      | **En-tête** | Titre-message + bloc texte | Annonce la conclusion |
-      | **Ligne 1** | KPI *Big Number with Trendline* | Le chiffre clé, en un coup d'œil |
-      | **Ligne 2** | Courbe mensuelle par station | Preuve n° 1 : l'évolution |
-      | **Ligne 3** | Barres triées par station | Preuve n° 2 : le classement |
-      | **Bas de page** | Table de détail | Vérification |
+      | Acte | Épisode (message) | Zone du dashboard | Composant |
+      |---|---|---|---|
+      | — | Le message principal | **En-tête** | Titre-message + bloc *Markdown* |
+      | **1. La situation** | Un printemps nettement plus chaud | **Ligne 1** | KPI *Big Number with Trendline* |
+      | **2. L'évolution** | Les maximales s'accélèrent en mai, surtout à Tours | **Ligne 2** | Courbe mensuelle par station |
+      | **3. Les stations** | Tours est la plus chaude et la plus en hausse | **Ligne 3** | Barres triées par station |
+      | — | Détails pour vérification | **Bas de page** | Table |
 
   - type: heading
-    text: "Phase 4 · Présentation — construire dans Superset"
+    text: "Phase 4 · Présenter — construire dans Superset"
 
   - type: video
     placeholder: true

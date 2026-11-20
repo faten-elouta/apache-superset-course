@@ -16,10 +16,11 @@
       <p class="home-kicker">Cours en français · débutant à intermédiaire</p>
       <h1>Raconter des données avec <span>Apache Superset</span></h1>
       <p class="home-intro">
-        Une méthode en quatre phases pour transformer des données brutes en un
-        message clair, puis la mettre en œuvre dans Superset : connexion,
-        dataset, graphiques et dashboard. Le fil rouge : les données climatiques
-        du projet <strong>PREVIZO</strong>.
+        Un cadre issu de la recherche — un modèle en quatre couches et un
+        processus en quatre phases — pour transformer des données en messages
+        structurés, puis sa mise en œuvre dans Superset : connexion, dataset,
+        graphiques et dashboard. Le fil rouge : les données climatiques du
+        projet <strong>PREVIZO</strong>.
       </p>
       <div class="home-actions">
         <a class="btn btn-primary resume-btn" href="<%= firstPage.url %>" data-first="<%= firstPage.url %>">Commencer le cours →</a>
@@ -34,13 +35,14 @@
     </section>
 
     <section class="home-method" aria-labelledby="methode-titre">
-      <h2 id="methode-titre">La méthode qui structure tout le cours</h2>
-      <p class="home-section-intro">Chaque étape du cours se rattache à l’une de ces quatre phases. Vous les retrouverez sous forme de pastille colorée en haut des pages.</p>
+      <h2 id="methode-titre">Le processus qui structure tout le cours</h2>
+      <p class="home-section-intro">Les quatre phases du processus d’élaboration d’un récit de données (F. El Outa, <em>A framework for crafting data narratives</em>, thèse, Université de Tours, 2023). Chaque phase travaille une couche du modèle conceptuel ; chaque étape du cours s’y rattache par une pastille colorée. Les phases ne sont pas linéaires : on circule librement de l’une à l’autre.</p>
       <ol class="method-strip">
         <% Object.keys(PHASES).forEach(function (key) { var p = PHASES[key]; %>
           <li class="method-step phase-<%= key %>">
             <span class="method-num"><%= p.n %></span>
             <span class="method-label"><%= p.label %></span>
+            <span class="method-layer"><%= p.layer %></span>
             <span class="method-verb"><%= p.verb %></span>
           </li>
         <% }); %>

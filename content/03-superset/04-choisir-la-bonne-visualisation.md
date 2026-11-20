@@ -191,7 +191,7 @@ components:
           - "Les convertir en nombres (colonnes calculées avec CAST) dans le dataset."
           - "Rien, Superset les convertit toujours automatiquement."
         correct: [1]
-        explanation: "On revient à la phase Données : une carte a besoin de coordonnées numériques."
+        explanation: "On revient à la phase Explorer : une carte a besoin de coordonnées numériques. Le processus autorise ces allers-retours."
 ---
 
 Une bonne visualisation ne consiste pas à « faire joli » : elle rend une information **compréhensible, fiable et utile pour la décision**. Un graphique permet de repérer plus vite qu'un tableau brut une tendance, une rupture ou une valeur inhabituelle — à condition d'être adapté à la question.

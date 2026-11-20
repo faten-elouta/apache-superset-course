@@ -2,7 +2,14 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
-const { marked } = require('marked');
+const { marked: baseMarked } = require('marked');
+
+// Enveloppe chaque tableau dans un conteneur défilant pour éviter tout débordement sur mobile.
+const wrapTables = (html) => html.replace(/<table>/g, '<div class="table-scroll"><table>').replace(/<\/table>/g, '</table></div>');
+const marked = {
+  parse: (src) => wrapTables(baseMarked.parse(String(src))),
+  parseInline: (src) => baseMarked.parseInline(String(src)),
+};
 const ejs = require('ejs');
 
 const ROOT_DIR = path.join(__dirname, '..');
@@ -18,8 +25,8 @@ const LESSONS = {
     subtitle: 'Le cours, ses objectifs et le fil rouge PREVIZO.',
   },
   '02-recit-de-donnees': {
-    title: 'Récit de données : la méthode',
-    subtitle: 'Passer du graphique au message, en quatre phases.',
+    title: 'Récit de données : le cadre',
+    subtitle: 'Un modèle en quatre couches et un processus en quatre phases (El Outa, 2023).',
   },
   '03-superset': {
     title: 'Superset : de la donnée au dashboard',
@@ -31,12 +38,13 @@ const LESSONS = {
   },
 };
 
-// Les quatre phases du récit de données : colonne vertébrale méthodologique du cours.
+// Les quatre phases du processus d'élaboration d'un récit de données (El Outa, 2023, chap. 4),
+// chacune associée à une couche du modèle conceptuel (chap. 3). Colonne vertébrale du cours.
 const PHASES = {
-  donnees: { n: 1, label: 'Données', verb: 'Collecter, explorer, vérifier' },
-  intention: { n: 2, label: 'Intention', verb: 'Définir la question et le message' },
-  structuration: { n: 3, label: 'Structuration', verb: 'Organiser le récit' },
-  presentation: { n: 4, label: 'Présentation', verb: 'Mettre en forme et diffuser' },
+  donnees: { n: 1, label: 'Explorer', layer: 'couche factuelle', verb: 'Collecter les données, essayer des collecteurs, formuler et valider des constats' },
+  intention: { n: 2, label: 'Répondre aux questions', layer: 'couche intentionnelle', verb: 'Formuler objectif et questions, tirer et valider des messages' },
+  structuration: { n: 3, label: 'Structurer les réponses', layer: 'couche structurelle', verb: 'Choisir l’audience et la structure, organiser actes et épisodes' },
+  presentation: { n: 4, label: 'Présenter', layer: 'couche présentationnelle', verb: 'Choisir la forme visuelle et l’interactivité, réaliser les dashboards' },
 };
 
 const PARTIAL_BY_TYPE = {

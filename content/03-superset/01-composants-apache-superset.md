@@ -5,7 +5,7 @@ lead: "Superset suit un parcours simple : on connecte une source, on en expose u
 objectives:
   - "Connaître les **composants** de Superset et leur rôle."
   - "Retenir l'**ordre** du parcours, de la base de données à la publication."
-  - "Relier chaque composant à une **phase de la méthode**."
+  - "Relier chaque composant à un **concept du modèle** et à une **phase du processus**."
 takeaways:
   - "**Base de données → Dataset → Chart → Dashboard → Publication** ; l'administration encadre l'ensemble."
   - "Deux interfaces de travail : **SQL Lab** (requêtes SQL) et **Explore** (graphiques sans code)."
@@ -13,14 +13,14 @@ takeaways:
 components:
   - type: markdown
     content: |
-      | Composant | Rôle | Phase de la méthode | Où dans Superset |
-      |---|---|---|---|
-      | **Base de données** | Connexion à la source | Données | *Settings → Database Connections* |
-      | **Dataset** | Table exposée, typée et enrichie | Données | *Datasets* |
-      | **Chart** | Une visualisation = une réponse | Présentation | *Charts* / interface **Explore** |
-      | **Dashboard** | Assemblage ordonné des charts | Structuration + Présentation | *Dashboards* |
-      | **Publication** | Mise à disposition du public | Présentation | Statut *Draft / Published* |
-      | **Administration** | Utilisateurs, rôles, droits | Transversal | *Settings → Security* |
+      | Composant Superset | Rôle | Concept du modèle | Phase du processus | Où dans Superset |
+      |---|---|---|---|---|
+      | **Base de données** | Connexion à la source | Données (couche factuelle) | Explorer | *Settings → Database Connections* |
+      | **Dataset** + **SQL Lab** | Table exposée et interrogée | **Collecteur** → **constats** | Explorer | *Datasets*, *SQL → SQL Lab* |
+      | **Chart** | Une visualisation = un message | **Composant de dashboard** (rend un épisode) | Présenter | *Charts* / interface **Explore** |
+      | **Dashboard** (ou onglet) | Assemblage ordonné des charts | **Dashboard** (rend un acte) | Structurer + Présenter | *Dashboards* |
+      | **Publication** | Mise à disposition du public | **Récit visuel** | Présenter | Statut *Draft / Published* |
+      | **Administration** | Utilisateurs, rôles, droits | — | Transversal | *Settings → Security* |
 
   - type: accordion
     title: "Le détail de chaque composant"
@@ -72,9 +72,9 @@ components:
       - "Construire un **chart** dans Explore"
       - "Assembler les charts dans un **dashboard**"
       - "**Publier** le dashboard"
-    explanation: "Chaque étape prépare la suivante : pas de dataset sans connexion, pas de chart sans dataset, pas de dashboard sans charts. La vérification dans SQL Lab vient **avant** les graphiques : c'est la phase Données de la méthode."
+    explanation: "Chaque étape prépare la suivante : pas de dataset sans connexion, pas de chart sans dataset, pas de dashboard sans charts. La vérification dans SQL Lab vient **avant** les graphiques : c'est la phase Explorer du processus."
 ---
 
 Apache Superset s'organise autour de quelques **composants** qui s'enchaînent. Les comprendre avant de commencer évite de se perdre dans les menus : chaque étape de la pratique correspond à l'un d'eux.
 
-Ces composants s'alignent aussi sur la méthode vue en leçon 2 : la **base de données** et le **dataset** relèvent de la phase *Données* ; les **charts** et le **dashboard** donnent forme à votre *Structuration* et à votre *Présentation*.
+Ces composants s'alignent aussi sur le modèle vu en leçon 2. La **base de données**, le **dataset** et les requêtes SQL (des **collecteurs**) relèvent de la **couche factuelle** : phase *Explorer*. Le **dashboard** rend un **acte** de votre intrigue et chaque **chart** rend un **épisode**, donc un message : **couche présentationnelle**, phase *Présenter*.

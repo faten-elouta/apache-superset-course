@@ -4,12 +4,12 @@ order: 1
 lead: "Et si vous appreniez à créer des tableaux de bord qui racontent vraiment quelque chose, avec un outil gratuit, léger et open source ?"
 objectives:
   - "Découvrir ce qu'est **Apache Superset** et ce que vous saurez faire à la fin du cours."
-  - "Comprendre la **méthode en quatre phases** qui structure tout le parcours."
+  - "Découvrir le **cadre de référence** du cours : un modèle en quatre couches et un processus en quatre phases."
   - "Faire connaissance avec le fil rouge : les données climatiques du projet **PREVIZO**."
 takeaways:
   - "Superset relie une **source de données** à des **graphiques** puis à un **dashboard** publiable."
   - "Un bon dashboard part d'une **question** et d'un **message**, pas d'une liste de graphiques."
-  - "Le cours suit quatre phases : **Données → Intention → Structuration → Présentation**."
+  - "Le cours suit quatre phases : **Explorer → Répondre aux questions → Structurer les réponses → Présenter**, avec des allers-retours."
 components:
   - type: listing_cards
     title: "Ce que vous saurez faire à la fin du cours"
@@ -24,9 +24,14 @@ components:
         text: "Organiser les graphiques selon une structure narrative, ajouter titres et filtres, puis publier."
 
   - type: heading
-    text: "Une méthode, quatre phases"
+    text: "Un cadre issu de la recherche"
     intro: |
-      Tout le cours s'appuie sur une même démarche. On ne commence pas par choisir un graphique : on part des **données**, on clarifie l'**intention** (la question et le message), on **structure** le récit, puis on soigne la **présentation**. Chaque page du cours indique, par une pastille de couleur, la ou les phases qu'elle travaille.
+      Tout le cours s'appuie sur le cadre proposé dans la thèse de doctorat de **Faten El Outa**, *A framework for crafting data narratives* (Université de Tours, 2023 — [HAL tel-04505799](https://hal.science/tel-04505799)). Il comprend :
+
+      - un **modèle conceptuel** en quatre couches — factuelle, intentionnelle, structurelle, présentationnelle — qui décrit de quoi est fait un récit de données ;
+      - un **processus** en quatre phases qui décrit comment on l'élabore.
+
+      On ne commence donc pas par choisir un graphique : on **explore** les données, on **répond aux questions** en formulant des messages, on **structure** ces réponses, puis on les **présente**. Chaque page du cours indique, par une pastille de couleur, la ou les phases qu'elle travaille.
 
   - type: method
 
