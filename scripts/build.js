@@ -69,6 +69,8 @@ const PARTIAL_BY_TYPE = {
   callout: 'callout',
   heading: 'heading',
   checklist: 'checklist',
+  structures: 'structures',
+  diagram: 'diagram',
   markdown: 'markdown',
 };
 
@@ -139,6 +141,13 @@ function groupByLesson(pages) {
   }));
 }
 
+// Insère un SVG du dossier assets directement dans la page (nécessaire pour animer ses zones).
+function inlineSvg(src) {
+  const file = path.join(ASSETS_DIR, src.replace(/^\/assets\//, ''));
+  if (!fs.existsSync(file)) throw new Error(`SVG introuvable : ${src}`);
+  return fs.readFileSync(file, 'utf8').replace(/^<\?xml[^>]*>\s*/, '');
+}
+
 function renderComponents(components = [], page) {
   return components
     .map((component, i) => {
@@ -148,7 +157,7 @@ function renderComponents(components = [], page) {
       const uid = `${page.slug}-${component.type}-${i}`;
       return ejs.render(
         fs.readFileSync(partialPath, 'utf8'),
-        { data: component, marked, uid, PHASES, seededShuffle },
+        { data: component, marked, uid, PHASES, seededShuffle, inlineSvg },
         { filename: partialPath }
       );
     })

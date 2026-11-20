@@ -1,0 +1,43 @@
+<section class="infotabs structures" id="<%= uid %>">
+  <% if (data.title) { %><h3 class="component-title"><%= data.title %></h3><% } %>
+  <% if (data.intro) { %><p class="component-intro"><%- marked.parseInline(data.intro) %></p><% } %>
+  <div class="infotabs-list" role="tablist" aria-label="Structures narratives">
+    <% data.items.forEach(function (item, i) { %>
+      <button type="button" role="tab" class="infotab-btn" id="<%= uid %>-tab-<%= i %>" aria-controls="<%= uid %>-panel-<%= i %>" aria-selected="<%= i === 0 %>" tabindex="<%= i === 0 ? 0 : -1 %>"><%= item.title %></button>
+    <% }); %>
+  </div>
+  <% data.items.forEach(function (item, i) { %>
+    <div class="infotab-panel structure-panel<%= i === 0 ? ' is-active' : '' %>" role="tabpanel" id="<%= uid %>-panel-<%= i %>" aria-labelledby="<%= uid %>-tab-<%= i %>">
+      <div class="infotab-title"><%= item.title %></div>
+      <% if (item.source) { %><div class="structure-source"><%= item.source %></div><% } %>
+      <div class="infotab-content"><%- marked.parse(item.content) %></div>
+
+      <div class="reading" data-reading>
+        <div class="structure-visuals">
+          <figure class="structure-schema">
+            <figcaption>Le schéma</figcaption>
+            <div class="svg-box"><%- inlineSvg('/assets/images/structures/schema-' + item.key + '.svg') %></div>
+          </figure>
+          <figure class="structure-dashboard">
+            <figcaption>Exemple : le dashboard PREVIZO dans Superset</figcaption>
+            <div class="svg-box"><%- inlineSvg('/assets/images/structures/dashboard-' + item.key + '.svg') %></div>
+          </figure>
+        </div>
+        <div class="reading-bar">
+          <button type="button" class="btn btn-primary reading-play">▶ Voir l’ordre de lecture</button>
+          <span class="reading-caption" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <% if (item.superset) { %>
+        <div class="structure-superset"><strong>Dans Superset :</strong> <%- marked.parseInline(item.superset) %></div>
+      <% } %>
+      <% if (item.figure) { %>
+        <details class="structure-original">
+          <summary>Voir la figure d’origine du cours</summary>
+          <img src="<%= item.figure %>" alt="<%= item.figure_alt || item.title %>" loading="lazy">
+        </details>
+      <% } %>
+    </div>
+  <% }); %>
+</section>

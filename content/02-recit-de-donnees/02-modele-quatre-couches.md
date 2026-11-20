@@ -27,6 +27,11 @@ components:
       | Forme de l'expression (discours) | **Structurelle** | L'organisation du récit | **Épisode** |
       | Substance de l'expression (discours) | **Présentationnelle** | Le rendu visuel | **Composant de dashboard** |
 
+  - type: diagram
+    src: "/assets/images/structures/modele-quatre-couches.svg"
+    caption: "Les quatre couches et leurs concepts (le concept clé est encadré), illustrés par le récit de Rue89 Strasbourg. Cliquez pour parcourir les couches une à une, des données jusqu'au lecteur."
+    button: "▶ Parcourir les couches"
+
   - type: infotabs
     title: "Les concepts de chaque couche"
     items:

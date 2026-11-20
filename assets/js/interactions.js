@@ -573,7 +573,47 @@
     });
   }
 
+  /* ---------- Lecture guidée des schémas et maquettes (zones numérotées) ---------- */
+  function initReadings() {
+    document.querySelectorAll('[data-reading]').forEach((box) => {
+      const btn = box.querySelector('.reading-play');
+      const caption = box.querySelector('.reading-caption');
+      if (!btn) return;
+      const zones = Array.from(box.querySelectorAll('.zone'));
+      const steps = Array.from(new Set(zones.map((z) => Number(z.dataset.step)))).sort((a, b) => a - b);
+      const label = (s) => {
+        const z = zones.find((el) => Number(el.dataset.step) === s && el.dataset.label);
+        return `Étape ${s} / ${steps.length}${z ? ' — ' + z.dataset.label : ''}`;
+      };
+      let timer = null;
+      const stop = () => {
+        clearTimeout(timer);
+        timer = null;
+        box.classList.remove('is-reading');
+        zones.forEach((z) => z.classList.remove('is-lit'));
+      };
+      const show = (i) => {
+        if (i >= steps.length) {
+          stop();
+          caption.textContent = 'Lecture terminée : tout le récit est visible.';
+          btn.textContent = '↺ Revoir l’ordre de lecture';
+          return;
+        }
+        box.classList.add('is-reading');
+        zones.forEach((z) => z.classList.toggle('is-lit', Number(z.dataset.step) === steps[i]));
+        caption.textContent = label(steps[i]);
+        timer = setTimeout(() => show(i + 1), 2200);
+      };
+      btn.addEventListener('click', () => {
+        if (timer) { stop(); caption.textContent = ''; btn.textContent = '▶ Voir l’ordre de lecture'; return; }
+        btn.textContent = '■ Arrêter';
+        show(0);
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initReadings();
     initTheme();
     initProgress();
     initReadingProgress();

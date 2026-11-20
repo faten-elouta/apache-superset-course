@@ -25,39 +25,50 @@ components:
     text: "Structures narratives"
     intro: "La structure organise l'ensemble des messages ; l'**ordre** règle leur succession à l'intérieur de chaque partie. Plusieurs structures viennent de la fiction, d'autres du journalisme."
 
-  - type: carousel
+  - type: structures
+    intro: "Pour chaque structure : son **schéma**, puis un **exemple de dashboard PREVIZO** construit avec cette structure. Cliquez sur **▶ Voir l'ordre de lecture** pour suivre, zone par zone, le chemin du regard du lecteur."
     items:
-      - title: "Trois actes (pyramide de Freytag)"
-        content: |
-          Issue de la fiction : une **exposition** (contexte et concepts principaux), une **montée** où les constats s'enchaînent vers le message principal, une **résolution** qui conclut. Le système CineCubes organise de même un récit de données en actes : introduction, contexte, puis synthèse des points marquants.
+      - key: pyramide
+        title: "Pyramide inversée"
+        source: "Kosara — pratique du journalisme"
+        content: "Selon Kosara, la plupart des récits de données journalistiques suivent la **pyramide inversée** : l'essentiel d'abord, puis les détails par ordre d'importance décroissante, sans fin marquée. Elle convient à un **public pressé** qui doit décider : le lecteur peut s'arrêter à tout moment, il aura lu le plus important."
+        superset: "les indicateurs clés (*Big Number*, *Big Number with Trendline*) sur la première ligne, les graphiques de preuve au milieu, une *Table* de détail en bas ; le titre du dashboard énonce le message."
+      - key: trois-actes
+        title: "Trois actes"
+        source: "Pyramide de Freytag — la fiction ; CineCubes"
+        content: "Issue de la fiction : une **exposition** (contexte et concepts principaux), une **montée** où les constats s'enchaînent vers le message principal, une **résolution** qui conclut. Le système CineCubes organise de même un récit de données en actes : introduction, contexte, puis synthèse des points marquants. Idéal pour une **démonstration** complète."
+        superset: "un onglet (*Tabs*) par acte — *Contexte*, *Analyse*, *Recommandations*. Chaque onglet est un dashboard du modèle : il rend un acte."
+        figure: "/assets/images/figures/structure-trois-actes.jpg"
+        figure_alt: "Structure en trois actes"
+      - key: question
+        title: "Question → preuves → retour"
+        source: "Kosara — inspiré du récit classique"
+        content: "Une structure qui ne révèle pas tout d'emblée : on **ouvre par une question ou une affirmation**, on **apporte les preuves** une à une, puis on **conclut en reliant les preuves** à la question initiale. Efficace pour **convaincre** ou pour éveiller la curiosité."
+        superset: "un en-tête (*Header* ou *Markdown*) qui pose la question, une ligne de charts titrés « Preuve 1, 2, 3 », un bloc *Markdown* final qui répond explicitement."
+      - key: martini
+        title: "Verre à martini"
+        source: "Segel et Heer (2010) — structure hybride"
+        content: "Segel et Heer distinguent les récits **guidés par l'auteur** (chemin linéaire, beaucoup d'explications, pas d'interaction), **guidés par le lecteur** (pas d'ordre imposé, forte interactivité) et **hybrides**. Dans le **verre à martini**, la *tige* est une courte séquence guidée par l'auteur ; puis le récit s'ouvre comme le *bol* du verre, et le lecteur explore librement. *Variante journalistique :* le format « sablier » (figure d'origine ci-dessous) revient à une conclusion en fin de récit."
+        superset: "un bloc guidé en haut (KPI + texte du message), puis une large zone d'exploration avec des **filtres natifs** (station, période) qui agissent sur tous les charts."
+        figure: "/assets/images/figures/structure-martini.jpg"
+        figure_alt: "Format sablier ou verre à martini : l'accroche et les idées clés en haut, la chronologie au milieu, la conclusion ou l'appel à l'action en bas"
+      - key: kabob
+        title: "Kabob"
+        source: "Écriture de récits d'entreprise"
+        content: "Une anecdote ou un fait d'**ancrage** ouvre le récit, un paragraphe clé en donne la portée, plusieurs blocs de **corps** apportent les preuves, puis le récit **revient à l'ancrage** pour conclure. Utile quand un point central doit rester présent du début à la fin : défendre une recommandation, évaluer une action."
+        superset: "le KPI d'ancrage en pleine largeur en haut, trois à cinq charts qui l'éclairent, puis un bloc *Markdown* final qui rappelle le chiffre d'ancrage et formule la recommandation."
+        figure: "/assets/images/figures/structure-kabob.jpg"
+        figure_alt: "Le kabob : anecdote, paragraphe clé, trois blocs de corps, anecdote"
 
-          ![Structure en trois actes](/assets/images/figures/structure-trois-actes.jpg)
-
-          **Dans Superset :** trois **onglets** (*Tabs*) — Contexte, Analyse, Recommandations.
-      - title: "Pyramide inversée"
-        content: |
-          Selon Kosara, la plupart des récits de données journalistiques suivent la **pyramide inversée** : l'essentiel d'abord, puis les détails par ordre d'importance décroissante, sans fin marquée. Elle convient à un public pressé.
-
-          **Dans Superset :** les indicateurs clés (*Big Number*) en haut, les graphiques de soutien au milieu, une table de détail en bas.
-      - title: "Question → preuves → retour à la question"
-        content: |
-          Kosara propose une structure inspirée du récit classique : on **ouvre par une question ou une affirmation**, sans tout révéler, on **apporte les preuves**, puis on **conclut en reliant les preuves** à la question initiale.
-
-          **Dans Superset :** un en-tête qui pose la question, des charts qui apportent chacun une preuve, un bloc *Markdown* final qui répond.
-      - title: "Verre à martini (structure hybride)"
-        content: |
-          Segel et Heer distinguent les récits **guidés par l'auteur** (chemin linéaire, beaucoup d'explications, pas d'interaction), **guidés par le lecteur** (pas d'ordre imposé, forte interactivité) et **hybrides**. Le **verre à martini** en est l'exemple type : une séquence guidée au départ, puis plusieurs chemins d'exploration.
-
-          ![Format verre à martini : accroche et idées clés en haut, chronologie au milieu, conclusion ou appel à l'action en bas](/assets/images/figures/structure-martini.jpg)
-
-          **Dans Superset :** un message en haut, des **filtres natifs** et graphiques interactifs au centre.
-      - title: "Kabob : un point central rappelé"
-        content: |
-          Une structure d'écriture d'entreprise : une anecdote d'ancrage, un paragraphe clé, des preuves, puis le rappel de l'ancrage. Utile quand un point central doit rester présent du début à la fin.
-
-          ![Le kabob : anecdote, paragraphe clé, trois blocs de corps, anecdote](/assets/images/figures/structure-kabob.jpg)
-
-          **Dans Superset :** le KPI d'ancrage dans l'en-tête, trois à cinq charts qui l'éclairent, une recommandation finale.
+  - type: sorter
+    title: "Reconstituez une pyramide inversée"
+    instruction: "Vous construisez le dashboard PREVIZO pour la direction. Ordonnez ses zones de haut en bas."
+    items:
+      - "Le titre-message : *Tours, la plus forte hausse du réseau en mai*"
+      - "Les KPI : 23,4 °C · +6,6 °C · ≈ +4 °C pour les autres stations"
+      - "La courbe d'évolution et le classement par station"
+      - "La table de détail par station"
+    explanation: "L'importance décroît de haut en bas : le lecteur pressé s'arrête après les KPI, le lecteur curieux descend jusqu'à la table."
 
   - type: callout
     kind: info
@@ -87,7 +98,7 @@ components:
         text: "Une démonstration qui progresse : contexte, analyse, puis recommandations — un onglet par acte."
       - label: "Des chargés d'études doivent pouvoir filtrer par station, mais retenir la même conclusion."
         title: "Verre à martini"
-        text: "Un début guidé par l'auteur, puis une exploration libre avec les filtres."
+        text: "Une courte séquence guidée par l'auteur (la tige), puis une exploration libre avec les filtres (le bol)."
       - label: "Vous voulez convaincre que Tours doit être équipée en priorité."
         title: "Question → preuves → retour (ou kabob)"
         text: "Posez la question ou l'affirmation, apportez les preuves une à une, puis revenez à la question avec la recommandation."

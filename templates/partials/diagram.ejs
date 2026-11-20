@@ -1,0 +1,9 @@
+<figure class="diagram reading" data-reading>
+  <% if (data.title) { %><h3 class="component-title"><%= data.title %></h3><% } %>
+  <div class="svg-box"><%- inlineSvg(data.src) %></div>
+  <% if (data.caption) { %><figcaption><%- marked.parseInline(data.caption) %></figcaption><% } %>
+  <div class="reading-bar">
+    <button type="button" class="btn btn-primary reading-play"><%= data.button || '▶ Parcourir pas à pas' %></button>
+    <span class="reading-caption" aria-live="polite"></span>
+  </div>
+</figure>

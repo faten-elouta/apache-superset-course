@@ -50,6 +50,12 @@ components:
       | **3. Les stations** | Tours est la plus chaude et la plus en hausse | **Ligne 3** | Barres triées par station |
       | — | Détails pour vérification | **Bas de page** | Table |
 
+  - type: diagram
+    title: "Le dashboard à construire"
+    src: "/assets/images/structures/dashboard-pyramide.svg"
+    caption: "Maquette cible : la pyramide inversée appliquée aux données PREVIZO. Les numéros indiquent l'ordre de lecture."
+    button: "▶ Voir l'ordre de lecture"
+
   - type: heading
     text: "Phase 4 · Présenter — construire dans Superset"
 

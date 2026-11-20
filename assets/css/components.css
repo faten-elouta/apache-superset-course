@@ -162,6 +162,26 @@
 .checklist-box .checklist { margin: 0; gap: 9px; }
 .checklist-progress { margin-top: 12px; font-size: 13.5px; font-weight: 700; color: var(--success); }
 
+/* Structures narratives : schéma + maquette, lecture guidée */
+.svg-box svg { display: block; width: 100%; height: auto; }
+.structure-source { font-size: 13px; font-weight: 700; color: var(--accent); margin: -4px 0 8px; }
+.structure-visuals { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.35fr); gap: 14px; margin: 16px 0 10px; align-items: start; }
+.structure-visuals figure, .diagram { margin: 0; }
+.structure-visuals figcaption { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.structure-visuals .svg-box, .diagram .svg-box { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+@media (max-width: 760px) { .structure-visuals { grid-template-columns: 1fr; } .structure-schema .svg-box { max-width: 300px; } }
+.reading .zone { transition: opacity 0.4s ease, filter 0.4s ease; }
+.reading.is-reading .zone { opacity: 0.15; filter: grayscale(1); }
+.reading.is-reading .zone.is-lit { opacity: 1; filter: none; }
+.reading-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; }
+.reading-caption { font-weight: 700; font-size: 14px; color: var(--accent); }
+.structure-superset { margin-top: 14px; padding: 12px 16px; border-radius: var(--radius-sm); background: var(--ph-presentation-soft); font-size: 14.5px; }
+.structure-original { margin-top: 12px; font-size: 14px; }
+.structure-original summary { cursor: pointer; color: var(--text-muted); font-weight: 600; }
+.structure-original img { display: block; max-height: 360px; width: auto; margin: 10px auto 0; border: 1px solid var(--border); background: #fff; }
+.diagram { margin: 28px 0; }
+.diagram figcaption { margin-top: 8px; font-size: 13.5px; color: var(--text-muted); text-align: center; }
+
 /* Figures */
 .figure { margin: 28px 0; }
 .figure img { display: block; width: 100%; border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow-sm); }
