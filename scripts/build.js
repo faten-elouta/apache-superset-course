@@ -215,6 +215,42 @@ function build() {
     fs.writeFileSync(path.join(outDir, `${page.slug}.html`), withBase(html));
   });
 
+  // Page « Ma progression » : la structure du cours est embarquée en JSON pour le calcul côté navigateur.
+  const GRADED = ['sorter', 'classifier', 'compare'];
+  const courseData = lessons.map((l) => ({
+    slug: l.slug,
+    number: l.number,
+    title: l.title,
+    pages: l.pages.map((p) => {
+      const comps = (p.components || []).map((c, i) => ({ c, uid: `${p.slug}-${c.type}-${i}` }));
+      return {
+        key: p.key,
+        title: p.title,
+        url: p.url,
+        minutes: p.minutes,
+        phases: p.phases,
+        quizzes: comps.filter(({ c }) => c.type === 'quiz').map(({ c, uid }) => ({
+          id: uid,
+          total: c.items.filter((it) => it.type !== 'text').length,
+          title: c.title || 'Vérifiez votre compréhension',
+        })),
+        activities: comps.filter(({ c }) => GRADED.includes(c.type)).map(({ c, uid }) => ({ id: uid, type: c.type, title: c.title })),
+        worksheet: comps.some(({ c }) => c.type === 'worksheet' && c.mode !== 'recall'),
+      };
+    }),
+  }));
+  const worksheetFields = flatPages
+    .flatMap((p) => p.components || [])
+    .filter((c) => c.type === 'worksheet' && c.mode !== 'recall')
+    .flatMap((c) => c.fields.map((f) => ({ key: f.key, label: f.label })));
+  const progPath = path.join(TEMPLATES_DIR, 'progression.ejs');
+  const progHtml = ejs.render(
+    fs.readFileSync(progPath, 'utf8'),
+    { lessons, PHASES, courseJson: JSON.stringify({ lessons: courseData, phases: PHASES, worksheetFields }).replace(/</g, '\\u003c') },
+    { filename: progPath }
+  );
+  fs.writeFileSync(path.join(DIST_DIR, 'progression.html'), withBase(progHtml));
+
   const indexPath = path.join(TEMPLATES_DIR, 'index.ejs');
   const indexHtml = ejs.render(
     fs.readFileSync(indexPath, 'utf8'),

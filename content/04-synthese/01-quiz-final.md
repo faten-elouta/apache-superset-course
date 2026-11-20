@@ -1,13 +1,13 @@
 ---
 title: "Quiz final"
 order: 1
-lead: "Dix questions pour vérifier vos acquis sur l'ensemble du parcours : la méthode, Superset, et les bonnes pratiques de visualisation."
+lead: "Douze questions pour vérifier vos acquis sur l'ensemble du parcours : le cadre du récit de données, Superset, et les bonnes pratiques de visualisation."
 objectives:
   - "Évaluer votre maîtrise des **quatre phases** de la méthode."
   - "Vérifier les étapes clés dans **Superset**."
   - "Identifier les points à revoir grâce aux explications."
 takeaways:
-  - "Moins de 7 / 9 ? Revenez aux étapes indiquées dans les explications avant de passer au résumé."
+  - "Moins de 8 / 11 (70 %) ? Revenez aux étapes indiquées dans les explications avant de passer au résumé. Votre meilleur score est conservé dans « Ma progression »."
 components:
   - type: quiz
     title: "Évaluation finale"

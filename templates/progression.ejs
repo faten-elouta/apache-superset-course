@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <%- include('partials/head') %>
+  <link rel="stylesheet" href="/assets/css/progression.css">
+  <title>Ma progression — Apache Superset</title>
+</head>
+<body data-page="progression">
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <div class="layout">
+    <%- include('partials/toc', { lessons, page: { key: 'progression', lessonSlug: '' } }) %>
+    <div class="main-col">
+      <header class="topbar">
+        <label for="toc-toggle" class="toc-toggle-label" aria-label="Ouvrir le sommaire">☰</label>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane"><a href="/index.html">Accueil</a><span aria-hidden="true">/</span><span>Ma progression</span></nav>
+        <button type="button" class="theme-toggle" aria-label="Changer de thème" title="Thème clair / sombre">◐</button>
+      </header>
+
+      <main class="content prog" id="contenu">
+        <h1>Ma progression</h1>
+        <p class="lead">Suivez votre avancement dans le cours : étapes terminées, résultats aux quiz et aux activités, temps passé. Ces données restent <strong>dans ce navigateur</strong> ; rien n’est envoyé.</p>
+
+        <section class="prog-hero" aria-label="Vue d’ensemble">
+          <div class="prog-ring" role="img" aria-label="Progression globale">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="ring-bg"/><circle cx="60" cy="60" r="52" class="ring-fg" pathLength="100"/></svg>
+            <div class="prog-ring-label"><strong data-stat="percent">0 %</strong><span>du cours</span></div>
+          </div>
+          <div class="prog-stats">
+            <div class="prog-stat"><strong data-stat="steps">0 / 0</strong><span>étapes terminées</span></div>
+            <div class="prog-stat"><strong data-stat="quiz">—</strong><span>réussite aux quiz</span></div>
+            <div class="prog-stat"><strong data-stat="activities">0 / 0</strong><span>activités réussies</span></div>
+            <div class="prog-stat"><strong data-stat="time">0 min</strong><span>temps passé</span></div>
+          </div>
+          <div class="prog-next">
+            <div class="prog-next-label">Prochaine étape conseillée</div>
+            <a class="btn btn-primary" data-next href="/index.html">Commencer le cours →</a>
+          </div>
+        </section>
+
+        <h2>Par leçon</h2>
+        <div class="prog-lessons" data-lessons></div>
+
+        <h2>Par phase du processus</h2>
+        <p class="prog-help">Avancement des étapes qui travaillent chaque phase (une étape peut en travailler plusieurs).</p>
+        <div class="prog-phases" data-phases></div>
+
+        <h2>Résultats aux quiz</h2>
+        <div class="table-scroll"><table class="prog-table" data-quizzes></table></div>
+
+        <h2>Fiche récit</h2>
+        <div class="prog-sheet" data-sheet></div>
+
+        <h2>Badges</h2>
+        <div class="prog-badges" data-badges></div>
+
+        <h2>Activité des 4 dernières semaines</h2>
+        <div class="prog-days" data-days></div>
+
+        <h2>Sauvegarder ou transférer</h2>
+        <div class="prog-tools">
+          <p class="prog-help">Votre progression est liée à ce navigateur. Pour la retrouver sur un autre appareil, copiez votre code de progression puis collez-le là-bas.</p>
+          <div class="prog-tools-row">
+            <button type="button" class="btn" data-export>Copier mon code de progression</button>
+            <button type="button" class="btn" data-print>Imprimer / enregistrer en PDF</button>
+            <button type="button" class="btn btn-ghost" data-reset>Réinitialiser</button>
+          </div>
+          <label class="prog-import-label" for="prog-import">Importer un code de progression</label>
+          <textarea id="prog-import" rows="3" placeholder="Collez ici un code copié depuis un autre appareil…"></textarea>
+          <button type="button" class="btn" data-import>Importer</button>
+          <div class="prog-tools-status" role="status" aria-live="polite"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script type="application/json" id="course-data"><%- courseJson %></script>
+  <script src="/assets/js/interactions.js"></script>
+  <script src="/assets/js/progression.js"></script>
+</body>
+</html>

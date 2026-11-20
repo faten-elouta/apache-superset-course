@@ -18,6 +18,66 @@
   };
 
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoursePage = () => document.body.dataset.page && document.body.dataset.page !== 'progression';
+
+  /* ---------- Enregistrement des résultats (lu par la page « Ma progression ») ---------- */
+  // Activités notées : on garde le meilleur résultat obtenu.
+  function recordActivity(id, result) {
+    if (!id) return;
+    const all = store.get('activities', {});
+    const prev = all[id] || {};
+    all[id] = {
+      ...prev,
+      ...result,
+      ok: !!(prev.ok || result.ok),
+      attempts: (prev.attempts || 0) + 1,
+      at: new Date().toISOString(),
+    };
+    store.set('activities', all);
+  }
+  // Quiz : score courant et meilleur score.
+  function recordQuiz(id, good, answered, total) {
+    if (!id) return;
+    const all = store.get('quiz', {});
+    const prev = all[id] || {};
+    const complete = answered >= total;
+    all[id] = {
+      good, answered, total,
+      best: complete ? Math.max(prev.best || 0, good) : prev.best,
+      completedAt: complete ? new Date().toISOString() : prev.completedAt,
+    };
+    store.set('quiz', all);
+  }
+  window.courseStore = store;
+  window.courseRecord = { activity: recordActivity, quiz: recordQuiz };
+
+  // Temps passé (page visible uniquement) et jours d'activité.
+  function initTimeTracking() {
+    if (!isCoursePage()) return;
+    const key = document.body.dataset.page;
+    const today = new Date().toISOString().slice(0, 10);
+    const days = store.get('days', []);
+    if (!days.includes(today)) { days.push(today); store.set('days', days.slice(-120)); }
+    if (!store.get('firstVisit', null)) store.set('firstVisit', new Date().toISOString());
+    let pending = 0;
+    let last = Date.now();
+    const flush = () => {
+      if (!pending) return;
+      const t = store.get('time', {});
+      t[key] = (t[key] || 0) + Math.round(pending / 1000);
+      store.set('time', t);
+      pending = 0;
+    };
+    setInterval(() => {
+      const now = Date.now();
+      // On ignore les pauses longues (onglet en veille, ordinateur suspendu).
+      if (document.visibilityState === 'visible' && now - last < 60000) pending += now - last;
+      last = now;
+      if (pending >= 15000) flush();
+    }, 5000);
+    document.addEventListener('visibilitychange', () => { last = Date.now(); if (document.visibilityState === 'hidden') flush(); });
+    addEventListener('pagehide', flush);
+  }
 
   /* ---------- Thème ---------- */
   function initTheme() {
@@ -36,7 +96,7 @@
   function initProgress() {
     const pageKey = document.body.dataset.page;
     const done = new Set(store.get('done', []));
-    if (pageKey) store.set('last', { key: pageKey, url: location.pathname, title: document.title.split(' — ')[0] });
+    if (isCoursePage()) store.set('last', { key: pageKey, url: location.pathname, title: document.title.split(' — ')[0] });
 
     const tocLinks = Array.from(document.querySelectorAll('.toc a[data-page]'));
     const bar = document.querySelector('.progress-fill');
@@ -338,6 +398,7 @@
         feedback.className = 'activity-feedback ' + (all ? 'is-success' : 'is-error');
         feedback.textContent = all ? 'Parfait, l’ordre est correct !' : `${good} élément(s) sur ${items().length} sont bien placés. Déplacez les éléments en rouge.`;
         if (all) { if (explanation) explanation.hidden = false; burst(feedback); }
+        if (!box.dataset.revealed) recordActivity(box.id, { ok: all, score: good, total: items().length });
       });
       box.querySelector('.sorter-solution').addEventListener('click', () => {
         items().sort((a, b) => a.dataset.pos - b.dataset.pos).forEach((li) => list.appendChild(li));
@@ -347,6 +408,8 @@
         feedback.className = 'activity-feedback is-success';
         feedback.textContent = 'Voici l’ordre attendu.';
         if (explanation) explanation.hidden = false;
+        box.dataset.revealed = '1';
+        recordActivity(box.id, { ok: false, revealed: true });
       });
       paint();
     });
@@ -362,6 +425,7 @@
         const good = answered.filter((i) => i.dataset.done === 'ok').length;
         score.textContent = answered.length ? `${good} / ${answered.length} bonne(s) réponse(s)${answered.length === items.length ? ' — terminé' : ''}` : '';
         if (answered.length === items.length && good === items.length) burst(score);
+        if (answered.length === items.length) recordActivity(box.id, { ok: good === items.length, score: good, total: items.length });
       };
       items.forEach((item) => {
         item.querySelectorAll('.classifier-btn').forEach((btn) => {
@@ -413,6 +477,7 @@
           feedback.className = 'activity-feedback ' + (ok ? 'is-success' : 'is-error');
           feedback.textContent = ok ? 'Exactement : cette version communique mieux le message.' : 'Pas celle-ci : regardez pourquoi l’autre version est plus efficace.';
           explanation.hidden = false;
+          recordActivity(box.id, { ok, score: ok ? 1 : 0, total: 1 });
         });
       });
     });
@@ -568,7 +633,7 @@
       }
 
       box.addEventListener('input', run);
-      box.addEventListener('change', run);
+      box.addEventListener('change', () => { run(); store.set('sqlUsed', true); });
       run();
     });
   }
@@ -613,6 +678,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    initTimeTracking();
     initReadings();
     initTheme();
     initProgress();

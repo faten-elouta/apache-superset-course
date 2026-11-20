@@ -182,6 +182,8 @@ button { font: inherit; color: inherit; }
 .progress-track { height: 6px; border-radius: 99px; background: rgba(255, 255, 255, 0.1); overflow: hidden; margin-bottom: 6px; }
 .progress-fill { height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, #4cc9d6, #a98bff); transition: width 0.5s ease; }
 
+.toc-progress-link { display: block; margin: -6px 22px 14px; font-size: 13px; font-weight: 700; color: #c9bfff; text-decoration: none; }
+.toc-progress-link:hover, .toc-progress-link.is-active { color: #fff; }
 .toc-lesson { padding: 6px 0 4px; }
 .toc-lesson-title {
   display: flex; align-items: center; gap: 10px;

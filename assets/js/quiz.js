@@ -17,7 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
           : `Score final : ${good} / ${cards.length}${good === cards.length ? ' — parfait !' : ''}`;
       scoreBox.classList.toggle('is-success', done === cards.length && good === cards.length);
       if (done === cards.length && good === cards.length && window.courseBurst) window.courseBurst(scoreBox);
+      if (window.courseRecord) window.courseRecord.quiz(quiz.id, good, done, cards.length);
     };
+
+    // Rappel du meilleur score obtenu lors d'une visite précédente
+    const saved = window.courseStore && window.courseStore.get('quiz', {})[quiz.id];
+    if (scoreBox && saved && saved.best !== undefined) {
+      scoreBox.hidden = false;
+      scoreBox.textContent = `Meilleur score précédent : ${saved.best} / ${saved.total}`;
+    }
 
     cards.forEach((card) => {
       const button = card.querySelector('.quiz-check-btn');

@@ -9,6 +9,7 @@
     <div class="progress-track"><div class="progress-fill"></div></div>
     <span class="progress-label"></span>
   </div>
+  <a class="toc-progress-link<%= (page && page.key === 'progression') ? ' is-active' : '' %>" href="/progression.html">📊 Ma progression →</a>
   <% lessons.forEach(function (lesson) { %>
     <div class="toc-lesson<%= (page && page.lessonSlug === lesson.slug) ? ' is-current' : '' %>">
       <div class="toc-lesson-title"><span class="toc-lesson-num"><%= lesson.number %></span><%= lesson.title %></div>
