@@ -1,14 +1,30 @@
-<div class="video-block">
+<figure class="video-block">
   <% if (data.placeholder) { %>
     <div class="video-placeholder">
-      <div class="video-placeholder-icon">🎬</div>
-      <div class="video-placeholder-text">Vidéo à ajouter<% if (data.label) { %> — <%= data.label %><% } %></div>
+      <div class="video-placeholder-icon" aria-hidden="true">▶</div>
+      <div>
+        <div class="video-placeholder-title">Vidéo à ajouter</div>
+        <% if (data.label) { %><div class="video-placeholder-text"><%= data.label %></div><% } %>
+      </div>
     </div>
   <% } else { %>
-    <a class="video-card" href="https://www.youtube.com/watch?v=<%= data.youtube_id %>" target="_blank" rel="noopener">
-      <img src="https://img.youtube.com/vi/<%= data.youtube_id %>/hqdefault.jpg" alt="<%= data.label || 'Vidéo' %>" loading="lazy">
-      <div class="video-play">▶</div>
-      <% if (data.label) { %><div class="video-label"><%= data.label %></div><% } %>
-    </a>
+    <button type="button" class="video-card" data-youtube="<%= data.youtube_id %>" aria-label="Lire la vidéo : <%= data.label || 'vidéo' %>">
+      <img src="https://img.youtube.com/vi/<%= data.youtube_id %>/hqdefault.jpg" alt="" loading="lazy">
+      <span class="video-play" aria-hidden="true">▶</span>
+    </button>
+    <figcaption class="video-label">
+      <%= data.label %>
+      <a href="https://www.youtube.com/watch?v=<%= data.youtube_id %>" target="_blank" rel="noopener">Ouvrir sur YouTube ↗</a>
+    </figcaption>
   <% } %>
-</div>
+  <% if (data.watch_for && data.watch_for.length) { %>
+    <div class="video-watch">
+      <strong>Pendant la vidéo, repérez :</strong>
+      <ul class="checklist">
+        <% data.watch_for.forEach(function (w, i) { %>
+          <li><label><input type="checkbox" data-persist="<%= uid %>-<%= i %>"> <span><%= w %></span></label></li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>
+</figure>

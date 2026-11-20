@@ -1,0 +1,8 @@
+<% var icons = { info: 'ℹ', tip: '💡', warning: '⚠', superset: '◆', method: '◎' }; var kind = data.kind || 'info'; %>
+<aside class="callout callout-<%= kind %>">
+  <div class="callout-icon" aria-hidden="true"><%= icons[kind] || 'ℹ' %></div>
+  <div class="callout-body">
+    <% if (data.title) { %><div class="callout-title"><%= data.title %></div><% } %>
+    <%- marked.parse(data.content) %>
+  </div>
+</aside>

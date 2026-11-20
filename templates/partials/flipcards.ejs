@@ -1,13 +1,21 @@
-<div class="flipcards">
-  <% data.items.forEach(function (item) { %>
-    <div class="flipcard">
-      <div class="flipcard-front">
-        <% if (item.image) { %><img src="<%= item.image %>" alt="<%= item.front %>"><% } %>
-        <div class="flipcard-title"><%= item.front %></div>
-      </div>
-      <div class="flipcard-back">
-        <div class="flipcard-content"><%- marked.parseInline(item.back) %></div>
-      </div>
-    </div>
-  <% }); %>
+<div class="flipcards-wrap">
+  <% if (data.title) { %><h3 class="component-title"><%= data.title %></h3><% } %>
+  <% if (data.intro) { %><p class="component-intro"><%= data.intro %></p><% } %>
+  <div class="flipcards">
+    <% data.items.forEach(function (item) { %>
+      <button type="button" class="flipcard" aria-pressed="false">
+        <span class="flipcard-inner">
+          <span class="flipcard-front">
+            <span class="flipcard-kicker">Besoin</span>
+            <span class="flipcard-title"><%= item.front %></span>
+            <span class="flipcard-hint">Retourner ↻</span>
+          </span>
+          <span class="flipcard-back">
+            <span class="flipcard-kicker">Graphique conseillé</span>
+            <span class="flipcard-content"><%- marked.parseInline(item.back) %></span>
+          </span>
+        </span>
+      </button>
+    <% }); %>
+  </div>
 </div>

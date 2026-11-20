@@ -1,0 +1,13 @@
+<% var current = [].concat(data.current || []); %>
+<section class="method-block" aria-label="Les quatre phases du récit de données">
+  <% if (data.title) { %><h3 class="component-title"><%= data.title %></h3><% } %>
+  <ol class="method-strip<%= current.length ? ' has-current' : '' %>">
+    <% Object.keys(PHASES).forEach(function (key) { var p = PHASES[key]; var d = (data.details || {})[key]; %>
+      <li class="method-step phase-<%= key %><%= current.indexOf(key) >= 0 ? ' is-current' : '' %>">
+        <span class="method-num"><%= p.n %></span>
+        <span class="method-label"><%= p.label %></span>
+        <span class="method-verb"><%= d || p.verb %></span>
+      </li>
+    <% }); %>
+  </ol>
+</section>

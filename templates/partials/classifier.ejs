@@ -1,0 +1,24 @@
+<section class="activity classifier" id="<%= uid %>">
+  <div class="activity-head">
+    <span class="activity-badge">◧ Classer</span>
+    <h3 class="component-title"><%= data.title %></h3>
+    <% if (data.instruction) { %><p class="component-intro"><%= data.instruction %></p><% } %>
+  </div>
+  <ul class="classifier-list">
+    <% data.items.forEach(function (item, i) { %>
+      <li class="classifier-item" data-answer="<%= item.answer %>">
+        <div class="classifier-text"><%- marked.parseInline(String(item.text)) %></div>
+        <div class="classifier-choices" role="group" aria-label="Classer cet élément">
+          <% data.categories.forEach(function (cat, c) { %>
+            <button type="button" class="classifier-btn" data-choice="<%= c %>"><%= cat %></button>
+          <% }); %>
+        </div>
+        <% if (item.explanation) { %><div class="classifier-explanation" hidden><%- marked.parseInline(item.explanation) %></div><% } %>
+      </li>
+    <% }); %>
+  </ul>
+  <div class="activity-footer">
+    <span class="classifier-score" aria-live="polite"></span>
+    <button type="button" class="btn btn-ghost classifier-reset">Recommencer</button>
+  </div>
+</section>

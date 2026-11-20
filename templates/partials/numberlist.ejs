@@ -1,8 +1,20 @@
-<ol class="numberlist">
-  <% data.items.forEach(function (item, i) { %>
-    <li class="numberlist-item">
-      <span class="numberlist-circle"><%= i + 1 %></span>
-      <div class="numberlist-content"><%- marked.parse(item.content) %></div>
-    </li>
-  <% }); %>
-</ol>
+<div class="numberlist-wrap<%= data.checkable ? ' is-checkable' : '' %>" id="<%= uid %>">
+  <% if (data.title) { %><h3 class="component-title"><%= data.title %></h3><% } %>
+  <% if (data.checkable) { %><p class="numberlist-help">Cochez chaque étape au fur et à mesure dans Superset.</p><% } %>
+  <ol class="numberlist">
+    <% data.items.forEach(function (item, i) { %>
+      <li class="numberlist-item">
+        <% if (data.checkable) { %>
+          <label class="numberlist-circle is-check" title="Marquer l’étape comme faite">
+            <input type="checkbox" data-persist="<%= uid %>-<%= i %>" aria-label="Étape <%= i + 1 %> faite">
+            <span><%= i + 1 %></span>
+          </label>
+        <% } else { %>
+          <span class="numberlist-circle"><%= i + 1 %></span>
+        <% } %>
+        <div class="numberlist-content"><%- marked.parse(item.content) %></div>
+      </li>
+    <% }); %>
+  </ol>
+  <% if (data.checkable) { %><div class="numberlist-progress" aria-live="polite"></div><% } %>
+</div>

@@ -1,12 +1,16 @@
-<div class="chooser" id="<%= data.id %>" data-results="<%= JSON.stringify(data.options) %>">
-  <div class="chooser-question"><%= data.question %></div>
+<section class="activity chooser" id="<%= data.id || uid %>" data-results="<%= JSON.stringify(data.options) %>">
+  <div class="activity-head">
+    <span class="activity-badge">➜ Choisir</span>
+    <h3 class="component-title"><%= data.question %></h3>
+    <% if (data.intro) { %><p class="component-intro"><%= data.intro %></p><% } %>
+  </div>
   <div class="chooser-options" role="radiogroup" aria-label="<%= data.question %>">
     <% data.options.forEach(function (option, index) { %>
       <label class="chooser-option">
-        <input type="radio" name="<%= data.id %>" value="<%= index %>">
+        <input type="radio" name="<%= data.id || uid %>" value="<%= index %>">
         <span><%= option.label %></span>
       </label>
     <% }); %>
   </div>
   <div class="chooser-result" role="status" aria-live="polite" hidden></div>
-</div>
+</section>

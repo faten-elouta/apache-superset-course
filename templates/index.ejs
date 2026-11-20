@@ -1,31 +1,82 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%- include('partials/head') %>
   <title>Apache Superset — Cours</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
-  <main class="content home">
-    <h1>Apache Superset</h1>
-    <p class="home-intro">
-      Apprenez à connecter vos données, explorer un jeu de données, créer des
-      visualisations et construire un dashboard efficace avec Apache Superset.
-      Ce cours en français relie la pratique de Superset aux fondamentaux du
-      data storytelling pour transformer des données en messages clairs et
-      convaincants.
-    </p>
-    <% lessons.forEach(function (lesson) { %>
-      <section class="home-lesson">
-        <h2><%= lesson.title %></h2>
-        <ul>
-          <% lesson.pages.forEach(function (p) { %>
-            <li><a href="<%= p.url %>"><%= p.title %></a></li>
-          <% }); %>
-        </ul>
-      </section>
-    <% }); %>
+<body class="home-body">
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="home-topbar">
+    <span class="home-brand"><span class="toc-logo" aria-hidden="true">◆</span> Apache Superset</span>
+    <button type="button" class="theme-toggle" aria-label="Changer de thème" title="Thème clair / sombre">◐</button>
+  </header>
+
+  <main class="home" id="contenu">
+    <section class="home-hero">
+      <p class="home-kicker">Cours en français · débutant à intermédiaire</p>
+      <h1>Raconter des données avec <span>Apache Superset</span></h1>
+      <p class="home-intro">
+        Une méthode en quatre phases pour transformer des données brutes en un
+        message clair, puis la mettre en œuvre dans Superset : connexion,
+        dataset, graphiques et dashboard. Le fil rouge : les données climatiques
+        du projet <strong>PREVIZO</strong>.
+      </p>
+      <div class="home-actions">
+        <a class="btn btn-primary resume-btn" href="<%= firstPage.url %>" data-first="<%= firstPage.url %>">Commencer le cours →</a>
+        <a class="btn btn-ghost" href="#parcours">Voir le parcours</a>
+      </div>
+      <ul class="home-stats">
+        <li><strong><%= lessons.reduce(function (s, l) { return s + l.pages.length; }, 0) %></strong> étapes</li>
+        <li><strong>≈ <%= Math.round(totalMinutes / 5) * 5 %></strong> min</li>
+        <li><strong>4</strong> phases de méthode</li>
+        <li><strong>+20</strong> activités interactives</li>
+      </ul>
+    </section>
+
+    <section class="home-method" aria-labelledby="methode-titre">
+      <h2 id="methode-titre">La méthode qui structure tout le cours</h2>
+      <p class="home-section-intro">Chaque étape du cours se rattache à l’une de ces quatre phases. Vous les retrouverez sous forme de pastille colorée en haut des pages.</p>
+      <ol class="method-strip">
+        <% Object.keys(PHASES).forEach(function (key) { var p = PHASES[key]; %>
+          <li class="method-step phase-<%= key %>">
+            <span class="method-num"><%= p.n %></span>
+            <span class="method-label"><%= p.label %></span>
+            <span class="method-verb"><%= p.verb %></span>
+          </li>
+        <% }); %>
+      </ol>
+    </section>
+
+    <section id="parcours" class="home-lessons" aria-labelledby="parcours-titre">
+      <h2 id="parcours-titre">Le parcours</h2>
+      <div class="lesson-grid">
+        <% lessons.forEach(function (lesson) { %>
+          <article class="lesson-card" data-lesson="<%= lesson.slug %>">
+            <div class="lesson-card-head">
+              <span class="lesson-card-num"><%= lesson.number %></span>
+              <div>
+                <h3><%= lesson.title %></h3>
+                <p><%= lesson.subtitle %></p>
+              </div>
+            </div>
+            <div class="lesson-card-progress"><span></span></div>
+            <ol>
+              <% lesson.pages.forEach(function (p) { %>
+                <li>
+                  <a href="<%= p.url %>" data-page="<%= p.key %>"><%= p.title %></a>
+                  <span class="lesson-card-meta">
+                    <% p.phases.forEach(function (ph) { %><i class="phase-dot phase-<%= ph %>" title="Phase <%= PHASES[ph].n %> · <%= PHASES[ph].label %>"></i><% }); %>
+                    <%= p.minutes %> min
+                  </span>
+                </li>
+              <% }); %>
+            </ol>
+          </article>
+        <% }); %>
+      </div>
+    </section>
   </main>
+  <footer class="home-footer">Cours Apache Superset — data storytelling &amp; dashboarding · Projet PREVIZO</footer>
+  <script src="/assets/js/interactions.js"></script>
 </body>
 </html>

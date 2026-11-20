@@ -1,61 +1,88 @@
 ---
-title: "Raconter les données"
-lesson: "02-recit-de-donnees"
+title: "Raconter les données : trois exemples"
 order: 3
+lead: "Un récit de données peut tenir dans une seule carte, s'étendre sur un tableau de bord entier ou prendre la forme d'une animation. Trois exemples pour voir ce qui les rend efficaces."
+objectives:
+  - "Retenir une **définition** opérationnelle du récit de données."
+  - "Analyser trois formes de récit : une **visualisation unique**, un **dashboard**, une **animation**."
+  - "Repérer ce qui guide le lecteur dans chacun de ces exemples."
+takeaways:
+  - "Un récit de données est **destiné à une audience précise** et poursuit un **objectif** (informer, expliquer, décider…)."
+  - "Le support compte moins que la **construction** : contexte, message, ordre de lecture."
+  - "Code couleur, annotations et titres sont des **outils narratifs**, pas des décorations."
 components:
+  - type: quote
+    text: "Un récit de données est un ensemble structuré de messages appuyés par des données et présentés visuellement sous une forme claire et organisée. Il est destiné à une audience précise et a pour objectif d'informer, d'expliquer, de mettre en évidence des tendances, de faciliter la compréhension ou encore d'aider à la prise de décision."
+    author: "EL OUTA Faten"
+
   - type: video
     youtube_id: "xacPHFq9AOc"
-    label: "Raconter les données"
-  - type: quote
-    text: |
-      Un récit de données est un ensemble structuré de messages appuyés par des
-      données et présentés visuellement sous une forme claire et organisée. Il
-      est destiné à une audience précise et a pour objectif d'informer,
-      d'expliquer, de mettre en évidence des tendances, de faciliter la
-      compréhension ou encore d'aider à la prise de décision.
-    author: "EL OUTA Faten"
+    label: "Récit de données : donner du sens aux chiffres"
+
+  - type: heading
+    text: "Exemple 1 — Une seule visualisation : la carte des nappes du BRGM"
+
+  - type: figure
+    src: "/assets/images/brgm-nappes-15-mai-2026.webp"
+    alt: "Carte de France du BRGM montrant le niveau des nappes d'eau souterraine au 15 mai 2026, avec un code couleur du niveau très haut au niveau très bas et des symboles de tendance."
+    caption: "Situation des nappes d'eau souterraine au 15 mai 2026 — source : BRGM."
+    size: medium
+
+  - type: markdown
+    content: |
+      Cette carte publiée par le **BRGM** vise à **informer** le **grand public** sur la situation des nappes d'eau souterraine en France. Elle ne se limite pas à représenter des données géographiques : elle raconte l'état des nappes à un moment donné en combinant plusieurs informations.
+
+      - un **code couleur** indique le niveau des nappes, de très haut à très bas ;
+      - des **symboles** montrent l'évolution : en hausse, stable ou en baisse ;
+      - le lecteur repère ainsi immédiatement les régions favorables, moyennes ou préoccupantes.
+
+      Des mesures techniques issues de points de suivi hydrogéologique deviennent une information claire, synthétique et facilement interprétable.
+
+  - type: heading
+    text: "Exemple 2 — Plusieurs visualisations : un tableau de bord"
+
+  - type: markdown
+    content: |
+      **Un récit de données ne se limite pas nécessairement à un seul graphique.** Un tableau de bord de suivi de l'empreinte carbone, par exemple, combine cartes, jauges, courbes d'évolution, diagrammes circulaires et tableaux comparatifs pour donner une vision globale de la consommation de carburant, de l'usage de l'électricité et des émissions de CO₂.
+
+      Bien construit, il guide la compréhension : il présente d'abord les indicateurs essentiels, explique ensuite les tendances ou les écarts, puis aide à identifier les points sur lesquels agir. **C'est ce type de récit que vous construirez dans Superset.**
+
+  - type: heading
+    text: "Exemple 3 — Une mise en scène animée : Hans Rosling"
+
   - type: video
     youtube_id: "SQnTjSIFT2M"
-    label: "Les 200 pays, 200 ans et 4 minutes de Hans Rosling — La joie des stats (sous-titré en français)"
+    label: "Les 200 pays, 200 ans et 4 minutes de Hans Rosling — The Joy of Stats (sous-titré en français)"
+    watch_for:
+      - "Les deux variables représentées sur les axes"
+      - "Ce que représentent la taille et la couleur des bulles"
+      - "Comment le commentaire guide le regard à chaque étape"
+
+  - type: markdown
+    content: |
+      Dans le documentaire de la BBC *The Joy of Stats* (2010), le statisticien suédois **Hans Rosling** raconte **200 ans d'évolution du monde en quatre minutes**, à partir d'un graphique animé croisant l'espérance de vie et le revenu par habitant depuis 1810.
+
+      L'intérêt ne réside pas seulement dans le graphique, mais dans la façon dont Rosling l'utilise : il relie les mouvements des pays à des événements historiques, économiques ou sanitaires, et construit une narration progressive et accessible. Comme il le souligne, disposer des données ne suffit pas : il faut savoir les présenter de manière **intéressante, vivante et facile à comprendre**.
+
   - type: quiz
     items:
-      - question: "**Quel est l'objectif principal d'une visualisation de données ?**"
+      - question: "Qu'est-ce qui fait de la carte du BRGM un récit de données, et pas seulement une carte ?"
         choices:
-          - "Créer des graphiques esthétiques sans se soucier des données."
-          - "Simplifier la compréhension des données complexes."
-          - "Ignorer les tendances et se concentrer uniquement sur les chiffres."
-          - "Utiliser uniquement des couleurs vives pour attirer l'attention."
+          - "Elle utilise beaucoup de couleurs."
+          - "Elle cible un public précis et l'aide à interpréter une situation à une date donnée."
+          - "Elle contient beaucoup de points de mesure."
         correct: [1]
+        explanation: "Public identifié (grand public), objectif clair (informer), et des codes visuels qui guident l'interprétation : niveau et tendance."
+      - question: "Quels éléments permettent à Hans Rosling de transformer un graphique en récit ?"
+        choices:
+          - "L'animation dans le temps"
+          - "Le commentaire qui relie les données à des événements"
+          - "La progression étape par étape"
+          - "Le nombre de pays affichés"
+        correct: [0, 1, 2]
+        explanation: "Le nombre de pays n'est pas ce qui crée le récit. C'est la **mise en scène** : temporalité, commentaire et progression."
 ---
 
-### Du dashboard au récit de données
+Un **dashboard** rassemble plusieurs indicateurs, graphiques et informations clés dans une même interface. Mais pour être vraiment utile, il ne doit pas se contenter de juxtaposer des chiffres : il doit organiser l'information de manière claire, logique et adaptée à son public. C'est à ce niveau que **le récit de données intervient**.
 
-Un **dashboard**, ou tableau de bord, est un support visuel qui rassemble plusieurs indicateurs, graphiques et informations clés dans une même interface. Son objectif est d'aider un utilisateur à comprendre rapidement une situation, à suivre une évolution ou à prendre une décision.
-
-Cependant, un dashboard efficace ne se limite pas à juxtaposer des chiffres ou des graphiques. Pour être vraiment utile, il doit organiser l'information de manière claire, logique et adaptée à son public. C'est à ce niveau que **le récit de données intervient**.
-
-Le **récit de données** consiste à transformer les données affichées dans un dashboard en une histoire compréhensible. Il ne s'agit pas seulement de montrer des chiffres, mais de les relier à un contexte, à une idée principale et à un message clair.
-
-Ainsi, un dashboard peut devenir un véritable récit de données lorsqu'il guide progressivement l'utilisateur : il présente d'abord les indicateurs essentiels, explique ensuite les tendances ou les écarts observés, puis aide à identifier les points importants pour agir.
-
-**Selon l'objectif, ce récit peut informer rapidement, expliquer un phénomène, comparer des situations ou mettre en valeur des tendances à travers des visualisations adaptées.**
-
-**Un exemple de récit de données peut être une carte publiée par le BRGM** pour **informer** le **grand public** sur la situation des nappes d'eau souterraine en France. Cette visualisation ne se limite pas à représenter des données géographiques : elle raconte l'état des nappes à un moment donné, ici au 15 mai 2026, en combinant plusieurs informations dans un même support visuel.
-
-La carte utilise un **code couleur** pour indiquer le niveau des nappes, allant d'un niveau très haut à un niveau très bas. Elle ajoute également des symboles pour montrer l'évolution des niveaux : en hausse, stable ou en baisse. Ainsi, le lecteur peut rapidement comprendre quelles régions présentent une situation favorable, moyenne ou préoccupante.
-
-Ce type de récit de données est particulièrement utile pour la communication scientifique auprès du grand public, car il transforme des mesures techniques issues de points de suivi hydrogéologique en une information claire, synthétique et facilement interprétable. Il permet non seulement de visualiser la répartition spatiale des niveaux d'eau souterraine, mais aussi de suivre leur dynamique d'évolution et d'identifier les zones nécessitant une attention particulière.
-
-**Un récit de données ne se limite pas nécessairement à un seul graphique. Il peut également prendre la forme d'un ensemble de visualisations organisées de manière cohérente, qui racontent collectivement une information pertinente et structurée.**
-
-Par exemple, un **tableau de bord** peut présenter plusieurs indicateurs liés au suivi de l'empreinte carbone et à la durabilité environnementale. Il combine différents types de graphiques — cartes, jauges, courbes d'évolution, diagrammes circulaires et tableaux comparatifs — afin de donner une vision globale de la consommation de carburant, de l'usage de l'électricité, des émissions de CO₂ et de leur évolution dans le temps.
-
-Ce type de récit de données permet non seulement de présenter des chiffres, mais aussi de guider la compréhension de l'utilisateur. En regroupant plusieurs indicateurs dans une même interface, le tableau de bord aide à identifier les tendances, comparer les départements, repérer les variations significatives et soutenir la prise de décision en matière de performance environnementale.
-
-**Un récit de données peut aussi prendre une forme plus complexe qu'une simple visualisation statique ou qu'un tableau de bord.** Il peut s'appuyer sur une mise en scène dynamique, interactive ou animée afin de rendre compréhensibles des informations nombreuses, complexes ou étalées sur une longue période.
-
-Un exemple célèbre est celui de **Hans Rosling**, statisticien suédois, dans le documentaire de la BBC *The Joy of Stats* diffusé en 2010. Dans un extrait devenu emblématique, il raconte **200 ans d'évolution du monde en seulement quatre minutes**, à partir d'un **graphique animé en réalité augmentée**. Ce graphique représente l'évolution de l'espérance de vie et du revenu par habitant de nombreux pays depuis 1810.
-
-Ce récit de données montre comment des événements historiques, économiques, sanitaires ou politiques ont influencé les trajectoires des pays au fil du temps. L'intérêt ne réside donc pas seulement dans le graphique lui-même, mais dans la manière dont Hans Rosling l'utilise pour construire une narration claire, progressive et accessible au grand public.
-
-Ainsi, cet exemple illustre parfaitement le rôle du data storytelling : transformer des données statistiques complexes en une histoire visuelle compréhensible, engageante et éducative. Comme le souligne Hans Rosling, disposer des données ne suffit pas ; il faut aussi savoir les présenter d'une manière à la fois intéressante, vivante et facile à comprendre.
+Selon l'objectif poursuivi, un récit peut **informer** rapidement, **expliquer** un phénomène, **comparer** des situations ou **mettre en valeur** des tendances. Les trois exemples ci-dessous montrent trois formes différentes, de la plus simple à la plus élaborée.

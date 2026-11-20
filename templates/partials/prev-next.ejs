@@ -1,10 +1,12 @@
-<div class="prev-next">
+<nav class="prev-next" aria-label="Navigation entre les étapes">
   <% if (prev) { %>
-    <a class="prev-next-link prev" href="<%= prev.url %>">&larr; <%= prev.title %></a>
+    <a class="prev-next-link prev" href="<%= prev.url %>"><small>← Précédent</small><span><%= prev.title %></span></a>
   <% } else { %>
     <span></span>
   <% } %>
   <% if (next) { %>
-    <a class="prev-next-link next" href="<%= next.url %>"><%= next.title %> &rarr;</a>
+    <a class="prev-next-link next" href="<%= next.url %>"><small>Suivant →</small><span><%= next.title %></span></a>
+  <% } else { %>
+    <a class="prev-next-link next" href="/index.html"><small>Fin du cours</small><span>Retour à l’accueil</span></a>
   <% } %>
-</div>
+</nav>

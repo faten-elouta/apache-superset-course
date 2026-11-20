@@ -1,68 +1,80 @@
 ---
-title: "Composants d'Apache Superset"
-lesson: "03-superset"
+title: "Les composants d'Apache Superset"
 order: 1
+lead: "Superset suit un parcours simple : on connecte une source, on en expose une table comme dataset, on construit des graphiques, puis on les assemble dans un dashboard que l'on publie."
+objectives:
+  - "Connaître les **composants** de Superset et leur rôle."
+  - "Retenir l'**ordre** du parcours, de la base de données à la publication."
+  - "Relier chaque composant à une **phase de la méthode**."
+takeaways:
+  - "**Base de données → Dataset → Chart → Dashboard → Publication** ; l'administration encadre l'ensemble."
+  - "Deux interfaces de travail : **SQL Lab** (requêtes SQL) et **Explore** (graphiques sans code)."
+  - "Superset **interroge** la source : il ne stocke pas les données lui-même."
 components:
+  - type: markdown
+    content: |
+      | Composant | Rôle | Phase de la méthode | Où dans Superset |
+      |---|---|---|---|
+      | **Base de données** | Connexion à la source | Données | *Settings → Database Connections* |
+      | **Dataset** | Table exposée, typée et enrichie | Données | *Datasets* |
+      | **Chart** | Une visualisation = une réponse | Présentation | *Charts* / interface **Explore** |
+      | **Dashboard** | Assemblage ordonné des charts | Structuration + Présentation | *Dashboards* |
+      | **Publication** | Mise à disposition du public | Présentation | Statut *Draft / Published* |
+      | **Administration** | Utilisateurs, rôles, droits | Transversal | *Settings → Security* |
+
   - type: accordion
+    title: "Le détail de chaque composant"
     items:
       - title: "Base de données"
         content: |
-          La base de données représente la source initiale des données utilisées dans Superset. Elle peut correspondre à une base SQL classique, comme PostgreSQL ou SQLite, ou à une source externe comme Google Sheets.
+          La base de données est la source initiale des données. Elle peut être une base SQL classique (PostgreSQL, MySQL…) ou une source externe comme **Google Sheets**.
 
-          Dans Superset, il faut d'abord créer une connexion vers cette source de données afin de pouvoir interroger les tables, fichiers ou feuilles disponibles. Cette étape permet à Superset d'accéder aux données sans les stocker directement dans son propre système.
+          Dans Superset, on crée d'abord une **connexion** vers cette source afin de pouvoir interroger les tables ou feuilles disponibles. Superset **accède** aux données sans les stocker dans son propre système.
       - title: "Dataset"
         content: |
           Le dataset est la couche intermédiaire entre la base de données et les visualisations. Il correspond à une table, une feuille Google Sheets ou une requête SQL exposée dans Superset.
 
-          Une fois la connexion à la base de données créée, l'utilisateur sélectionne une table ou une source spécifique pour créer un dataset. Ce dataset peut ensuite être configuré : choix des colonnes temporelles, définition des métriques, ajout de colonnes calculées, filtres, dimensions, etc.
-
-          Le dataset sert donc de base structurée pour construire les graphiques.
+          Une fois créé, il peut être configuré : colonne temporelle, **types**, **métriques**, **colonnes calculées**. Il sert de base structurée et réutilisable pour tous les graphiques.
       - title: "Chart"
         content: |
-          Le chart correspond à une visualisation créée à partir d'un dataset. Dans Superset, l'utilisateur choisit un dataset, puis sélectionne un type de graphique : courbe, barre, carte, tableau, indicateur, diagramme circulaire, etc.
+          Le chart est une visualisation créée à partir d'un dataset : courbe, barres, carte, tableau, indicateur…
 
-          À travers l'interface Explore, il est possible de configurer les axes, les métriques, les dimensions, les filtres, la période temporelle et l'apparence du graphique.
-
-          Le chart permet de transformer les données brutes en information visuelle lisible et interprétable.
-      - title: "Dashboards"
+          Dans l'interface **Explore**, on configure les axes, les métriques, les dimensions, les filtres et la période. Un bon chart répond à **une** question.
+      - title: "Dashboard"
         content: |
-          Le dashboard regroupe plusieurs charts dans une même interface. Il permet de construire une vue d'ensemble cohérente autour d'un sujet, d'un indicateur ou d'un cas d'usage métier.
+          Le dashboard regroupe plusieurs charts dans une même interface, autour d'un sujet ou d'un cas d'usage.
 
-          Dans Superset, les graphiques peuvent être ajoutés à un dashboard existant ou à un nouveau dashboard. L'utilisateur peut ensuite organiser la mise en page, redimensionner les graphiques, ajouter des filtres et structurer la lecture des données.
-
-          Le dashboard facilite l'analyse globale et la communication des résultats.
-      - title: "Administration"
-        content: |
-          L'administration concerne la gestion de l'environnement Superset. Elle inclut la gestion des connexions aux bases de données, des utilisateurs, des rôles, des permissions, de la sécurité et des paramètres d'accès aux dashboards et datasets.
-
-          Cette étape est importante pour contrôler qui peut consulter, modifier ou publier les données et les visualisations.
-
-          L'administration garantit une utilisation sécurisée, organisée et collaborative de Superset.
+          On y organise la mise en page (lignes, colonnes, onglets), on ajoute des textes (*Markdown*), des titres et des **filtres**. C'est là que la **structure narrative** prend forme.
       - title: "Publication"
         content: |
-          La publication correspond à la mise à disposition du dashboard auprès des utilisateurs concernés. Une fois les graphiques créés et organisés, le dashboard peut être publié afin d'être consulté par d'autres utilisateurs.
+          La publication met le dashboard à disposition des utilisateurs concernés. Un dashboard est d'abord en **brouillon** (*Draft*) ; une fois vérifié, il passe en **publié** (*Published*) et devient visible dans la liste des dashboards.
 
-          La publication permet de partager les résultats d'analyse, de communiquer des indicateurs clés et de rendre les visualisations accessibles à un public cible.
+          Selon les droits configurés, certains utilisateurs pourront seulement consulter le dashboard, d'autres le modifier.
+      - title: "Administration"
+        content: |
+          L'administration gère l'environnement Superset : connexions, utilisateurs, rôles, permissions et sécurité. Elle détermine **qui peut consulter, modifier ou publier** données et visualisations.
 
-          Selon les droits configurés, certains utilisateurs peuvent uniquement consulter le dashboard, tandis que d'autres peuvent le modifier ou l'administrer.
-  - type: summary_cards
+          Elle n'est pas une étape du parcours mais un cadre qui l'accompagne du début à la fin.
+
+  - type: callout
+    kind: superset
+    title: "Deux interfaces de travail"
+    content: |
+      **SQL Lab** est un environnement SQL pour interroger, vérifier, nettoyer ou joindre les données avant de les visualiser. **Explore** est un constructeur de graphiques sans code. Vous utiliserez les deux, dans cet ordre.
+
+  - type: sorter
+    title: "Remettez le parcours Superset dans l'ordre"
+    instruction: "Utilisez les flèches pour ordonner les étapes, puis vérifiez."
     items:
-      - title: "Relier la source SQL"
-        content: |
-          Tout commence par la connexion à une base de données déjà existante. Superset a besoin d'accéder à une source fiable pour explorer les tables et préparer les analyses.
-      - title: "Créer un dataset"
-        content: |
-          Une table ou une vue est ensuite exposée comme dataset dans Superset. C'est cette couche qui sert de base commune pour construire les visualisations sans repartir de zéro.
-      - title: "Construire les charts"
-        content: |
-          À partir du dataset, vous choisissez un type de graphique adapté à la question posée. Chaque chart transforme les lignes de données en lecture visuelle plus rapide et plus claire.
-      - title: "Composer et publier"
-        content: |
-          Les charts sont assemblés dans un dashboard pour raconter une histoire cohérente. Une fois le résultat vérifié, le tableau de bord peut être partagé avec les bonnes personnes.
+      - "Connecter la **base de données** (ici, les feuilles Google Sheets PREVIZO)"
+      - "Créer le **dataset** *Climat* à partir de la table"
+      - "Explorer et vérifier les données dans **SQL Lab**"
+      - "Construire un **chart** dans Explore"
+      - "Assembler les charts dans un **dashboard**"
+      - "**Publier** le dashboard"
+    explanation: "Chaque étape prépare la suivante : pas de dataset sans connexion, pas de chart sans dataset, pas de dashboard sans charts. La vérification dans SQL Lab vient **avant** les graphiques : c'est la phase Données de la méthode."
 ---
 
-### Apache Superset : du branchement à la publication
+Apache Superset s'organise autour de quelques **composants** qui s'enchaînent. Les comprendre avant de commencer évite de se perdre dans les menus : chaque étape de la pratique correspond à l'un d'eux.
 
-Apache Superset suit un parcours simple et lisible. On commence par connecter une base de données, on expose une table sous forme de **dataset**, puis on construit des **charts** avant d'assembler le tout dans un **dashboard**. Chaque étape prépare la suivante, sans détour inutile.
-
-> **Repère visuel :** imaginez une frise en 6 blocs : base de données → dataset → chart → dashboard → publication → administration. C'est le fil conducteur des sections qui suivent.
+Ces composants s'alignent aussi sur la méthode vue en leçon 2 : la **base de données** et le **dataset** relèvent de la phase *Données* ; les **charts** et le **dashboard** donnent forme à votre *Structuration* et à votre *Présentation*.

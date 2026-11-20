@@ -1,8 +1,21 @@
-<div class="carousel">
-  <% data.items.forEach(function (item) { %>
-    <div class="carousel-slide">
-      <div class="carousel-title"><%= item.title %></div>
-      <div class="carousel-content"><%- marked.parse(item.content) %></div>
+<div class="carousel" id="<%= uid %>" aria-roledescription="carrousel">
+  <% if (data.title) { %><h3 class="component-title"><%= data.title %></h3><% } %>
+  <div class="carousel-track">
+    <% data.items.forEach(function (item, i) { %>
+      <div class="carousel-slide" role="group" aria-roledescription="diapositive" aria-label="<%= i + 1 %> sur <%= data.items.length %>">
+        <div class="carousel-count"><%= i + 1 %> / <%= data.items.length %></div>
+        <div class="carousel-title"><%= item.title %></div>
+        <div class="carousel-content"><%- marked.parse(item.content) %></div>
+      </div>
+    <% }); %>
+  </div>
+  <div class="carousel-controls">
+    <button type="button" class="carousel-btn" data-dir="-1" aria-label="Diapositive précédente">←</button>
+    <div class="carousel-dots">
+      <% data.items.forEach(function (item, i) { %>
+        <button type="button" class="carousel-dot" data-index="<%= i %>" aria-label="Aller à : <%= item.title %>"></button>
+      <% }); %>
     </div>
-  <% }); %>
+    <button type="button" class="carousel-btn" data-dir="1" aria-label="Diapositive suivante">→</button>
+  </div>
 </div>

@@ -1,37 +1,57 @@
 ---
 title: "Bienvenue"
-lesson: "01-introduction"
 order: 1
-hero:
-  title: "Raconter des données avec Apache Superset"
-  text: |
-    Et si vous appreniez à créer des tableaux de bord avec Apache Superset,
-    un outil gratuit, léger et accessible en français ?
+lead: "Et si vous appreniez à créer des tableaux de bord qui racontent vraiment quelque chose, avec un outil gratuit, léger et open source ?"
+objectives:
+  - "Découvrir ce qu'est **Apache Superset** et ce que vous saurez faire à la fin du cours."
+  - "Comprendre la **méthode en quatre phases** qui structure tout le parcours."
+  - "Faire connaissance avec le fil rouge : les données climatiques du projet **PREVIZO**."
+takeaways:
+  - "Superset relie une **source de données** à des **graphiques** puis à un **dashboard** publiable."
+  - "Un bon dashboard part d'une **question** et d'un **message**, pas d'une liste de graphiques."
+  - "Le cours suit quatre phases : **Données → Intention → Structuration → Présentation**."
 components:
-  - type: quote
-    text: |
-      Ce cours est conçu pour les étudiants de niveau débutant à intermédiaire,
-      qu'ils aient ou non des connaissances préalables en SQL.
-    author: "Profil Étudiant"
   - type: listing_cards
-    title: "Ce que vous apprendrez"
+    title: "Ce que vous saurez faire à la fin du cours"
     items:
-      - title: "Maîtrise de Superset"
-        text: |
-          Apprenez à naviguer avec aisance dans Apache Superset pour créer des
-          visualisations époustouflantes et des dashboards percutants.
-      - title: "Data Storytelling"
-        text: |
-          Transformez vos analyses en récits captivants qui connectent vos
-          données à votre audience de manière claire et engageante.
-      - title: "Tableaux interactifs"
-        text: |
-          Créez des dashboards dynamiques qui non seulement informent, mais
-          aussi intriguent et motivent vos collègues à explorer les données.
+      - title: "Formuler un message à partir de données"
+        text: "Transformer une question métier en question analytique précise, puis en un message clé que votre public retient."
+      - title: "Préparer vos données dans Superset"
+        text: "Connecter une source (ici Google Sheets), créer et vérifier un dataset, l'explorer en SQL dans SQL Lab."
+      - title: "Choisir et construire les bons graphiques"
+        text: "Sélectionner la visualisation adaptée à la question posée et la configurer dans l'interface Explore."
+      - title: "Assembler et publier un dashboard qui raconte"
+        text: "Organiser les graphiques selon une structure narrative, ajouter titres et filtres, puis publier."
+
+  - type: heading
+    text: "Une méthode, quatre phases"
+    intro: |
+      Tout le cours s'appuie sur une même démarche. On ne commence pas par choisir un graphique : on part des **données**, on clarifie l'**intention** (la question et le message), on **structure** le récit, puis on soigne la **présentation**. Chaque page du cours indique, par une pastille de couleur, la ou les phases qu'elle travaille.
+
+  - type: method
+
+  - type: heading
+    text: "Le fil rouge : le projet PREVIZO"
+    intro: |
+      Pour que la pratique reste concrète, tous les exemples Superset utilisent les données du projet **PREVIZO** : des relevés climatiques (précipitations, températures minimales et maximales) mesurés par un réseau de stations, stockés dans des feuilles **Google Sheets** (*Climat*, *stations*, *capteurs*).
+
+      Vous suivrez ces données de bout en bout : connexion à Superset, création du dataset, exploration en SQL, premiers graphiques, puis un dashboard complet qui répond à une question précise.
+
+  - type: callout
+    kind: info
+    title: "Pour qui ? Avec quoi ?"
+    content: |
+      Ce cours s'adresse aux étudiantes et étudiants de niveau **débutant à intermédiaire**, avec ou sans connaissances préalables en SQL : les quelques requêtes utilisées sont expliquées pas à pas et peuvent être testées dans un bac à sable intégré au cours.
+
+      Pour la partie pratique, il vous faut un accès à une instance **Apache Superset** (locale ou fournie par votre établissement) et à des feuilles Google Sheets partagées.
+
+  - type: callout
+    kind: tip
+    title: "Comment suivre le cours"
+    content: |
+      Suivez les étapes dans l'ordre : chaque leçon prépare la suivante. Les activités (quiz, exercices de classement, fiche de travail…) sont faites pour être tentées **avant** de lire la solution. Utilisez le bouton **« Marquer comme terminé »** en bas de page pour suivre votre progression dans le sommaire.
 ---
 
-**Apache Superset** est un outil de Business Intelligence open source et gratuit qui permet de connecter des bases de données, de créer et gérer des datasets, d'explorer les données, de concevoir des visualisations, puis de regrouper ces graphiques dans des dashboards enrichis par une narration claire.
+**Apache Superset** est un outil de Business Intelligence open source et gratuit. Il permet de connecter des bases de données, de créer et gérer des jeux de données (*datasets*), de les explorer, de concevoir des visualisations, puis de regrouper ces graphiques dans des **dashboards** enrichis par une narration claire.
 
-Dans un contexte où les supports et formations francophones sur cet outil gratuit restent encore limités, ce cours propose une introduction pratique à ses principales fonctionnalités.
-
-Tout au long du parcours, vous découvrirez progressivement l'environnement Superset, depuis la connexion aux données jusqu'à la construction d'un dashboard publiable. Vous apprendrez également à appliquer les bonnes pratiques de visualisation et les principes du data storytelling afin de transformer des données brutes en messages compréhensibles, structurés et actionnables.
+Les supports francophones sur cet outil restent encore rares : ce cours propose une introduction pratique à ses principales fonctionnalités, en les reliant aux fondamentaux du **data storytelling**. L'objectif n'est pas seulement de savoir *cliquer* dans Superset, mais de produire des tableaux de bord qui transforment des données brutes en messages compréhensibles, structurés et utiles à la décision.

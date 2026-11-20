@@ -1,7 +1,8 @@
 <div class="accordion">
+  <% if (data.title) { %><h3 class="component-title"><%= data.title %></h3><% } %>
   <% data.items.forEach(function (item, i) { %>
-    <details class="accordion-card" <%= i === 0 ? 'open' : '' %>>
-      <summary class="accordion-header"><%= item.title %></summary>
+    <details class="accordion-card" <%= (i === 0 && data.open_first !== false) ? 'open' : '' %>>
+      <summary class="accordion-header"><span><%= item.title %></span></summary>
       <div class="accordion-body"><%- marked.parse(item.content) %></div>
     </details>
   <% }); %>

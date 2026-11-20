@@ -1,29 +1,42 @@
-<div class="quiz">
-  <% data.items.forEach(function (item, qIndex) { %>
-    <div class="quiz-card" data-quiz-index="<%= qIndex %>">
-      <div class="quiz-number">Question <%= qIndex + 1 %></div>
+<section class="quiz" id="<%= uid %>" aria-label="<%= data.title || 'Quiz' %>">
+  <div class="quiz-head">
+    <span class="quiz-badge">✓ Auto-évaluation</span>
+    <h3 class="component-title"><%= data.title || 'Vérifiez votre compréhension' %></h3>
+  </div>
+  <% data.items.forEach(function (item, qIndex) {
+       var isText = item.type === 'text';
+       var multi = !isText && item.correct.length > 1;
+       var name = uid + '-q' + qIndex; %>
+    <div class="quiz-card<%= isText ? ' is-open' : '' %>" data-quiz-index="<%= qIndex %>">
+      <div class="quiz-number">Question <%= qIndex + 1 %> / <%= data.items.length %><% if (multi) { %> · <em>plusieurs réponses possibles</em><% } %></div>
       <div class="quiz-question"><%- marked.parseInline(item.question) %></div>
-      <% if (item.hint) { %><div class="quiz-hint"><%= item.hint %></div><% } %>
-      <% if (item.type === 'text') { %>
-        <textarea class="quiz-textarea" rows="3" placeholder="Votre réponse..."></textarea>
+      <% if (isText) { %>
+        <textarea class="quiz-textarea" rows="4" placeholder="Rédigez votre réponse, puis comparez-la avec la proposition…"></textarea>
+        <button type="button" class="quiz-reveal-btn">Comparer avec une réponse modèle</button>
+        <div class="quiz-model" hidden><strong>Réponse modèle :</strong> <%- marked.parse(item.model_answer || '') %></div>
       <% } else { %>
         <div class="quiz-choices" data-correct='<%- JSON.stringify(item.correct) %>'>
           <% item.choices.forEach(function (choice, cIndex) { %>
             <label class="quiz-choice">
-              <input type="checkbox" class="quiz-checkbox" data-choice-index="<%= cIndex %>">
-              <span><%= choice %></span>
+              <input type="<%= multi ? 'checkbox' : 'radio' %>" name="<%= name %>" class="quiz-checkbox" data-choice-index="<%= cIndex %>">
+              <span><%- marked.parseInline(String(choice)) %></span>
             </label>
           <% }); %>
         </div>
-        <button type="button" class="quiz-check-btn">Vérifier</button>
-        <div class="quiz-feedback" hidden></div>
+        <div class="quiz-actions">
+          <button type="button" class="quiz-check-btn">Vérifier</button>
+          <% if (item.hint) { %><button type="button" class="quiz-hint-btn">Indice</button><% } %>
+        </div>
+        <% if (item.hint) { %><div class="quiz-hint" hidden>💡 <%= item.hint %></div><% } %>
+        <div class="quiz-feedback" role="status" hidden></div>
+        <% if (item.explanation) { %><div class="quiz-explanation" hidden><%- marked.parse(item.explanation) %></div><% } %>
       <% } %>
     </div>
   <% }); %>
   <% if (data.items.some(function (item) { return item.type !== 'text'; })) { %>
     <div class="quiz-footer">
       <div class="quiz-score" aria-live="polite" hidden></div>
-      <button type="button" class="quiz-reset-btn">Recommencer le quiz</button>
+      <button type="button" class="quiz-reset-btn">Recommencer</button>
     </div>
   <% } %>
-</div>
+</section>

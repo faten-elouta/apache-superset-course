@@ -1,0 +1,44 @@
+<section class="activity sqlbuilder" id="<%= uid %>" data-table="<%= data.table %>" data-rows="<%= JSON.stringify(data.rows) %>" data-text-numeric="<%= JSON.stringify(data.text_numeric || []) %>">
+  <div class="activity-head">
+    <span class="activity-badge">⌨ Bac à sable SQL</span>
+    <h3 class="component-title"><%= data.title %></h3>
+    <% if (data.intro) { %><p class="component-intro"><%- marked.parseInline(data.intro) %></p><% } %>
+  </div>
+  <div class="sqlb-controls">
+    <fieldset class="sqlb-group">
+      <legend>SELECT — colonnes</legend>
+      <div class="sqlb-cols">
+        <% Object.keys(data.rows[0]).forEach(function (col) { %>
+          <label><input type="checkbox" class="sqlb-col" value="<%= col %>" checked> <code><%= col %></code></label>
+        <% }); %>
+      </div>
+      <label class="sqlb-agg"><input type="checkbox" class="sqlb-groupby"> Calculer la moyenne de <code>tmax_c</code> par station (<code>GROUP BY</code>)</label>
+    </fieldset>
+    <fieldset class="sqlb-group">
+      <legend>WHERE — filtre</legend>
+      <div class="sqlb-row">
+        <select class="sqlb-where-col"><option value="">(aucun filtre)</option>
+          <% Object.keys(data.rows[0]).forEach(function (col) { %><option><%= col %></option><% }); %>
+        </select>
+        <select class="sqlb-where-op"><option>=</option><option>&gt;</option><option>&lt;</option><option>&gt;=</option><option>&lt;=</option></select>
+        <input type="text" class="sqlb-where-val" placeholder="valeur" aria-label="Valeur du filtre">
+      </div>
+    </fieldset>
+    <fieldset class="sqlb-group">
+      <legend>ORDER BY · LIMIT</legend>
+      <div class="sqlb-row">
+        <select class="sqlb-order-col"><option value="">(pas de tri)</option>
+          <% Object.keys(data.rows[0]).forEach(function (col) { %><option><%= col %></option><% }); %>
+        </select>
+        <select class="sqlb-order-dir"><option value="ASC">ASC</option><option value="DESC">DESC</option></select>
+        <input type="number" class="sqlb-limit" min="1" max="1000" value="10" aria-label="Limite">
+      </div>
+    </fieldset>
+  </div>
+  <pre class="sqlb-query"><code></code></pre>
+  <div class="sqlb-result">
+    <div class="sqlb-meta" aria-live="polite"></div>
+    <div class="table-scroll"><table class="sqlb-table"></table></div>
+  </div>
+  <% if (data.note) { %><p class="sqlb-note"><%- marked.parseInline(data.note) %></p><% } %>
+</section>

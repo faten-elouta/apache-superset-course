@@ -1,0 +1,37 @@
+<section class="activity worksheet<%= data.mode === 'recall' ? ' is-recall' : '' %>" id="<%= uid %>" data-sheet="<%= data.id %>" data-mode="<%= data.mode || 'edit' %>">
+  <div class="activity-head">
+    <span class="activity-badge"><%= data.mode === 'recall' ? '↺ Rappel de votre fiche' : '✎ Fiche de travail' %></span>
+    <h3 class="component-title"><%= data.title %></h3>
+    <% if (data.intro) { %><p class="component-intro"><%- marked.parseInline(data.intro) %></p><% } %>
+  </div>
+  <div class="worksheet-fields">
+    <% data.fields.forEach(function (f) { var fid = uid + '-' + f.key; %>
+      <div class="worksheet-field">
+        <label for="<%= fid %>">
+          <% if (f.phase) { %><i class="phase-dot phase-<%= f.phase %>"></i><% } %>
+          <%= f.label %>
+        </label>
+        <% if (f.help) { %><div class="worksheet-help"><%- marked.parseInline(f.help) %></div><% } %>
+        <% if (data.mode === 'recall') { %>
+          <div class="worksheet-value" data-key="<%= f.key %>" id="<%= fid %>"><em>Non renseigné</em></div>
+        <% } else if (f.type === 'select') { %>
+          <select id="<%= fid %>" data-key="<%= f.key %>">
+            <option value="">— Choisir —</option>
+            <% f.options.forEach(function (o) { %><option><%= o %></option><% }); %>
+          </select>
+        <% } else if (f.type === 'textarea') { %>
+          <textarea id="<%= fid %>" data-key="<%= f.key %>" rows="3" placeholder="<%= f.placeholder || '' %>"></textarea>
+        <% } else { %>
+          <input type="text" id="<%= fid %>" data-key="<%= f.key %>" placeholder="<%= f.placeholder || '' %>">
+        <% } %>
+      </div>
+    <% }); %>
+  </div>
+  <div class="activity-footer">
+    <span class="worksheet-status" aria-live="polite"><%= data.mode === 'recall' ? '' : 'Enregistrement automatique dans ce navigateur.' %></span>
+    <span>
+      <button type="button" class="btn btn-ghost worksheet-copy">Copier la fiche</button>
+      <% if (data.mode !== 'recall') { %><button type="button" class="btn btn-ghost worksheet-clear">Effacer</button><% } %>
+    </span>
+  </div>
+</section>

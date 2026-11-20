@@ -1,0 +1,26 @@
+<% var shuffled = seededShuffle(data.items, uid); %>
+<section class="activity sorter" id="<%= uid %>" data-count="<%= data.items.length %>">
+  <div class="activity-head">
+    <span class="activity-badge">⇅ Remettre dans l’ordre</span>
+    <h3 class="component-title"><%= data.title %></h3>
+    <% if (data.instruction) { %><p class="component-intro"><%= data.instruction %></p><% } %>
+  </div>
+  <ol class="sorter-list">
+    <% shuffled.forEach(function (s) { %>
+      <li class="sorter-item" data-pos="<%= s.index %>">
+        <span class="sorter-rank" aria-hidden="true"></span>
+        <span class="sorter-text"><%- marked.parseInline(String(s.item)) %></span>
+        <span class="sorter-moves">
+          <button type="button" class="sorter-up" aria-label="Monter">↑</button>
+          <button type="button" class="sorter-down" aria-label="Descendre">↓</button>
+        </span>
+      </li>
+    <% }); %>
+  </ol>
+  <div class="activity-actions">
+    <button type="button" class="btn btn-primary sorter-check">Vérifier l’ordre</button>
+    <button type="button" class="btn btn-ghost sorter-solution">Voir la solution</button>
+  </div>
+  <div class="activity-feedback" role="status" hidden></div>
+  <% if (data.explanation) { %><div class="activity-explanation" hidden><%- marked.parse(data.explanation) %></div><% } %>
+</section>

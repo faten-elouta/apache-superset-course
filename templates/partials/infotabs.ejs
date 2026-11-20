@@ -1,9 +1,19 @@
-<div class="infotabs">
-  <% data.items.forEach(function (item) { %>
-    <div class="infotab-panel">
+<div class="infotabs" id="<%= uid %>">
+  <% if (data.title) { %><h3 class="component-title"><%= data.title %></h3><% } %>
+  <div class="infotabs-list" role="tablist" aria-label="<%= data.title || 'Onglets' %>">
+    <% data.items.forEach(function (item, i) { %>
+      <button type="button" role="tab" class="infotab-btn" id="<%= uid %>-tab-<%= i %>" aria-controls="<%= uid %>-panel-<%= i %>" aria-selected="<%= i === 0 %>" tabindex="<%= i === 0 ? 0 : -1 %>"><%= item.title %></button>
+    <% }); %>
+  </div>
+  <% data.items.forEach(function (item, i) { %>
+    <div class="infotab-panel<%= i === 0 ? ' is-active' : '' %>" role="tabpanel" id="<%= uid %>-panel-<%= i %>" aria-labelledby="<%= uid %>-tab-<%= i %>">
       <div class="infotab-title"><%= item.title %></div>
-      <% if (item.image) { %><img class="infotab-image" src="<%= item.image %>" alt="<%= item.title %>" loading="lazy"><% } %>
-      <div class="infotab-content"><%- marked.parse(item.content) %></div>
+      <div class="infotab-body<%= item.image ? ' has-image' : '' %>">
+        <% if (item.content && item.content.trim()) { %><div class="infotab-content"><%- marked.parse(item.content) %></div><% } %>
+        <% if (item.image) { %>
+          <a class="zoomable" href="<%= item.image %>"><img class="infotab-image" src="<%= item.image %>" alt="<%= item.alt || item.title %>" loading="lazy"></a>
+        <% } %>
+      </div>
     </div>
   <% }); %>
 </div>

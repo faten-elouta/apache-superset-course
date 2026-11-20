@@ -1,27 +1,68 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%- include('partials/head') %>
   <title><%= page.title %> — Apache Superset</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/interactions.css">
 </head>
-<body data-page="<%= page.lessonSlug %>/<%= page.slug %>">
+<body data-page="<%= page.key %>">
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
   <div class="layout">
     <%- include('partials/toc', { lessons, page }) %>
-    <main class="content">
-      <% if (page.hero) { %>
-        <%- include('partials/hero', { data: page.hero, marked }) %>
-      <% } %>
-      <h1><%= page.title %></h1>
-      <%- page.bodyHtml %>
-      <%- componentsHtml %>
-      <div class="page-footer-actions">
-        <button type="button" class="done-btn" aria-pressed="false">Marquer comme terminé</button>
-      </div>
-      <%- include('partials/prev-next', { prev, next }) %>
-    </main>
+    <div class="main-col">
+      <header class="topbar">
+        <label for="toc-toggle" class="toc-toggle-label" aria-label="Ouvrir le sommaire">☰</label>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/index.html">Accueil</a>
+          <span aria-hidden="true">/</span>
+          <span>Leçon <%= lesson.number %> · <%= lesson.title %></span>
+        </nav>
+        <button type="button" class="theme-toggle" aria-label="Changer de thème" title="Thème clair / sombre">◐</button>
+      </header>
+
+      <main class="content" id="contenu">
+        <div class="page-meta">
+          <span class="page-step">Étape <%= step %> / <%= lesson.pages.length %></span>
+          <span class="page-time">≈ <%= page.minutes %> min</span>
+          <% page.phases.forEach(function (p) { %>
+            <span class="phase-pill phase-<%= p %>" title="<%= PHASES[p].verb %>">Phase <%= PHASES[p].n %> · <%= PHASES[p].label %></span>
+          <% }); %>
+        </div>
+
+        <h1><%= page.title %></h1>
+        <% if (page.lead) { %><p class="lead"><%= page.lead %></p><% } %>
+
+        <% if (page.hero) { %>
+          <%- include('partials/hero', { data: page.hero, marked }) %>
+        <% } %>
+
+        <% if (page.objectives && page.objectives.length) { %>
+          <section class="objectives" aria-label="Objectifs de la page">
+            <div class="objectives-title">Dans cette étape, vous allez</div>
+            <ul>
+              <% page.objectives.forEach(function (o) { %><li><%- marked.parseInline(o) %></li><% }); %>
+            </ul>
+          </section>
+        <% } %>
+
+        <div class="prose"><%- page.bodyHtml %></div>
+        <%- componentsHtml %>
+
+        <% if (page.takeaways && page.takeaways.length) { %>
+          <section class="takeaways" aria-label="À retenir">
+            <div class="takeaways-title">À retenir</div>
+            <ul>
+              <% page.takeaways.forEach(function (t) { %><li><%- marked.parseInline(t) %></li><% }); %>
+            </ul>
+          </section>
+        <% } %>
+
+        <div class="page-footer-actions">
+          <button type="button" class="done-btn" aria-pressed="false">Marquer comme terminé</button>
+        </div>
+        <%- include('partials/prev-next', { prev, next }) %>
+      </main>
+    </div>
   </div>
   <script src="/assets/js/quiz.js"></script>
   <script src="/assets/js/interactions.js"></script>

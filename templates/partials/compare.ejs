@@ -1,0 +1,17 @@
+<section class="activity compare" id="<%= uid %>" data-correct="<%= data.correct %>">
+  <div class="activity-head">
+    <span class="activity-badge">⚖ Comparer</span>
+    <h3 class="component-title"><%= data.title %></h3>
+    <% if (data.question) { %><p class="component-intro"><%= data.question %></p><% } %>
+  </div>
+  <div class="compare-grid">
+    <% data.options.forEach(function (opt, i) { %>
+      <button type="button" class="compare-option" data-choice="<%= i %>">
+        <span class="compare-label"><span class="compare-letter">Version <%= String.fromCharCode(65 + i) %></span><% if (opt.caption) { %><span class="compare-caption"><%= opt.caption %></span><% } %></span>
+        <img src="<%= opt.image %>" alt="<%= opt.alt %>" loading="lazy">
+      </button>
+    <% }); %>
+  </div>
+  <div class="activity-feedback" role="status" hidden></div>
+  <div class="activity-explanation" hidden><%- marked.parse(data.explanation) %></div>
+</section>

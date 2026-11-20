@@ -1,0 +1,9 @@
+<div class="checklist-box" id="<%= uid %>">
+  <% if (data.title) { %><h3 class="component-title"><%= data.title %></h3><% } %>
+  <ul class="checklist">
+    <% data.items.forEach(function (item, i) { %>
+      <li><label><input type="checkbox" data-persist="<%= uid %>-<%= i %>"> <span><%- marked.parseInline(item) %></span></label></li>
+    <% }); %>
+  </ul>
+  <div class="checklist-progress" aria-live="polite"></div>
+</div>
