@@ -2,13 +2,17 @@
 <label for="toc-toggle" class="toc-toggle-label">☰ Sommaire</label>
 <nav class="toc">
   <a class="toc-home" href="/index.html">Apache Superset</a>
+  <div class="progress" aria-live="polite">
+    <div class="progress-track"><div class="progress-fill"></div></div>
+    <span class="progress-label"></span>
+  </div>
   <% lessons.forEach(function (lesson) { %>
     <div class="toc-lesson">
       <div class="toc-lesson-title"><%= lesson.title %></div>
       <ul>
         <% lesson.pages.forEach(function (p) { %>
           <li class="<%= (page && page.slug === p.slug && page.lessonSlug === p.lessonSlug) ? 'is-active' : '' %>">
-            <a href="<%= p.url %>"><%= p.title %></a>
+            <a href="<%= p.url %>" data-page="<%= p.lessonSlug %>/<%= p.slug %>"><%= p.title %></a>
           </li>
         <% }); %>
       </ul>

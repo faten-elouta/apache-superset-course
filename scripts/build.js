@@ -29,6 +29,7 @@ const PARTIAL_BY_TYPE = {
   flipcards: 'flipcards',
   video: 'video',
   quiz: 'quiz',
+  chooser: 'chooser',
 };
 
 function slugFromFilename(filename) {

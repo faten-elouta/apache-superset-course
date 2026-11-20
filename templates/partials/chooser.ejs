@@ -1,0 +1,12 @@
+<div class="chooser" id="<%= data.id %>" data-results="<%= JSON.stringify(data.options) %>">
+  <div class="chooser-question"><%= data.question %></div>
+  <div class="chooser-options" role="radiogroup" aria-label="<%= data.question %>">
+    <% data.options.forEach(function (option, index) { %>
+      <label class="chooser-option">
+        <input type="radio" name="<%= data.id %>" value="<%= index %>">
+        <span><%= option.label %></span>
+      </label>
+    <% }); %>
+  </div>
+  <div class="chooser-result" role="status" aria-live="polite" hidden></div>
+</div>

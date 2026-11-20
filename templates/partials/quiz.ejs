@@ -20,4 +20,10 @@
       <% } %>
     </div>
   <% }); %>
+  <% if (data.items.some(function (item) { return item.type !== 'text'; })) { %>
+    <div class="quiz-footer">
+      <div class="quiz-score" aria-live="polite" hidden></div>
+      <button type="button" class="quiz-reset-btn">Recommencer le quiz</button>
+    </div>
+  <% } %>
 </div>

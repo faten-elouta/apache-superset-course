@@ -1,0 +1,68 @@
+/* Progression, boutons, widget « Quel graphique choisir ? », animations */
+
+/* Progression dans le sommaire */
+.progress { margin: 0 0 16px; font-size: 13px; color: var(--text-muted); }
+.progress-track { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; margin-bottom: 6px; }
+.progress-fill { height: 100%; width: 0; background: var(--accent); border-radius: 3px; transition: width 0.4s ease; }
+.toc li.is-done a::after { content: " ✓"; color: var(--success); font-weight: bold; }
+
+/* Bouton « Marquer comme terminé » */
+.page-footer-actions { display: flex; justify-content: center; margin: 32px 0 8px; }
+.done-btn {
+  font: inherit; font-weight: bold; cursor: pointer;
+  padding: 10px 18px; border-radius: 8px;
+  border: 2px solid var(--accent); background: transparent; color: var(--accent);
+  transition: background 0.2s, color 0.2s;
+}
+.done-btn:hover { background: var(--accent); color: #fff; }
+.done-btn.is-done { background: var(--success); border-color: var(--success); color: #fff; }
+.done-btn:focus-visible, .copy-btn:focus-visible, .quiz-reset-btn:focus-visible, .chooser-option input:focus-visible + span {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+
+/* Quiz : score et réinitialisation */
+.quiz-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; }
+.quiz-score { font-weight: bold; }
+.quiz-score.is-success { color: var(--success); }
+.quiz-reset-btn {
+  font: inherit; cursor: pointer; padding: 8px 14px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--bg-alt); color: var(--text);
+}
+.quiz-reset-btn:hover { border-color: var(--accent); }
+
+/* Bouton « Copier » sur les blocs de code */
+.content pre { position: relative; }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  font: inherit; font-size: 12px; cursor: pointer;
+  padding: 4px 10px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--card-bg); color: var(--text-muted);
+}
+.copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Widget « Quel graphique choisir ? » */
+.chooser {
+  margin: 28px 0; padding: 20px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--card-bg);
+}
+.chooser-question { font-weight: bold; font-size: 1.1em; margin-bottom: 12px; }
+.chooser-options { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.chooser-option {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-alt);
+}
+.chooser-option:hover { border-color: var(--accent); }
+.chooser-option input { accent-color: var(--accent); margin: 0; }
+.chooser-result {
+  margin-top: 16px; padding: 14px 16px; border-left: 4px solid var(--accent);
+  border-radius: 6px; background: var(--bg-alt);
+}
+.chooser-result p { margin: 6px 0 0; color: var(--text-muted); }
+
+/* Apparition progressive des sections (désactivée si « réduire les animations » est actif) */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-visible, .progress-fill, .done-btn { transition: none; transform: none; opacity: 1; }
+}

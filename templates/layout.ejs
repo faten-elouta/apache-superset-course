@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= page.title %> — Apache Superset</title>
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/interactions.css">
 </head>
-<body>
+<body data-page="<%= page.lessonSlug %>/<%= page.slug %>">
   <div class="layout">
     <%- include('partials/toc', { lessons, page }) %>
     <main class="content">
@@ -16,9 +17,13 @@
       <h1><%= page.title %></h1>
       <%- page.bodyHtml %>
       <%- componentsHtml %>
+      <div class="page-footer-actions">
+        <button type="button" class="done-btn" aria-pressed="false">Marquer comme terminé</button>
+      </div>
       <%- include('partials/prev-next', { prev, next }) %>
     </main>
   </div>
   <script src="/assets/js/quiz.js"></script>
+  <script src="/assets/js/interactions.js"></script>
 </body>
 </html>
