@@ -18,6 +18,11 @@ const TEMPLATES_DIR = path.join(ROOT_DIR, 'templates');
 const ASSETS_DIR = path.join(ROOT_DIR, 'assets');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
 
+// Chemin de base du site : « / » en local, « /apache-superset-course/ » sur GitHub Pages.
+// Usage : BASE_PATH=/apache-superset-course/ npm run build
+const BASE_PATH = (process.env.BASE_PATH || '/').replace(/\/?$/, '/');
+const withBase = (html) => (BASE_PATH === '/' ? html : html.replace(/(href|src|data-first)="\/(?!\/)/g, `$1="${BASE_PATH}`));
+
 // Les leçons suivent la logique du cours : fondements → méthode → mise en œuvre dans Superset → évaluation.
 const LESSONS = {
   '01-introduction': {
@@ -207,7 +212,7 @@ function build() {
     );
     const outDir = path.join(DIST_DIR, page.lessonSlug);
     fs.mkdirSync(outDir, { recursive: true });
-    fs.writeFileSync(path.join(outDir, `${page.slug}.html`), html);
+    fs.writeFileSync(path.join(outDir, `${page.slug}.html`), withBase(html));
   });
 
   const indexPath = path.join(TEMPLATES_DIR, 'index.ejs');
@@ -216,7 +221,9 @@ function build() {
     { lessons, PHASES, totalMinutes, firstPage: flatPages[0] },
     { filename: indexPath }
   );
-  fs.writeFileSync(path.join(DIST_DIR, 'index.html'), indexHtml);
+  fs.writeFileSync(path.join(DIST_DIR, 'index.html'), withBase(indexHtml));
+  // Pages GitHub : pas de traitement Jekyll
+  fs.writeFileSync(path.join(DIST_DIR, '.nojekyll'), '');
 
   console.log(`Build terminé : ${flatPages.length} pages + accueil générées dans dist/ (≈ ${totalMinutes} min de lecture)`);
 }

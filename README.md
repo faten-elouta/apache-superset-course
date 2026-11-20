@@ -43,6 +43,12 @@ npx serve dist         # ou tout autre serveur statique servant dist/ à la raci
 
 Le dossier `dist/` est généré et ignoré par git.
 
+## Déploiement
+
+Le site est publié sur **GitHub Pages** : https://faten-elouta.github.io/apache-superset-course/
+
+Chaque push sur `main` relance le workflow `.github/workflows/deploy.yml`, qui construit le site avec `BASE_PATH=/apache-superset-course/` et le publie. Pour tester ce chemin en local : `BASE_PATH=/apache-superset-course/ npm run build`.
+
 ## Reste à faire
 
 - Trois vidéos sont signalées par un encadré « Vidéo à ajouter » : *Data story vs. dataviz* (2.1), *Comprendre le tableau de bord* (2.2, la vidéo YouTube d'origine n'existe plus) et la démonstration Superset (3.5).
