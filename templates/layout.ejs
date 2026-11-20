@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= page.title %> — Apache Superset</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <%- include('partials/toc', { lessons, page }) %>
+    <main class="content">
+      <% if (page.hero) { %>
+        <%- include('partials/hero', { data: page.hero, marked }) %>
+      <% } %>
+      <h1><%= page.title %></h1>
+      <%- page.bodyHtml %>
+      <%- componentsHtml %>
+      <%- include('partials/prev-next', { prev, next }) %>
+    </main>
+  </div>
+  <script src="/assets/js/quiz.js"></script>
+</body>
+</html>

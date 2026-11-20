@@ -1,0 +1,12 @@
+<div class="listing-cards">
+  <% if (data.title) { %><h3><%= data.title %></h3><% } %>
+  <% data.items.forEach(function (item) { %>
+    <div class="listing-card">
+      <div class="listing-card-bar"></div>
+      <div class="listing-card-body">
+        <div class="listing-card-title"><%= item.title %></div>
+        <div class="listing-card-text"><%- marked.parse(item.text) %></div>
+      </div>
+    </div>
+  <% }); %>
+</div>

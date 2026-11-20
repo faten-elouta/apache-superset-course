@@ -1,0 +1,4 @@
+<div class="hero">
+  <div class="hero-title"><%= data.title %></div>
+  <% if (data.text) { %><div class="hero-text"><%- marked.parse(data.text) %></div><% } %>
+</div>

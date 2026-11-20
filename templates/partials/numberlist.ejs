@@ -1,0 +1,8 @@
+<ol class="numberlist">
+  <% data.items.forEach(function (item, i) { %>
+    <li class="numberlist-item">
+      <span class="numberlist-circle"><%= i + 1 %></span>
+      <div class="numberlist-content"><%- marked.parse(item.content) %></div>
+    </li>
+  <% }); %>
+</ol>

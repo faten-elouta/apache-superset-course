@@ -1,0 +1,4 @@
+<div class="quote">
+  <div class="quote-text"><%- marked.parseInline(data.text) %></div>
+  <% if (data.author) { %><div class="quote-author">— <%= data.author %></div><% } %>
+</div>

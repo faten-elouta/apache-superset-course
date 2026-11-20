@@ -1,0 +1,9 @@
+<div class="infotabs">
+  <% data.items.forEach(function (item) { %>
+    <div class="infotab-panel">
+      <div class="infotab-title"><%= item.title %></div>
+      <% if (item.image) { %><img class="infotab-image" src="<%= item.image %>" alt="<%= item.title %>" loading="lazy"><% } %>
+      <div class="infotab-content"><%- marked.parse(item.content) %></div>
+    </div>
+  <% }); %>
+</div>

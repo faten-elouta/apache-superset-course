@@ -1,0 +1,8 @@
+<div class="carousel">
+  <% data.items.forEach(function (item) { %>
+    <div class="carousel-slide">
+      <div class="carousel-title"><%= item.title %></div>
+      <div class="carousel-content"><%- marked.parse(item.content) %></div>
+    </div>
+  <% }); %>
+</div>

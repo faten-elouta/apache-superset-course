@@ -1,0 +1,14 @@
+<div class="video-block">
+  <% if (data.placeholder) { %>
+    <div class="video-placeholder">
+      <div class="video-placeholder-icon">🎬</div>
+      <div class="video-placeholder-text">Vidéo à ajouter<% if (data.label) { %> — <%= data.label %><% } %></div>
+    </div>
+  <% } else { %>
+    <a class="video-card" href="https://www.youtube.com/watch?v=<%= data.youtube_id %>" target="_blank" rel="noopener">
+      <img src="https://img.youtube.com/vi/<%= data.youtube_id %>/hqdefault.jpg" alt="<%= data.label || 'Vidéo' %>" loading="lazy">
+      <div class="video-play">▶</div>
+      <% if (data.label) { %><div class="video-label"><%= data.label %></div><% } %>
+    </a>
+  <% } %>
+</div>

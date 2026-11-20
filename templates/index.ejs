@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apache Superset — Cours</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <main class="content home">
+    <h1>Apache Superset</h1>
+    <p class="home-intro">
+      Apprenez à connecter vos données, explorer un jeu de données, créer des
+      visualisations et construire un dashboard efficace avec Apache Superset.
+      Ce cours en français relie la pratique de Superset aux fondamentaux du
+      data storytelling pour transformer des données en messages clairs et
+      convaincants.
+    </p>
+    <% lessons.forEach(function (lesson) { %>
+      <section class="home-lesson">
+        <h2><%= lesson.title %></h2>
+        <ul>
+          <% lesson.pages.forEach(function (p) { %>
+            <li><a href="<%= p.url %>"><%= p.title %></a></li>
+          <% }); %>
+        </ul>
+      </section>
+    <% }); %>
+  </main>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<div class="summary-cards">
+  <% if (data.title) { %><h3><%= data.title %></h3><% } %>
+  <div class="summary-cards-grid">
+    <% data.items.forEach(function (item) { %>
+      <div class="summary-card">
+        <div class="summary-card-title"><%= item.title %></div>
+        <div class="summary-card-content"><%- marked.parse(item.content) %></div>
+      </div>
+    <% }); %>
+  </div>
+</div>

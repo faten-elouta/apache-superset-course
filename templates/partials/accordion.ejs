@@ -1,0 +1,8 @@
+<div class="accordion">
+  <% data.items.forEach(function (item, i) { %>
+    <details class="accordion-card" <%= i === 0 ? 'open' : '' %>>
+      <summary class="accordion-header"><%= item.title %></summary>
+      <div class="accordion-body"><%- marked.parse(item.content) %></div>
+    </details>
+  <% }); %>
+</div>

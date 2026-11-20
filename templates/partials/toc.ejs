@@ -1,0 +1,17 @@
+<input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox">
+<label for="toc-toggle" class="toc-toggle-label">☰ Sommaire</label>
+<nav class="toc">
+  <a class="toc-home" href="/index.html">Apache Superset</a>
+  <% lessons.forEach(function (lesson) { %>
+    <div class="toc-lesson">
+      <div class="toc-lesson-title"><%= lesson.title %></div>
+      <ul>
+        <% lesson.pages.forEach(function (p) { %>
+          <li class="<%= (page && page.slug === p.slug && page.lessonSlug === p.lessonSlug) ? 'is-active' : '' %>">
+            <a href="<%= p.url %>"><%= p.title %></a>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+  <% }); %>
+</nav>

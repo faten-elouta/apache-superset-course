@@ -1,0 +1,13 @@
+<div class="flipcards">
+  <% data.items.forEach(function (item) { %>
+    <div class="flipcard">
+      <div class="flipcard-front">
+        <% if (item.image) { %><img src="<%= item.image %>" alt="<%= item.front %>"><% } %>
+        <div class="flipcard-title"><%= item.front %></div>
+      </div>
+      <div class="flipcard-back">
+        <div class="flipcard-content"><%- marked.parseInline(item.back) %></div>
+      </div>
+    </div>
+  <% }); %>
+</div>

@@ -1,0 +1,23 @@
+<div class="quiz">
+  <% data.items.forEach(function (item, qIndex) { %>
+    <div class="quiz-card" data-quiz-index="<%= qIndex %>">
+      <div class="quiz-number">Question <%= qIndex + 1 %></div>
+      <div class="quiz-question"><%- marked.parseInline(item.question) %></div>
+      <% if (item.hint) { %><div class="quiz-hint"><%= item.hint %></div><% } %>
+      <% if (item.type === 'text') { %>
+        <textarea class="quiz-textarea" rows="3" placeholder="Votre réponse..."></textarea>
+      <% } else { %>
+        <div class="quiz-choices" data-correct='<%- JSON.stringify(item.correct) %>'>
+          <% item.choices.forEach(function (choice, cIndex) { %>
+            <label class="quiz-choice">
+              <input type="checkbox" class="quiz-checkbox" data-choice-index="<%= cIndex %>">
+              <span><%= choice %></span>
+            </label>
+          <% }); %>
+        </div>
+        <button type="button" class="quiz-check-btn">Vérifier</button>
+        <div class="quiz-feedback" hidden></div>
+      <% } %>
+    </div>
+  <% }); %>
+</div>
